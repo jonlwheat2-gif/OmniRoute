@@ -5770,6 +5770,7 @@
     "antigravityProjectIdLabel": "Kitambulisho cha Mradi wa Wingu la Google",
     "antigravityProjectIdPlaceholder": "kitambulisho cha mradi-wangu-gcp",
     "grokWebCookiePlaceholder": "Grok Web Cookie Placeholder",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Heroku Base Url Hint",
     "hideEmail": "Hide Email",
     "imageProviders": "Image Providers",

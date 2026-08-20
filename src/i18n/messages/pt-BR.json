@@ -5770,6 +5770,7 @@
     "antigravityProjectIdLabel": "ID do projeto do Google Cloud",
     "antigravityProjectIdPlaceholder": "meu-gcp-project-id",
     "grokWebCookiePlaceholder": "Cole o valor do cookie sso do grok.com",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Obrigatório: cole a URL base do Heroku Inference. O app adicionará /v1/chat/completions.",
     "hideEmail": "Ocultar e-mail",
     "imageProviders": "Geração de Imagem",

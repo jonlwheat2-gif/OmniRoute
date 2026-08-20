@@ -5790,6 +5790,7 @@
     "antigravityProjectIdLabel": "Google Cloud Project ID",
     "antigravityProjectIdPlaceholder": "my-gcp-project-id",
     "grokWebCookiePlaceholder": "Grok Web Cookie Placeholder",
+    "firecrawlBaseUrlHint": "Firecrawl API base URL. Leave blank to use https://api.firecrawl.dev.",
     "herokuBaseUrlHint": "Heroku Base Url Hint",
     "hideEmail": "Hide Email",
     "imageProviders": "Image Providers",

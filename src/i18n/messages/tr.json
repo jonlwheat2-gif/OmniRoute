@@ -5770,6 +5770,7 @@
     "antigravityProjectIdLabel": "Google Cloud Proje Kimliği",
     "antigravityProjectIdPlaceholder": "benim-gcp-proje-kimliğim",
     "grokWebCookiePlaceholder": "Grok Web Cookie Placeholder",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Heroku Base Url Hint",
     "hideEmail": "Hide Email",
     "imageProviders": "Image Providers",

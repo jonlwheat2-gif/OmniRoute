@@ -5770,6 +5770,7 @@
     "antigravityProjectIdLabel": "谷歌雲專案 ID",
     "antigravityProjectIdPlaceholder": "我的 GCP 專案 ID",
     "grokWebCookiePlaceholder": "Grok Web Cookie",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Heroku 部署的 Base URL。",
     "hideEmail": "隱藏郵箱",
     "imageProviders": "影像 Provider",

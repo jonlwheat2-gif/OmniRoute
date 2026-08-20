@@ -5770,6 +5770,7 @@
     "antigravityProjectIdLabel": "ID do projeto do Google Cloud",
     "antigravityProjectIdPlaceholder": "meu-gcp-project-id",
     "grokWebCookiePlaceholder": "Espaço reservado de Cookie Web do Grok",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Dica de URL Base do Heroku",
     "hideEmail": "Ocultar Email",
     "imageProviders": "Fornecedores de Imagem",

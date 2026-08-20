@@ -5770,6 +5770,7 @@
     "antigravityProjectIdLabel": "Google Cloud Project ID",
     "antigravityProjectIdPlaceholder": "my-gcp-project-id",
     "grokWebCookiePlaceholder": "Gợi ý nhập Grok Web Cookie",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Gợi ý Heroku Base URL",
     "hideEmail": "Ẩn email",
     "imageProviders": "Nhà cung cấp hình ảnh",

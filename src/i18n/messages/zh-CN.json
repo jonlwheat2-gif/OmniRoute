@@ -5781,6 +5781,7 @@
     "antigravityProjectIdLabel": "谷歌云项目 ID",
     "antigravityProjectIdPlaceholder": "我的 GCP 项目 ID",
     "grokWebCookiePlaceholder": "Grok Web Cookie",
+    "firecrawlBaseUrlHint": "Firecrawl Base Url Hint",
     "herokuBaseUrlHint": "Heroku 部署的 Base URL。",
     "hideEmail": "隐藏邮箱",
     "imageProviders": "图像 Provider",
