@@ -1531,6 +1531,11 @@
       "count": 3
     }
   },
+  "tests/unit/10628-openwebui-fetch-format.test.ts": {
+    "@typescript-eslint/no-explicit-any": {
+      "count": 9
+    }
+  },
   "tests/unit/10628-openwebui-format.test.ts": {
     "@typescript-eslint/no-explicit-any": {
       "count": 16

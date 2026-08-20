@@ -697,11 +697,23 @@ export const v1BatchCreateSchema = z.object({
 
 // ── Web Fetch ─────────────────────────────────────────────────────────────────
 
-export const v1WebFetchSchema = z.object({
-  url: z.string().url("url must be a valid URL (http/https)"),
-  provider: z.enum(["firecrawl", "jina-reader", "tavily-search", "tinyfish"]).optional(),
-  format: z.enum(["markdown", "html", "links", "screenshot"]).default("markdown"),
-  depth: z.union([z.literal(0), z.literal(1), z.literal(2)]).default(0),
-  wait_for_selector: z.string().max(256).optional(),
-  include_metadata: z.boolean().default(false),
-});
+export const v1WebFetchSchema = z
+  .object({
+    // Native single-URL fetch (unchanged), or Open WebUI batch alias (#10628):
+    // OWUI's ExternalWebLoader (retrieval/loaders/external_web.py) POSTs
+    // `{ urls: [...] }` in batches of up to 20.
+    url: z.string().url("url must be a valid URL (http/https)").optional(),
+    urls: z
+      .array(z.string().url("url must be a valid URL (http/https)"))
+      .min(1)
+      .max(20)
+      .optional(),
+    provider: z.enum(["firecrawl", "jina-reader", "tavily-search", "tinyfish"]).optional(),
+    format: z.enum(["markdown", "html", "links", "screenshot"]).default("markdown"),
+    depth: z.union([z.literal(0), z.literal(1), z.literal(2)]).default(0),
+    wait_for_selector: z.string().max(256).optional(),
+    include_metadata: z.boolean().default(false),
+  })
+  .refine((body) => body.url !== undefined || body.urls !== undefined, {
+    message: "Either url or urls is required",
+  });

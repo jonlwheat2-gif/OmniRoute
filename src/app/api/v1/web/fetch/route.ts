@@ -19,6 +19,7 @@ import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
 import {
   handleWebFetch,
   type WebFetchCredentials,
+  type WebFetchResponse,
   type WebFetchResult,
 } from "@omniroute/open-sse/handlers/webFetch.ts";
 import * as log from "@/sse/utils/logger";
@@ -55,6 +56,31 @@ const QUOTA_STATUS_PROVIDERS = new Set<WebFetchProviderId>([
 ]);
 
 type CredentialsLookup = WebFetchCredentials | RateLimitedCredentials | null;
+
+type OpenWebUiFetchResult = { page_content: string; metadata: Record<string, unknown> };
+
+/**
+ * Open WebUI External Web Loader contract (#10628): a flat JSON array of
+ * `{ page_content, metadata }` objects. OWUI's ExternalWebLoader
+ * (backend/open_webui/retrieval/loaders/external_web.py) POSTs `{ urls: [...] }`
+ * and iterates the response, building langchain Documents from
+ * `result.get('page_content')` and `result.get('metadata')`.
+ *
+ * Only `page_content` and `metadata` are emitted; the source URL is folded
+ * into metadata so RAG citations stay attributable.
+ */
+function toOpenWebUiFetchResults(results: WebFetchResponse[]): OpenWebUiFetchResult[] {
+  return results.flatMap((result) =>
+    typeof result.content === "string" && result.content.length > 0
+      ? [
+          {
+            page_content: result.content,
+            metadata: { source: result.url, ...(result.metadata ?? {}) },
+          },
+        ]
+      : []
+  );
+}
 
 export async function OPTIONS() {
   return new Response(null, { headers: CORS_HEADERS });
@@ -246,6 +272,13 @@ export async function POST(request: Request) {
   }
   const body = validation.data;
 
+  // Open WebUI External Web Loader compatibility (#10628): `?format=openwebui`
+  // (query param) unwraps the response into the flat `[{ page_content, metadata }]`
+  // array OWUI's ExternalWebLoader expects. Any other/missing value keeps the
+  // default rich wrapper — no breaking change. The param is normalized (trim +
+  // lowercase) so mis-cased configs still work.
+  const requestedFormat = new URL(request.url).searchParams.get("format")?.trim().toLowerCase();
+
   // Optional auth check — when REQUIRE_API_KEY=false, ignore presented
   // invalid keys so anonymous access works the same as all other client
   // APIs (#7785).
@@ -265,46 +298,92 @@ export async function POST(request: Request) {
   const target = await resolveWebFetchTarget(body.provider);
   if (!target.ok) return target.response;
 
-  log.info("WEB_FETCH", `${target.provider} | ${body.url} | format=${body.format}`);
+  const isOwuiFetchMode = requestedFormat === "openwebui" || body.urls !== undefined;
 
-  const { result, provider: finalProvider, poolExhausted } = await executeWithFallback(
-    {
-      url: body.url,
-      format: body.format,
-      depth: body.depth as 0 | 1 | 2,
-      wait_for_selector: body.wait_for_selector,
-      include_metadata: body.include_metadata,
-    },
-    target.provider,
-    target.credentials,
-    !target.isExplicit,
-    target.tried
-  );
+  // Native single-URL path — unchanged (preserves exact error semantics for
+  // existing clients; a failing fetch surfaces its own error/status).
+  if (!isOwuiFetchMode) {
+    log.info("WEB_FETCH", `${target.provider} | ${body.url} | format=${body.format}`);
 
-  if (poolExhausted) {
-    return unavailableResponse(
-      HTTP_STATUS.RATE_LIMITED,
-      "All configured web-fetch providers are rate limited or quota-exhausted"
-    );
-  }
-
-  if (!result.success) {
-    return new Response(
-      JSON.stringify({
-        error: { message: result.error ?? "Web fetch failed", type: "web_fetch_error" },
-      }),
+    const { result, provider: finalProvider, poolExhausted } = await executeWithFallback(
       {
-        status: result.status ?? 502,
-        headers: { "Content-Type": "application/json", ...CORS_HEADERS },
-      }
+        url: body.url as string,
+        format: body.format,
+        depth: body.depth as 0 | 1 | 2,
+        wait_for_selector: body.wait_for_selector,
+        include_metadata: body.include_metadata,
+      },
+      target.provider,
+      target.credentials,
+      !target.isExplicit,
+      target.tried
     );
+
+    if (poolExhausted) {
+      return unavailableResponse(
+        HTTP_STATUS.RATE_LIMITED,
+        "All configured web-fetch providers are rate limited or quota-exhausted"
+      );
+    }
+
+    if (!result.success) {
+      return new Response(
+        JSON.stringify({
+          error: { message: result.error ?? "Web fetch failed", type: "web_fetch_error" },
+        }),
+        {
+          status: result.status ?? 502,
+          headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+        }
+      );
+    }
+
+    if (finalProvider !== target.provider) {
+      log.info("WEB_FETCH", `Fell back from ${target.provider} to ${finalProvider}`);
+    }
+
+    return new Response(JSON.stringify(result.data), {
+      status: 200,
+      headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+    });
   }
 
-  if (finalProvider !== target.provider) {
-    log.info("WEB_FETCH", `Fell back from ${target.provider} to ${finalProvider}`);
+  // Open WebUI mode: fetch every URL, skipping per-URL failures (OWUI's
+  // ExternalWebLoader uses continue_on_failure — a bad URL must not fail the
+  // whole batch). A fresh tried-set per URL keeps a transient failure on one
+  // URL from poisoning fallback for the next.
+  const targetUrls = body.urls ?? (body.url ? [body.url] : []);
+  log.info("WEB_FETCH", `${target.provider} | ${targetUrls.length} url(s) | format=${body.format}`);
+
+  const fetched: WebFetchResponse[] = [];
+  for (const url of targetUrls) {
+    const { result } = await executeWithFallback(
+      {
+        url,
+        format: body.format,
+        depth: body.depth as 0 | 1 | 2,
+        wait_for_selector: body.wait_for_selector,
+        include_metadata: body.include_metadata,
+      },
+      target.provider,
+      target.credentials,
+      !target.isExplicit,
+      new Set([target.provider])
+    );
+    if (result.success && result.data) {
+      fetched.push(result.data);
+    }
   }
 
-  return new Response(JSON.stringify(result.data), {
+  if (requestedFormat === "openwebui") {
+    return new Response(JSON.stringify(toOpenWebUiFetchResults(fetched)), {
+      status: 200,
+      headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+    });
+  }
+
+  // `urls` without format: return the native per-URL objects as an array.
+  return new Response(JSON.stringify(fetched), {
     status: 200,
     headers: { "Content-Type": "application/json", ...CORS_HEADERS },
   });
