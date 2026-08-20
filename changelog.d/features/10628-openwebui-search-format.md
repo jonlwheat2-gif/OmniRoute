@@ -1,0 +1,2 @@
+- **feat(api):** support `?format=openwebui` on `POST /v1/search` to return the flat `[{link, title, snippet}]` array Open WebUI's External Search expects, while keeping the default rich wrapper unchanged ([#10628](https://github.com/diegosouzapw/OmniRoute/issues/10628))
+- **feat(api):** accept Open WebUI's `count` field on `POST /v1/search` as an alias for `max_results` (resolved as `max_results ?? count ?? 5`), and treat the `format` query param case-insensitively ([#10628](https://github.com/diegosouzapw/OmniRoute/issues/10628))

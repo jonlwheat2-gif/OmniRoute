@@ -106,6 +106,32 @@ function buildDomainFilter(filters?: {
   return parts.length > 0 ? parts : undefined;
 }
 
+type OpenWebUiSearchResult = { link: string; title: string; snippet: string };
+
+/**
+ * Open WebUI External Search contract (#10628): a flat JSON array of
+ * `{ link, title, snippet }` objects. Open WebUI's external.py slices the
+ * response body (`results[:count]`) and reads `link` — OmniRoute's native
+ * format is a wrapper object whose results use `url`, which crashes OWUI
+ * with `unhashable type: 'slice'` and a missing `link` field.
+ *
+ * Only `link`, `title`, `snippet` are emitted; the rich per-result fields
+ * (position, score, citation, ...) are intentionally dropped.
+ */
+function toOpenWebUiSearchResults(searchResult: {
+  results?: Array<{ url?: string | null; title?: string | null; snippet?: string | null }>;
+}): OpenWebUiSearchResult[] {
+  const results = Array.isArray(searchResult.results) ? searchResult.results : [];
+  // Single-pass transform (Vercel js-flatmap-filter): skip entries without a
+  // usable url (normalizers coerce missing/null urls to "") while mapping the
+  // rest to OWUI's { link, title, snippet } contract.
+  return results.flatMap((result) =>
+    typeof result.url === "string" && result.url.length > 0
+      ? [{ link: result.url, title: result.title ?? "", snippet: result.snippet ?? "" }]
+      : []
+  );
+}
+
 /**
  * POST /v1/search — execute a web search
  */
@@ -123,6 +149,13 @@ async function postHandler(request: Request, context: unknown) {
     return errorResponse(HTTP_STATUS.BAD_REQUEST, validation.error.message);
   }
   const body = validation.data;
+
+  // Open WebUI External Search compatibility (#10628): `?format=openwebui`
+  // (query param) unwraps the response into the flat array OWUI's external.py
+  // expects. Any other/missing value keeps the default rich wrapper — no
+  // breaking change. The param is normalized (trim + lowercase) so mis-cased
+  // configs (e.g. `?format=OpenWebUI`) still work.
+  const requestedFormat = new URL(request.url).searchParams.get("format")?.trim().toLowerCase();
 
   // Enforce API key policies — use "search" as model identifier for consistent policy config
   const policy = await enforceApiKeyPolicy(request, "search");
@@ -260,8 +293,10 @@ async function postHandler(request: Request, context: unknown) {
     }
   }
 
-  // Clamp max_results to provider limit
-  const clampedMaxResults = Math.min(body.max_results, providerConfig.maxMaxResults);
+  // Resolve result count: native `max_results` wins, then Open WebUI's `count`
+  // alias (#10628), then the default of 5. Clamp to the provider limit.
+  const requestedMaxResults = body.max_results ?? body.count ?? 5;
+  const clampedMaxResults = Math.min(requestedMaxResults, providerConfig.maxMaxResults);
 
   // Cache key — includes all fields that affect results
   const cacheKey = computeCacheKey(
@@ -319,6 +354,13 @@ async function postHandler(request: Request, context: unknown) {
       } catch (e: any) {
         log.warn("SEARCH", `Cost recording failed: ${e?.message}`);
       }
+    }
+
+    if (requestedFormat === "openwebui") {
+      return new Response(JSON.stringify(toOpenWebUiSearchResults(searchResult)), {
+        status: 200,
+        headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+      });
     }
 
     const response = {

@@ -1531,6 +1531,11 @@
       "count": 3
     }
   },
+  "tests/unit/10628-openwebui-format.test.ts": {
+    "@typescript-eslint/no-explicit-any": {
+      "count": 16
+    }
+  },
   "tests/unit/account-fallback-service.test.ts": {
     "@typescript-eslint/no-explicit-any": {
       "count": 1

@@ -469,9 +469,20 @@ test("v1SearchSchema applies defaults", async () => {
 
   const result = v1SearchSchema.safeParse({ query: "test" });
   assert.ok(result.success);
-  assert.equal(result.data.max_results, 5);
+  // max_results has no schema default since #10628 — the route resolves
+  // `max_results ?? count ?? 5` so Open WebUI's `count` can act as an alias.
+  assert.equal(result.data.max_results, undefined);
   assert.equal(result.data.search_type, "web");
   assert.equal(result.data.provider, undefined);
+});
+
+test("v1SearchSchema accepts Open WebUI count field (#10628)", async () => {
+  const { v1SearchSchema } = await import("../../src/shared/validation/schemas.ts");
+
+  const result = v1SearchSchema.safeParse({ query: "test", count: 10 });
+  assert.ok(result.success);
+  assert.equal(result.data.count, 10);
+  assert.equal(result.data.max_results, undefined);
 });
 
 test("v1SearchSchema allows unknown fields (forward compat)", async () => {

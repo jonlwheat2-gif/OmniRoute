@@ -20,10 +20,7 @@ import {
 } from "@/shared/reasoning/effortStandardization";
 
 import { modelIdSchema, nonEmptyStringSchema } from "./misc.ts";
-import {
-  isCanonicalEmbeddingItem,
-  JINA_NATIVE_MEDIA_KEYS,
-} from "../jinaNativeEmbeddingInput.ts";
+import { isCanonicalEmbeddingItem, JINA_NATIVE_MEDIA_KEYS } from "../jinaNativeEmbeddingInput.ts";
 import { isGeminiNativeEmbeddingItem } from "../geminiNativeEmbeddingInput.ts";
 
 export const embeddingTokenArraySchema = z
@@ -215,7 +212,9 @@ const jinaNativeMediaStringSchema = z.string().trim().min(1).superRefine(refineJ
 
 function exactlyOneJinaMediaKey(value: Record<string, unknown>, key: string): boolean {
   if (isCanonicalEmbeddingItem(value)) return false;
-  return JINA_NATIVE_MEDIA_KEYS.filter((mediaKey) => mediaKey in value).length === 1 && key in value;
+  return (
+    JINA_NATIVE_MEDIA_KEYS.filter((mediaKey) => mediaKey in value).length === 1 && key in value
+  );
 }
 
 const jinaTextDocSchema = z
@@ -264,7 +263,9 @@ export const jinaNativeDocSchema = z.union([
 export const jinaMergedContentGroupSchema = z
   .object({
     content: z
-      .array(z.union([jinaTextDocSchema, jinaImageDocSchema, jinaAudioDocSchema, jinaVideoDocSchema]))
+      .array(
+        z.union([jinaTextDocSchema, jinaImageDocSchema, jinaAudioDocSchema, jinaVideoDocSchema])
+      )
       .min(1, "content must contain at least one chunk"),
   })
   .passthrough();
@@ -330,9 +331,12 @@ export const geminiNativePartSchema = z
     fileData: geminiFileDataSchema.optional(),
   })
   .passthrough()
-  .refine((value) => isGeminiNativeEmbeddingItem(value) && !("parts" in value) && !("content" in value), {
-    message: "Gemini part must be { text }, { inline_data }, or { file_data }",
-  });
+  .refine(
+    (value) => isGeminiNativeEmbeddingItem(value) && !("parts" in value) && !("content" in value),
+    {
+      message: "Gemini part must be { text }, { inline_data }, or { file_data }",
+    }
+  );
 
 export const geminiNativeContentSchema = z
   .object({
@@ -444,7 +448,6 @@ export const v1ImageUpscaleSchema = z
     response_format: z.enum(["url", "b64_json"]).optional(),
   })
   .catchall(z.unknown());
-
 
 export const v1AudioSpeechSchema = z
   .object({
@@ -589,7 +592,12 @@ export const v1SearchSchema = z
         "duckduckgo-free",
       ])
       .optional(),
-    max_results: z.coerce.number().int().min(1).max(100).default(5),
+    // `max_results` default (5) is resolved in the route so Open WebUI's
+    // `count` field (#10628) can act as an alias when `max_results` is absent.
+    max_results: z.coerce.number().int().min(1).max(100).optional(),
+    // Open WebUI external search compatibility (#10628): OWUI's search_external
+    // sends `{ query, count }` — count maps to max_results in the route.
+    count: z.coerce.number().int().min(1).max(100).optional(),
     search_type: z.enum(["web", "news"]).default("web"),
     offset: z.coerce.number().int().min(0).default(0),
 
