@@ -2,8 +2,10 @@
 
 import { useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Select, SegmentedControl } from "@/shared/components";
-import { InfoTooltip } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Select from "@/shared/components/Select";
+import SegmentedControl from "@/shared/components/SegmentedControl";
+import InfoTooltip from "@/shared/components/InfoTooltip";
 import { FORMAT_OPTIONS, FORMAT_META, getExampleTemplates } from "../exampleTemplates";
 import type { FormatId, TranslateMode } from "../types";
 

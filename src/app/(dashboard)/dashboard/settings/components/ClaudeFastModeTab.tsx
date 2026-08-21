@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Card, Collapsible, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Collapsible from "@/shared/components/Collapsible";
+import Toggle from "@/shared/components/Toggle";
 import { useTranslations } from "next-intl";
 import {
   CLAUDE_FAST_MODE_DEFAULT_MODELS,

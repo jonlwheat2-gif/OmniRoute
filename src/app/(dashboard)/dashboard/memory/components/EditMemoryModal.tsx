@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Modal, Button, Input, Select } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
 import { useTranslations } from "next-intl";
 
 interface Memory {

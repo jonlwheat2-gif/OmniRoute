@@ -1,7 +1,8 @@
 "use client";
 
 import { type ReactNode, useCallback, useEffect, useState } from "react";
-import { Button, Card } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
 import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
 import AutoDisableCard from "./AutoDisableCard";

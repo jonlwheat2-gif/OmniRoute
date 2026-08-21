@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Toggle, InfoTooltip } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
+import InfoTooltip from "@/shared/components/InfoTooltip";
 import { useTranslations } from "next-intl";
 
 type CodexConnection = {

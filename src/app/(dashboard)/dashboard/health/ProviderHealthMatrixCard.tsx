@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
 import Badge from "@/shared/components/Badge";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { getProviderDisplayName } from "@/lib/display/names";
 import { cn } from "@/shared/utils/cn";
 

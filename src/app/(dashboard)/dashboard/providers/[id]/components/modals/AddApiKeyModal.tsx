@@ -1,7 +1,11 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Badge, Input, Modal, Toggle, TALL_MODAL_PROPS } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Badge from "@/shared/components/Badge";
+import Input from "@/shared/components/Input";
+import Modal, { TALL_MODAL_PROPS } from "@/shared/components/Modal";
+import Toggle from "@/shared/components/Toggle";
 import {
   providerAllowsOptionalApiKey,
   supportsBulkApiKey,

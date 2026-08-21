@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";
 import { maskEmailLikeValue } from "@/shared/utils/maskEmail";
 import type { QuotaPool } from "@/lib/quota/dimensions";

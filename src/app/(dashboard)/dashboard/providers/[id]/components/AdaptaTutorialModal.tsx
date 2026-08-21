@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { Modal } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
 
 type AdaptaTutorialModalProps = {
   isOpen: boolean;

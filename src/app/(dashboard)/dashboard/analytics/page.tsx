@@ -3,7 +3,8 @@
 import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { UsageAnalytics, CardSkeleton } from "@/shared/components";
+import UsageAnalytics from "@/shared/components/UsageAnalytics";
+import { CardSkeleton } from "@/shared/components/Loading";
 import { cn } from "@/shared/utils/cn";
 import EvalsTab from "../usage/components/EvalsTab";
 import CacheHealthTab from "./CacheHealthTab";

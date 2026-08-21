@@ -8,7 +8,7 @@
  * Never imports from ProviderDetailPageClient.
  */
 import React, { useState, useCallback, useMemo } from "react";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import {
   matchesModelCatalogQuery,
   normalizeModelCatalogSource,

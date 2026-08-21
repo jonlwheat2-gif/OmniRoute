@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { Card, ModelSelectField, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import ModelSelectField from "@/shared/components/ModelSelectField";
+import Toggle from "@/shared/components/Toggle";
 import type { ApiModel } from "@/shared/components/ModelSelectField";
 import {
   MODALITY_BRIDGE_DEFAULTS,

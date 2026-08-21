@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 interface TokenLedgerEntry {
   id: number;

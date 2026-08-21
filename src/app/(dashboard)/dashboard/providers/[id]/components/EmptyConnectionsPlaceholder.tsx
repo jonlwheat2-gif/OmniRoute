@@ -1,7 +1,7 @@
 "use client";
 
 // Phase 1t.6 extraction — Issue #3501
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import type { ProviderMessageTranslator } from "../providerPageHelpers";
 
 interface CommandCodeAuthState {

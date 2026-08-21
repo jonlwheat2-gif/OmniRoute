@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Button, EmptyState } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import EmptyState from "@/shared/components/EmptyState";
 import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
 

@@ -3,7 +3,8 @@
 import { FilterSelect, HeroStat, SyncMini } from "./PricingTabHelpers";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Card, Button } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 import InfoTooltip from "@/shared/components/InfoTooltip";
 import { useTranslations } from "next-intl";

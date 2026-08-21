@@ -2,7 +2,9 @@
 
 import { useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Badge, Button, Card } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
 import type { AdvancedSlug, TranslateNarratedResult } from "../types";
 import { FORMAT_META } from "../exampleTemplates";
 

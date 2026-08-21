@@ -13,7 +13,7 @@ import { useIsElectron } from "@/shared/hooks/useElectron";
  */
 
 import Link from "next/link";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 export default function ForgotPasswordPage() {
   const t = useTranslations("auth");

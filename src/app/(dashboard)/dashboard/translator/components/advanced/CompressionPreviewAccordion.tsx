@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Select } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Select from "@/shared/components/Select";
 import { cn } from "@/shared/utils/cn";
 
 // ---------------------------------------------------------------------------

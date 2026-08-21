@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { Card, Button, ModelSelectModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import ModelSelectModal from "@/shared/components/ModelSelectModal";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { copyToClipboard } from "@/shared/utils/clipboard";

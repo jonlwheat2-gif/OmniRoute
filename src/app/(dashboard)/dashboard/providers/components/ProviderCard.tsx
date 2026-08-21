@@ -1,13 +1,16 @@
 "use client";
 
-import type { KeyboardEvent, MouseEvent, ReactNode } from "react";
-import { forwardRef, useCallback, useImperativeHandle, useRef, useState } from "react";
+import type { KeyboardEvent, MouseEvent, ReactNode, Ref } from "react";
+import { useCallback, useImperativeHandle, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-import { Badge, Card, Modal, Toggle } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Card from "@/shared/components/Card";
+import Modal from "@/shared/components/Modal";
+import Toggle from "@/shared/components/Toggle";
 import ProviderTestSlideOver from "@/shared/components/ProviderTestSlideOver";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 import {
@@ -160,9 +163,14 @@ function WarningBadge({
       lastFailureSuffix,
     }
   );
-  const ariaLabel = providerText(t, "warningNotice.ariaLabel", "View connection health details, {count} warning(s)", {
-    count,
-  });
+  const ariaLabel = providerText(
+    t,
+    "warningNotice.ariaLabel",
+    "View connection health details, {count} warning(s)",
+    {
+      count,
+    }
+  );
 
   const activate = (e: MouseEvent | KeyboardEvent) => {
     e.preventDefault();
@@ -240,10 +248,15 @@ export type ProviderCardHandle = {
   scrollIntoView: (options?: ScrollIntoViewOptions) => void;
 };
 
-const ProviderCard = forwardRef<ProviderCardHandle, ProviderCardProps>(function ProviderCard(
-  { providerId, provider, stats, authType = "apikey", onToggle, onCardClick },
-  ref
-) {
+function ProviderCard({
+  providerId,
+  provider,
+  stats,
+  authType = "apikey",
+  onToggle,
+  onCardClick,
+  ref,
+}: ProviderCardProps & { ref?: Ref<ProviderCardHandle> }) {
   const t = useTranslations("providers");
   const tc = useTranslations("common");
   const tp = useTranslations("miniPlayground");
@@ -695,6 +708,6 @@ const ProviderCard = forwardRef<ProviderCardHandle, ProviderCardProps>(function 
       )}
     </div>
   );
-});
+}
 
 export default ProviderCard;

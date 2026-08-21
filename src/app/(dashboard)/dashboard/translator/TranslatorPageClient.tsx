@@ -2,7 +2,9 @@
 
 import { Suspense, useCallback, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Badge, Card, SegmentedControl } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Card from "@/shared/components/Card";
+import SegmentedControl from "@/shared/components/SegmentedControl";
 import TranslatorConceptCard from "./components/TranslatorConceptCard";
 import TranslateTab from "./components/TranslateTab";
 import MonitorTab from "./components/MonitorTab";

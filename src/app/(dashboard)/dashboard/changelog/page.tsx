@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, SegmentedControl } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import SegmentedControl from "@/shared/components/SegmentedControl";
 import ChangelogViewer from "./components/ChangelogViewer";
 import NewsViewer from "./components/NewsViewer";
 

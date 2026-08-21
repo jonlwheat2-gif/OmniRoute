@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import SourceToggleBar, {
   type SourceId,
   ALL_SOURCE_IDS,

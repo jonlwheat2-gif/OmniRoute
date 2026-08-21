@@ -3,7 +3,8 @@
 import { useId, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { Button, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
 import type { RiskNoticeVariant } from "@/shared/constants/providers";
 
 import { useRiskAcknowledged } from "../hooks/useRiskAcknowledged";

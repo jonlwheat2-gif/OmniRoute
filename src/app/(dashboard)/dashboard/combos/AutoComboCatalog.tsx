@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { AUTO_COMBO_TEMPLATES } from "@/domain/assessment/types";
 
 // Informational catalog of zero-config auto-routing combos.

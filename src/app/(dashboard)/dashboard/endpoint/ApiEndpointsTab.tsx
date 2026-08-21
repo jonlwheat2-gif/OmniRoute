@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { useDisplayBaseUrl } from "@/shared/hooks";
 import VscodeTokenAliasCard from "./VscodeTokenAliasCard";
 import { matchesSearch } from "@/shared/utils/turkishText";

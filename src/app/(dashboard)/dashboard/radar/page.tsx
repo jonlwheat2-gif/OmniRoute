@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { shouldAutoSyncOnOpen } from "@/lib/radar/autoSync";
 import { isValidSupporterKeyFormat } from "@/lib/radar/supporterKey";
 import { RadarCatalogTable, type RadarMergedEntry } from "./RadarCatalogTable";

@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useEffect, useMemo, useCallback, memo, useRef, useId } from "react";
-import { Card, Button, Input, Modal, CardSkeleton } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import { CardSkeleton } from "@/shared/components/Loading";
 import { useCopyToClipboard } from "@/shared/hooks/useCopyToClipboard";
 import { useLocale, useTranslations } from "next-intl";
 import { getProviderDisplayName } from "@/lib/display/names";

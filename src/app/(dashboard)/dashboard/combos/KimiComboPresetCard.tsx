@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Card, Button } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
 
 /**
  * Kimi Coding combo preset (2026-07 partnership) — card UI. See

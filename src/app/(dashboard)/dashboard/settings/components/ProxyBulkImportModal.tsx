@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
 
 type ParsedProxyEntry = {
   name: string;

@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Badge, Button, Input, Select, Modal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
+import Modal from "@/shared/components/Modal";
 import EditMemoryModal from "../EditMemoryModal";
 
 interface Memory {

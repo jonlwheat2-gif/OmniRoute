@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import ReactMarkdown, { type Components } from "react-markdown";
-import { Modal, Button } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
+import Button from "@/shared/components/Button";
 
 const markdownComponents: Components = {
   h1({ children }) {

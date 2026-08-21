@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Card, Button, Input, EmptyState } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import EmptyState from "@/shared/components/EmptyState";
 import { useNotificationStore } from "@/store/notificationStore";
 import { compareTr, matchesSearch } from "@/shared/utils/turkishText";
 // ────────────────────────────────────────────────────────────────────────────

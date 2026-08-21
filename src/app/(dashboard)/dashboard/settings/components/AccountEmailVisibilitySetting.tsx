@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useShallow } from "zustand/react/shallow";
-import { Toggle } from "@/shared/components";
+import Toggle from "@/shared/components/Toggle";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";
 
 export default function AccountEmailVisibilitySetting() {

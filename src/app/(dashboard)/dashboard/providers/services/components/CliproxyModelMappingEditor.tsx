@@ -7,7 +7,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 // ── Pure validator (exported for unit tests) ──────────────────────────────────
 

@@ -3,7 +3,10 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Card, Button, Input, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Toggle from "@/shared/components/Toggle";
 
 interface Settings {
   cliproxyapi_fallback_enabled?: boolean;

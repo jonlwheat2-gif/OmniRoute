@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@/shared/components";
+import Input from "@/shared/components/Input";
 import { useTranslations } from "next-intl";
 
 export function UsageLimitSettings({

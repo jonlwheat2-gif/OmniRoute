@@ -9,7 +9,11 @@
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { Badge, Card, ConfirmModal, DataTable, EmptyState, Modal } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Card from "@/shared/components/Card";
+import Modal, { ConfirmModal } from "@/shared/components/Modal";
+import DataTable from "@/shared/components/DataTable";
+import EmptyState from "@/shared/components/EmptyState";
 
 import FaroChat from "./FaroChat";
 

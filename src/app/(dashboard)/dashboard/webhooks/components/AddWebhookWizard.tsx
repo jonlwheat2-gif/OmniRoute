@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Modal } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
 import { Step1ChooseIntegration } from "./steps/Step1ChooseIntegration";
 import {
   Step2ConfigureIntegration,

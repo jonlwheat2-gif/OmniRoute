@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Card, DataTable, FilterBar, ColumnToggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import DataTable from "@/shared/components/DataTable";
+import FilterBar from "@/shared/components/FilterBar";
+import ColumnToggle from "@/shared/components/ColumnToggle";
 import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
 import { matchesSearch } from "@/shared/utils/turkishText";

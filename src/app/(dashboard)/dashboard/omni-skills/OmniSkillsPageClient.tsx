@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
-import { SkillsConceptCard } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import { SkillsConceptCard } from "@/shared/components/SkillsConceptCard";
 import type { SkillsProvider } from "@/lib/skills/providerSettings";
 import { OmniSkillsList } from "./components/OmniSkillsList";
 import { OmniExecutionsTab } from "./components/OmniExecutionsTab";

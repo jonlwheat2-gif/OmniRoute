@@ -1,7 +1,7 @@
 "use client";
 
 // Phase 1t.7 extraction — Issue #3501
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import type { ProviderMessageTranslator } from "../providerPageHelpers";
 
 interface SearchProviderCardProps {

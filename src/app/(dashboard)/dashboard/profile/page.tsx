@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Card, Badge } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Badge from "@/shared/components/Badge";
 import { cumulativeXpForLevel, getLevelTier, getLevelTitle } from "@/lib/gamification/xp";
 
 interface UserLevel {

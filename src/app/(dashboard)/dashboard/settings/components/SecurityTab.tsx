@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, Button, Input, Toggle, Modal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Toggle from "@/shared/components/Toggle";
+import Modal from "@/shared/components/Modal";
 import { AI_PROVIDERS } from "@/shared/constants/providers";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 import IPFilterSection from "./IPFilterSection";

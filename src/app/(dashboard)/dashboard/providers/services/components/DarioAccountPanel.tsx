@@ -25,7 +25,8 @@
  */
 
 import { useCallback, useEffect, useState } from "react";
-import { Card, Button } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
 import Tooltip from "@/shared/components/Tooltip";
 
 interface DarioAccount {

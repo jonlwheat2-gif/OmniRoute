@@ -2,7 +2,10 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Button, Input, Badge } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Badge from "@/shared/components/Badge";
 
 export default function NotionSourceCard() {
   const t = useTranslations("endpoint");

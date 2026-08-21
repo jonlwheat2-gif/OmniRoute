@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import {
   firstProviderConnectionId,
   providerConnectionsRequestUrl,

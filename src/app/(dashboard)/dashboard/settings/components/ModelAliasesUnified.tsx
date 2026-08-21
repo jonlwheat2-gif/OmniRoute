@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button, Card, Input } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import Input from "@/shared/components/Input";
 import { useTranslations } from "next-intl";
 
 interface WildcardAlias {

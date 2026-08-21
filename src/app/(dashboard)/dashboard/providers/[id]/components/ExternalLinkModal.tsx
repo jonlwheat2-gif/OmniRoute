@@ -1,6 +1,7 @@
 "use client";
 
-import { Modal, Button } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
+import Button from "@/shared/components/Button";
 import { useTranslations } from "next-intl";
 
 type ExternalLinkModalProps = {

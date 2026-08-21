@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import ReactMarkdown, { type Components } from "react-markdown";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import {
   CHANGELOG_GITHUB_URL,
   CHANGELOG_RAW_URL,

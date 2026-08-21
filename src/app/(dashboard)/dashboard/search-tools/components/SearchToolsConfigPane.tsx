@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Select } from "@/shared/components";
+import Select from "@/shared/components/Select";
 import type { SearchProviderCatalogItem } from "@/shared/schemas/searchTools";
 import type { ActiveTab } from "./SearchToolsTopBar";
 

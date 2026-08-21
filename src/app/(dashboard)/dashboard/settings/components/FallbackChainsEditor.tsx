@@ -9,7 +9,10 @@
  */
 
 import { useState, useEffect, useCallback } from "react";
-import { Card, Button, Input, EmptyState } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import EmptyState from "@/shared/components/EmptyState";
 import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
 

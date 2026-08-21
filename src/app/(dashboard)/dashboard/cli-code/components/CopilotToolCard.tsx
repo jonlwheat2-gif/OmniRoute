@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, Button } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { matchesSearch } from "@/shared/utils/turkishText";

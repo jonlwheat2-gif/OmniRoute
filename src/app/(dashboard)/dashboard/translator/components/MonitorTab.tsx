@@ -2,7 +2,9 @@
 
 import { useTranslations } from "next-intl";
 import { useState, useEffect, useRef, useCallback } from "react";
-import { Card, Badge, EmptyState } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Badge from "@/shared/components/Badge";
+import EmptyState from "@/shared/components/EmptyState";
 import { FORMAT_META } from "../exampleTemplates";
 
 interface MonitorTabProps {

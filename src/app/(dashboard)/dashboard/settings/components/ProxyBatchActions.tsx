@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 
 interface ProxyBatchActionsProps {
   selectedCount: number;

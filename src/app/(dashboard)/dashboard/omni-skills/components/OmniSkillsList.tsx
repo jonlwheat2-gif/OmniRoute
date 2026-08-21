@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { OmniSkillCard } from "./OmniSkillCard";
 import { SkillInspectorPane } from "./SkillInspectorPane";
 import type { OmniSkill } from "./OmniSkillCard";

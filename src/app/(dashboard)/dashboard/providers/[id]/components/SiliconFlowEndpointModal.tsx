@@ -4,7 +4,7 @@
 // SiliconFlowEndpointModal moved out of ProviderDetailPageClient.tsx.
 
 import { useTranslations } from "next-intl";
-import { Modal } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
 import { providerText, SILICONFLOW_ENDPOINTS } from "../providerPageHelpers";
 
 interface SiliconFlowEndpointModalProps {

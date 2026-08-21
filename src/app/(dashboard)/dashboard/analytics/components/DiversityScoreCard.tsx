@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 interface DiversityProviderStat {
   share: number;

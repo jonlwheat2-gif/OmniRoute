@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Button, Card, Toggle } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
 import { useTheme } from "@/shared/hooks/useTheme";
 import useThemeStore, { COLOR_THEMES } from "@/store/themeStore";
 import { cn } from "@/shared/utils/cn";

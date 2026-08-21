@@ -1,6 +1,8 @@
 "use client";
 
-import { Button, DistributeProxiesButton, Toggle } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import DistributeProxiesButton from "@/shared/components/DistributeProxiesButton";
+import Toggle from "@/shared/components/Toggle";
 import { providerText, type ProviderMessageTranslator } from "../providerPageHelpers";
 import type { CodexGlobalServiceMode } from "@/lib/providers/codexFastTier";
 

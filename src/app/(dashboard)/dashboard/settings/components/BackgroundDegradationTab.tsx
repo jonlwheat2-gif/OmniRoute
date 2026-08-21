@@ -1,7 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, ModelSelectField, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import ModelSelectField from "@/shared/components/ModelSelectField";
+import Toggle from "@/shared/components/Toggle";
 import { useTranslations } from "next-intl";
 
 export default function BackgroundDegradationTab() {

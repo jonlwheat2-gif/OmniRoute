@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Input, Select } from "@/shared/components";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
 import { useTranslations } from "next-intl";
 import { ACCOUNT_FALLBACK_STRATEGY_VALUES } from "@/shared/constants/routingStrategies";
 

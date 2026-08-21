@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 
 import { useState, useEffect } from "react";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 export default function BudgetTelemetryCards() {
   const t = useTranslations("usage");

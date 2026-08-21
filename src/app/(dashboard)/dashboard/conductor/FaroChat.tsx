@@ -16,7 +16,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { Badge, Card } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Card from "@/shared/components/Card";
 
 interface ChatMessage {
   role: "user" | "faro";

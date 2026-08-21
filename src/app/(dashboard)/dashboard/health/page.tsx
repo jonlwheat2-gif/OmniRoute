@@ -13,7 +13,7 @@
  */
 
 import { useState, useEffect, useCallback } from "react";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { AI_PROVIDERS } from "@/shared/constants/providers";
 import { getProviderDisplayName } from "@/lib/display/names";
 import { useProviderNodeMap, resolveProviderName } from "@/lib/display/useProviderNodeMap";

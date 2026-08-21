@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import { ConfirmModal, RequestLoggerV2 } from "@/shared/components";
+import { ConfirmModal } from "@/shared/components/Modal";
+import RequestLoggerV2 from "@/shared/components/RequestLoggerV2";
 import { useTranslations } from "next-intl";
 
 const TIME_RANGES = [

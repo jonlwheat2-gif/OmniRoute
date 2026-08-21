@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import { useServiceStatus } from "../hooks/useServiceStatus";
 
 interface ServiceLifecycleButtonsProps {

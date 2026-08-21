@@ -2,7 +2,8 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Badge } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Badge from "@/shared/components/Badge";
 import Collapsible from "@/shared/components/Collapsible";
 import { FORMAT_META } from "../../exampleTemplates";
 import type { AdvancedAccordionProps, FormatId } from "../../types";

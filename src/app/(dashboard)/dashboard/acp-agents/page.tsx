@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { Card, Button, Input } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 import { CliConceptCard, CliComparisonCard } from "@/shared/components/cli";
 import { useTranslations } from "next-intl";

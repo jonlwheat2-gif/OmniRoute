@@ -3,7 +3,9 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { Button, CardSkeleton, Input } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import { CardSkeleton } from "@/shared/components/Loading";
+import Input from "@/shared/components/Input";
 import { CLI_TOOLS } from "@/shared/constants/cliTools";
 import { EXPECTED_CODE_COUNT } from "@/shared/schemas/cliCatalog";
 import { CliToolCard, CliConceptCard, CliComparisonCard } from "@/shared/components/cli";

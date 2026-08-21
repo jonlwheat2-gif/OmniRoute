@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
 import type { QuotaPool, Policy, QuotaDimension } from "@/lib/quota/dimensions";
 
 interface Connection {

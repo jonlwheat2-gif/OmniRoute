@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Card, Button, Badge, ConfirmModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Badge from "@/shared/components/Badge";
+import { ConfirmModal } from "@/shared/components/Modal";
 import { useLocale, useTranslations } from "next-intl";
 import DatabaseBackupRetentionCard from "./DatabaseBackupRetentionCard";
 

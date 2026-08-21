@@ -4,7 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useLocale, useTranslations } from "next-intl";
 import { useProviderNodeMap, resolveProviderName } from "@/lib/display/useProviderNodeMap";
-import { Card, EmptyState, SegmentedControl, CardSkeleton } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import EmptyState from "@/shared/components/EmptyState";
+import SegmentedControl from "@/shared/components/SegmentedControl";
+import { CardSkeleton } from "@/shared/components/Loading";
 import {
   getServiceTierDisplayLabel,
   type TranslationFn as CostTranslationFn,

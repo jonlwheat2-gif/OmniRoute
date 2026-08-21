@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Card, Button, Input, Select, Badge, Spinner, ConfirmModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
+import Badge from "@/shared/components/Badge";
+import { Spinner } from "@/shared/components/Loading";
+import { ConfirmModal } from "@/shared/components/Modal";
 import { useTranslations } from "next-intl";
 
 interface AccessTokenRow {

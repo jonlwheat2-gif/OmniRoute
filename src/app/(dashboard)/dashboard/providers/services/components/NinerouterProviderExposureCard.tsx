@@ -8,7 +8,8 @@
 import type { ReactNode } from "react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
 import { useServiceStatus } from "../hooks/useServiceStatus";
 
 const NAME = "9router";

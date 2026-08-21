@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { Input } from "@/shared/components";
+import Input from "@/shared/components/Input";
 import { OPENROUTER_PRESET_MAX_LENGTH } from "@/shared/constants/openRouterPreset";
 import { providerText, type ProviderMessageTranslator } from "../providerPageHelpers";
 

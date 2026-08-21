@@ -5,15 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-import {
-  Badge,
-  Button,
-  Card,
-  CursorAuthModal,
-  Input,
-  KiroOAuthWrapper,
-  OAuthModal,
-} from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import CursorAuthModal from "@/shared/components/CursorAuthModal";
+import Input from "@/shared/components/Input";
+import KiroOAuthWrapper from "@/shared/components/KiroOAuthWrapper";
+import OAuthModal from "@/shared/components/OAuthModal";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 
 import {

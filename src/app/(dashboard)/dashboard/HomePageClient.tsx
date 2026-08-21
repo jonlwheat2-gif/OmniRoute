@@ -5,7 +5,10 @@ import { useTranslations } from "next-intl";
 import { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Card, CardSkeleton, Button, Modal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import { CardSkeleton } from "@/shared/components/Loading";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 import { AI_PROVIDERS, NOAUTH_PROVIDERS, OAUTH_PROVIDERS } from "@/shared/constants/providers";
 import {

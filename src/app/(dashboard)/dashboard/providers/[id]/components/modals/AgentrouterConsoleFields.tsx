@@ -1,6 +1,6 @@
 "use client";
 
-import { Input } from "@/shared/components";
+import Input from "@/shared/components/Input";
 import type { ProviderMessageTranslator } from "../../providerPageHelpers";
 
 // #6850 — the AgentRouter quota tracker (open-sse/services/agentrouterQuotaFetcher.ts)

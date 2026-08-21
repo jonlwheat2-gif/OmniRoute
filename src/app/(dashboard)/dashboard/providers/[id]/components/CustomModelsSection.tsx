@@ -10,7 +10,7 @@
  */
 import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import { useNotificationStore } from "@/store/notificationStore";
 import {
   buildCompatMap,

@@ -7,9 +7,7 @@ import { getDbInstance } from "./core";
 import { invalidateDbCache } from "./readCache";
 
 export type NumericModelCapabilityOverrideKey =
-  | "max_input_tokens"
-  | "max_output_tokens"
-  | "max_token";
+  "max_input_tokens" | "max_output_tokens" | "max_token";
 export type ModelCapabilityOverrideKey = NumericModelCapabilityOverrideKey | "reasoning_efforts";
 
 interface ModelCapabilityOverrideBase {
@@ -208,7 +206,10 @@ export function listModelCapabilityOverrides(): ModelCapabilityOverride[] {
           "FROM model_capability_overrides ORDER BY refreshed_at DESC"
       )
       .all() as OverrideRow[];
-    return rows.map(toOverride).filter((entry): entry is ModelCapabilityOverride => entry !== null);
+    return rows.flatMap((row) => {
+      const entry = toOverride(row);
+      return entry === null ? [] : [entry];
+    });
   } catch {
     return [];
   }

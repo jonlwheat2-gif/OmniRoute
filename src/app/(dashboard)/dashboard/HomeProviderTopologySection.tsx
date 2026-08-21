@@ -3,7 +3,7 @@
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { useLiveRequests } from "@/hooks/useLiveDashboard";
 import { selectActiveRequests } from "../home/topologyUtils";
 

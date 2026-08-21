@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { getProviderDisplayName } from "@/lib/display/names";
 import { useProviderNodeMap, resolveProviderName } from "@/lib/display/useProviderNodeMap";
 

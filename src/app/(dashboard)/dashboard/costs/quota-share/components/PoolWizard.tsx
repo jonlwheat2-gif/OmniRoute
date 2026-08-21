@@ -19,7 +19,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";
 import { maskEmailLikeValue } from "@/shared/utils/maskEmail";
 import { getKnownPlan } from "@/lib/quota/planRegistry";

@@ -2,7 +2,7 @@
 
 import { type ReactNode } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import type { AdvancedSlug } from "../../types";
 
 export interface AdvancedSectionProps {

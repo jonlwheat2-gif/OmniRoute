@@ -2,7 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Toggle, Input } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
+import Input from "@/shared/components/Input";
 
 function isValidUrl(value: string): boolean {
   try {

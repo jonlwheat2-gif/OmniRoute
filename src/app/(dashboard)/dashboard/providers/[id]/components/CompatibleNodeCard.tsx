@@ -2,7 +2,8 @@
 
 // Phase 1t.2 extraction — Issue #3501
 import { useRouter } from "next/navigation";
-import { Card, Button } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
 import ProviderIcon from "@/shared/components/ProviderIcon";
 import { getApiLabel, getApiPath } from "../providerPageHelpers";
 import type { ProviderMessageTranslator } from "../providerPageHelpers";

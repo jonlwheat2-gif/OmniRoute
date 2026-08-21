@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Toggle } from "@/shared/components";
+import Toggle from "@/shared/components/Toggle";
 
 type CcCompatibleRequestDefaultsFieldsProps = {
   values: {

@@ -2,7 +2,12 @@
 
 import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
-import { Card, Button, Input, Modal, CardSkeleton, SegmentedControl } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import { CardSkeleton } from "@/shared/components/Loading";
+import SegmentedControl from "@/shared/components/SegmentedControl";
 import Toggle from "@/shared/components/Toggle";
 import { useCopyToClipboard } from "@/shared/hooks/useCopyToClipboard";
 import { isPublicDisplayBaseUrl, useDisplayBaseUrl } from "@/shared/hooks";

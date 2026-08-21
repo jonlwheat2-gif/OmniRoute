@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Card, Button, Input, Badge } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Badge from "@/shared/components/Badge";
 import { useLocale, useTranslations } from "next-intl";
 
 // ── Types ────────────────────────────────────────────────────────────────────

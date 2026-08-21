@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import type { SkillsProvider } from "@/lib/skills/providerSettings";
 
 interface MarketplaceSkill {

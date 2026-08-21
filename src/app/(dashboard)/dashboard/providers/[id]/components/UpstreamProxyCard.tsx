@@ -2,7 +2,7 @@
 
 // Phase 1t.7 extraction — Issue #3501
 import Link from "next/link";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { providerText } from "../providerPageHelpers";
 import type { ProviderMessageTranslator } from "../providerPageHelpers";
 

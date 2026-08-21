@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Card, Toggle, Select } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
+import Select from "@/shared/components/Select";
 import { useTranslations } from "next-intl";
 import {
   CODEX_FAST_TIER_DEFAULT_SUPPORTED_MODELS,

@@ -7,7 +7,10 @@
 
 import { useState, useEffect, useCallback, useRef, useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Button, Select, Badge } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Select from "@/shared/components/Select";
+import Badge from "@/shared/components/Badge";
 import { ALIAS_TO_ID } from "@/shared/constants/providers";
 import { pickDisplayValue } from "@/shared/utils/maskEmail";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";

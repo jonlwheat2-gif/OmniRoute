@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import { useCopyToClipboard } from "@/shared/hooks/useCopyToClipboard";
 import { useDisplayBaseUrl } from "@/shared/hooks";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 type EndpointApiKeySummary = {
   id: string;

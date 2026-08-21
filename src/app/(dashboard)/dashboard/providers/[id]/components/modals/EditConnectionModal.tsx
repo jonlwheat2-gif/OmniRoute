@@ -2,7 +2,12 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Badge, Input, Modal, Toggle, Select } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Badge from "@/shared/components/Badge";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import Toggle from "@/shared/components/Toggle";
+import Select from "@/shared/components/Select";
 import {
   isOpenAICompatibleProvider,
   isAnthropicCompatibleProvider,

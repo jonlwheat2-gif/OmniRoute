@@ -2,7 +2,8 @@
 
 import type { Dispatch, SetStateAction } from "react";
 import { useTranslations } from "next-intl";
-import { Badge, Button } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
 
 export type BackupCleanupOptions = {
   keepLatest: number;

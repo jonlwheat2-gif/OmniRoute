@@ -2,16 +2,14 @@
 
 import { memo, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import {
-  Card,
-  Button,
-  EmptyState,
-  DataTable,
-  FilterBar,
-  Input,
-  Modal,
-  Select,
-} from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import EmptyState from "@/shared/components/EmptyState";
+import DataTable from "@/shared/components/DataTable";
+import FilterBar from "@/shared/components/FilterBar";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import Select from "@/shared/components/Select";
 import { useNotificationStore } from "@/store/notificationStore";
 import { matchesSearch } from "@/shared/utils/turkishText";
 

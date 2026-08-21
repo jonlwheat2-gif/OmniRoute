@@ -2,7 +2,9 @@
 import { useState } from "react";
 import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
-import { Button, Modal, Select } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
+import Select from "@/shared/components/Select";
 interface ImportCodexAuthModalProps {
   onClose: () => void;
   onSuccess: () => void;

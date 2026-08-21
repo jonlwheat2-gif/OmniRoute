@@ -5,7 +5,9 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Card, Button, CardSkeleton } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import { CardSkeleton } from "@/shared/components/Loading";
 import {
   NOAUTH_PROVIDERS,
   getProviderAlias,

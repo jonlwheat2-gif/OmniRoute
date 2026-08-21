@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Card } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
 import { useNotificationStore } from "@/store/notificationStore";
 import { formatRemaining } from "@/shared/utils/formatRemaining";
 

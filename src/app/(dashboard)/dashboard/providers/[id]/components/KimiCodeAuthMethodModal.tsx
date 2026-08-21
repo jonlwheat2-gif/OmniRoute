@@ -1,6 +1,6 @@
 "use client";
 
-import { Modal } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
 import { providerText, type ProviderMessageTranslator } from "../providerPageHelpers";
 
 type KimiCodeAuthMethodModalProps = {

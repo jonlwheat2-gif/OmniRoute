@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { useTranslateSession } from "../hooks/useTranslateSession";
 import type { UseTranslateSessionReturn } from "../hooks/useTranslateSession";
 import { useProviderOptions } from "../hooks/useProviderOptions";

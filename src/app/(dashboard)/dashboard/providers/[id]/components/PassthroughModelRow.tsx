@@ -9,7 +9,7 @@
  * Never imports from ProviderDetailPageClient.
  */
 import React, { useState, useRef, useEffect } from "react";
-import { Badge } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
 import { providerText } from "../providerPageHelpers";
 import ModelCompatPopover from "./ModelCompatPopover";
 import { ModelSourceBadge, type ModelCompatSavePatch } from "./ModelRow";

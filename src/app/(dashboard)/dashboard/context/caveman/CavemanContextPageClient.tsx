@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { SegmentedControl } from "@/shared/components";
+import SegmentedControl from "@/shared/components/SegmentedControl";
 import CompressionSettingsTab from "@/app/(dashboard)/dashboard/settings/components/CompressionSettingsTab";
 
 type AnalyticsSummary = {

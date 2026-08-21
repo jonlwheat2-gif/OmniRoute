@@ -2,7 +2,11 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Card, Input, Select, Toggle } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
+import Toggle from "@/shared/components/Toggle";
 
 type RuleScope = "global" | "apiKey" | "combo" | "model" | "connection";
 type TargetKind = "keep" | "model" | "combo";

@@ -9,7 +9,7 @@
  * Cycle-safe: no import from ProviderDetailPageClient.
  */
 
-import { Modal } from "@/shared/components";
+import Modal from "@/shared/components/Modal";
 import type { ImportProgress } from "../hooks/useModelImportHandlers";
 import type { ProviderMessageTranslator } from "../providerPageHelpers";
 

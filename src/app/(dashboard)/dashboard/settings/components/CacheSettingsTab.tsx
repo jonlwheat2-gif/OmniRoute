@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Button, Card } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
 import { useTranslations } from "next-intl";
 
 type Message = { type: "success" | "error"; text: string };

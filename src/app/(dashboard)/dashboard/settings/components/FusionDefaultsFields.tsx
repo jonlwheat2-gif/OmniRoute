@@ -1,4 +1,4 @@
-import { Input } from "@/shared/components";
+import Input from "@/shared/components/Input";
 import { useTranslations } from "next-intl";
 
 function translateOrFallback(

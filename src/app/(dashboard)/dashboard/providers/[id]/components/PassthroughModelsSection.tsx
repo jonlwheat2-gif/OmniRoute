@@ -13,7 +13,7 @@
  * Never imports from ProviderDetailPageClient.
  */
 import React, { useState, useMemo } from "react";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import { generateUniqueModelAlias } from "./passthroughAlias.ts";
 import {
   matchesModelCatalogQuery,

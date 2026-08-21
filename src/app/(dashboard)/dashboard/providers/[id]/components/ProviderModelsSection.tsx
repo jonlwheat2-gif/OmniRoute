@@ -12,7 +12,7 @@
  */
 
 import { useState } from "react";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import { matchesModelCatalogQuery } from "@/shared/utils/modelCatalogSearch";
 import { isFreeModel, sortModelsFreeFirst } from "@/shared/utils/freeModels";
 import {

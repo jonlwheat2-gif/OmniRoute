@@ -3,7 +3,7 @@
 import { memo, useCallback, useEffect, useMemo, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { getProviderDisplayName } from "@/lib/display/names";
-import { Input } from "@/shared/components";
+import Input from "@/shared/components/Input";
 import {
   isModelIndividuallyToggleable,
   restoreProviderScopeSelection,

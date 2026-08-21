@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { useTranslations } from "next-intl";
 
 // Dedicated i18n keys — do NOT reuse settings.auto / autoDesc (those are routing

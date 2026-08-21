@@ -6,7 +6,9 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Badge, Button, Toggle } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
+import Toggle from "@/shared/components/Toggle";
 import { pickDisplayValue } from "@/shared/utils/maskEmail";
 import useEmailPrivacyStore from "@/store/emailPrivacyStore";
 import { isClaudeExtraUsageBlockEnabled } from "@/lib/providers/claudeExtraUsage";

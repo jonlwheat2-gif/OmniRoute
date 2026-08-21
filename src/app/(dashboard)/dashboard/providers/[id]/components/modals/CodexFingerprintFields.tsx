@@ -1,4 +1,5 @@
-import { Select, Toggle } from "@/shared/components";
+import Select from "@/shared/components/Select";
+import Toggle from "@/shared/components/Toggle";
 import { type CodexServiceTier } from "@/lib/providers/requestDefaults";
 import {
   CODEX_ACCOUNT_SERVICE_TIER_VALUES,

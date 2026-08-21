@@ -16,7 +16,8 @@ import {
   arrayMove,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Card, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
 import { cn } from "@/shared/utils/cn";
 import { useTranslations } from "next-intl";
 import {

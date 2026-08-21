@@ -11,7 +11,7 @@ import {
   buildRadarComboSuggestions,
   type RadarComboSuggestion,
 } from "@/lib/radar/comboSuggestions";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 interface RadarCatalogPayload {
   entries?: MergedEntry[];

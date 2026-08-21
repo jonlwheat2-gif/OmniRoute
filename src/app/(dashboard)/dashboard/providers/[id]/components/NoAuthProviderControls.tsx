@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { NoAuthAccountCard, NoAuthProviderCard } from "@/shared/components";
+import NoAuthAccountCard from "@/shared/components/NoAuthAccountCard";
+import NoAuthProviderCard from "@/shared/components/NoAuthProviderCard";
 import { getProviderAlias, supportsNoAuthProviderProxy } from "@/shared/constants/providers";
 import { useNotificationStore } from "@/store/notificationStore";
 import { providerText } from "../providerPageHelpers";

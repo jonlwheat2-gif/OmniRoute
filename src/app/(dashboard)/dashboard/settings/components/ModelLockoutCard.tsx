@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Button, Card, Toggle } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
 import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
 

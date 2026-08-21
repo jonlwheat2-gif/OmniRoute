@@ -6,7 +6,7 @@ import { notFound } from "next/navigation";
 import { useTranslations } from "next-intl";
 
 import type { RadarIntelFeed } from "@/lib/radar/intelFeedSchema";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 interface IntelMeta {
   version: string;

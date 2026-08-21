@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Button, Input, Select } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
 import RetrievePreview from "../RetrievePreview";
 import type { RetrievePreviewResult } from "@/shared/schemas/memory";
 

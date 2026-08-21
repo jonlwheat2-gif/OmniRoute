@@ -1,7 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Badge, Input, Modal, Select, Toggle } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Badge from "@/shared/components/Badge";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import Select from "@/shared/components/Select";
+import Toggle from "@/shared/components/Toggle";
 import { isValidProviderIconUrl } from "@/shared/validation/iconUrl";
 import { CC_COMPATIBLE_DEFAULT_CHAT_PATH } from "../../providerDetailConstants";
 import NewApiAggregatorFields from "./NewApiAggregatorFields";

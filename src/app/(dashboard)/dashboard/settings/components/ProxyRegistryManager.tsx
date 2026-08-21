@@ -2,7 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Card, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import Modal from "@/shared/components/Modal";
 import { useProxyBatchOperations } from "./useProxyBatchOperations";
 import { ProxyStatusBadge } from "./ProxyStatusBadge";
 import { ProxyHealthCell } from "./ProxyHealthCell";

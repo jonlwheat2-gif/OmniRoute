@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import { isNeedsCoreNode } from "@/lib/proxySubscription/needsCore";
 
 interface SubscriptionRecord {

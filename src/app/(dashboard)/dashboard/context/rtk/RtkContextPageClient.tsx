@@ -2,7 +2,8 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { SegmentedControl, Collapsible } from "@/shared/components";
+import SegmentedControl from "@/shared/components/SegmentedControl";
+import Collapsible from "@/shared/components/Collapsible";
 import RtkLearnDiscoverCard from "./RtkLearnDiscoverCard";
 import RtkTomlImportCard from "./RtkTomlImportCard";
 

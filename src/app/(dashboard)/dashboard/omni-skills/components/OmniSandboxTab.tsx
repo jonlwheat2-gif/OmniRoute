@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 export function OmniSandboxTab(): JSX.Element {
   const t = useTranslations("skills");

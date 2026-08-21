@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { copyToClipboard } from "@/shared/utils/clipboard";
 import McpDashboardPage from "../endpoint/components/MCPDashboard";
 

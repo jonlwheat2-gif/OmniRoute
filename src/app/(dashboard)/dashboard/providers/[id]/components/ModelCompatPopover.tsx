@@ -6,7 +6,8 @@
 
 import { useState, useEffect, useLayoutEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import { Input, Toggle } from "@/shared/components";
+import Input from "@/shared/components/Input";
+import Toggle from "@/shared/components/Toggle";
 import { MODEL_COMPAT_PROTOCOL_KEYS } from "@/shared/constants/modelCompat";
 import {
   upstreamHeadersRecordsEqual,
@@ -484,10 +485,12 @@ export default function ModelCompatPopover({
     }
     updatePortalPanelRect();
     window.addEventListener("resize", updatePortalPanelRect);
-    window.addEventListener("scroll", updatePortalPanelRect, true);
+    // Vercel best practice: scroll listeners that don't preventDefault must be
+    // passive so the browser can scroll without waiting on the handler.
+    window.addEventListener("scroll", updatePortalPanelRect, { capture: true, passive: true });
     return () => {
       window.removeEventListener("resize", updatePortalPanelRect);
-      window.removeEventListener("scroll", updatePortalPanelRect, true);
+      window.removeEventListener("scroll", updatePortalPanelRect, { capture: true });
     };
   }, [open, updatePortalPanelRect]);
 

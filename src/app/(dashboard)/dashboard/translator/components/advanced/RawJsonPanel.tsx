@@ -2,7 +2,10 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Button, Select, Badge } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Select from "@/shared/components/Select";
+import Badge from "@/shared/components/Badge";
 import Collapsible from "@/shared/components/Collapsible";
 import Editor from "@/shared/components/MonacoEditor";
 import { getExampleTemplates, FORMAT_META, FORMAT_OPTIONS } from "../../exampleTemplates";

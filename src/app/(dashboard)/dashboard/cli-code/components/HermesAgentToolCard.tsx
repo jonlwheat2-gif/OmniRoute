@@ -2,7 +2,9 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Button, ModelSelectModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import ModelSelectModal from "@/shared/components/ModelSelectModal";
 
 interface Role {
   id: string;

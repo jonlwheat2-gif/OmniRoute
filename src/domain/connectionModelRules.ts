@@ -19,13 +19,16 @@ function normalizePattern(value: unknown): string | null {
 
 function toPatternList(value: unknown): string[] {
   if (Array.isArray(value)) {
-    return value.map(normalizePattern).filter((pattern): pattern is string => Boolean(pattern));
+    return value.flatMap((v) => {
+      const pattern = normalizePattern(v);
+      return pattern ? [pattern] : [];
+    });
   }
   if (typeof value === "string") {
-    return value
-      .split(",")
-      .map(normalizePattern)
-      .filter((pattern): pattern is string => Boolean(pattern));
+    return value.split(",").flatMap((v) => {
+      const pattern = normalizePattern(v);
+      return pattern ? [pattern] : [];
+    });
   }
   return [];
 }

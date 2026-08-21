@@ -2,7 +2,9 @@
 
 import { useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Button, Input, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
 import {
   runDiagnose,
   removeCaCert,

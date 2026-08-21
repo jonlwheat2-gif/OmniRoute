@@ -1,7 +1,11 @@
 "use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { Card, CardSkeleton, Badge, Button, CollapsibleSection } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import { CardSkeleton } from "@/shared/components/Loading";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
+import CollapsibleSection from "@/shared/components/CollapsibleSection";
 import {
   AGGREGATOR_PROVIDER_IDS,
   EMBEDDING_RERANK_PROVIDER_IDS,

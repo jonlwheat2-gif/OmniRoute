@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Badge } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
 import type { RetrievePreviewResult } from "@/shared/schemas/memory";
 
 interface Props {

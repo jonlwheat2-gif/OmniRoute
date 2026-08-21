@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, Button, ModelSelectModal, ManualConfigModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import ModelSelectModal from "@/shared/components/ModelSelectModal";
+import ManualConfigModal from "@/shared/components/ManualConfigModal";
 import CliStatusBadge from "./CliStatusBadge";
 import { useTranslations } from "next-intl";
 

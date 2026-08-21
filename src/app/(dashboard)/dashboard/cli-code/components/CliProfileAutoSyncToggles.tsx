@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Toggle } from "@/shared/components";
+import Toggle from "@/shared/components/Toggle";
 
 type FlagEntry = { key: string; effectiveValue: string };
 

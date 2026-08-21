@@ -2,7 +2,13 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Button, Input, Badge, EmptyState, Spinner, ConfirmModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Badge from "@/shared/components/Badge";
+import EmptyState from "@/shared/components/EmptyState";
+import { Spinner } from "@/shared/components/Loading";
+import { ConfirmModal } from "@/shared/components/Modal";
 
 interface DiscoveryResult {
   id: number;

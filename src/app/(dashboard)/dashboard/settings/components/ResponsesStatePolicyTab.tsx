@@ -2,7 +2,8 @@
 
 import { useEffect, useState, useRef } from "react";
 import { useTranslations } from "next-intl";
-import { Card, Select } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Select from "@/shared/components/Select";
 import {
   DEFAULT_RESPONSES_PREVIOUS_RESPONSE_ID_MODE,
   RESPONSES_PREVIOUS_RESPONSE_ID_MODES,

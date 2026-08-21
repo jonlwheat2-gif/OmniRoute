@@ -11,7 +11,7 @@ import {
   type RadarOffer,
   type RadarOfferBenefit,
 } from "@/lib/radar/offersFeedSchema";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 interface OffersMeta {
   version: string;

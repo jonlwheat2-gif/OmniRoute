@@ -648,7 +648,10 @@ async function getRelatedLogs(log: ExplainLog): Promise<ExplainLog[]> {
   }
 
   const rawLogs = await getCallLogs(filter);
-  const logs = rawLogs.map(asExplainLog).filter((entry): entry is ExplainLog => entry !== null);
+  const logs = rawLogs.flatMap((raw) => {
+    const entry = asExplainLog(raw);
+    return entry === null ? [] : [entry];
+  });
 
   return logs.filter((entry) => {
     if (entry.id === log.id) return true;

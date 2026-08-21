@@ -2,7 +2,9 @@
 
 import { type Dispatch, type SetStateAction, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Input, Modal, Select } from "@/shared/components";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import Select from "@/shared/components/Select";
 import {
   getDefaultAlibabaProviderRegion,
   isAlibabaRegionalProvider,

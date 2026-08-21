@@ -3,7 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 
-import { Badge, Button, Input, Modal, Select, Toggle } from "@/shared/components";
+import Badge from "@/shared/components/Badge";
+import Button from "@/shared/components/Button";
+import Input from "@/shared/components/Input";
+import Modal from "@/shared/components/Modal";
+import Select from "@/shared/components/Select";
+import Toggle from "@/shared/components/Toggle";
 import { readFetchErrorMessage } from "@/shared/utils/fetchError";
 import { isValidProviderIconUrl } from "@/shared/validation/iconUrl";
 import {

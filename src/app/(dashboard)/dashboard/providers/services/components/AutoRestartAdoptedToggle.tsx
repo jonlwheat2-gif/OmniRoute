@@ -16,7 +16,8 @@
  */
 
 import { useState } from "react";
-import { Card, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
 import { useServiceStatus } from "../hooks/useServiceStatus";
 
 interface AutoRestartAdoptedToggleProps {

@@ -2,7 +2,8 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card, ConfirmModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import { ConfirmModal } from "@/shared/components/Modal";
 import { AddWebhookWizard } from "./components/AddWebhookWizard";
 import { HowItWorksSidebar } from "./components/HowItWorksSidebar";
 import { WebhooksList } from "./components/WebhooksList";

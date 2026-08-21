@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Button, Select } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Select from "@/shared/components/Select";
 import type { SearchProviderCatalogItem } from "@/shared/schemas/searchTools";
 
 interface SearchProvider {

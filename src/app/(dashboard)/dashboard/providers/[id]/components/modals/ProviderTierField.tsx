@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Select } from "@/shared/components";
+import Select from "@/shared/components/Select";
 import type { ProviderTier } from "@omniroute/open-sse/services/tierTypes";
 import { fetchProviderTierOverride, saveProviderTierOverride } from "./providerTierFieldApi";
 

@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import type { A2ATask, TaskState } from "@/lib/a2a/taskManager";
 
 type TaskListResponse = {

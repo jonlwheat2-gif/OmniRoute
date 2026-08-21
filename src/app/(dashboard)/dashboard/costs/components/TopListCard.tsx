@@ -1,4 +1,4 @@
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { createCurrencyFormatter } from "../CostOverviewTab";
 
 export interface TopListCardProps {

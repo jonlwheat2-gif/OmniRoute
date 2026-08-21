@@ -1,6 +1,6 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 
 export default function DocumentationTab() {
   const t = useTranslations("settings");

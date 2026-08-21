@@ -1,6 +1,9 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Card, Button, Toggle, ProxyConfigModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Toggle from "@/shared/components/Toggle";
+import ProxyConfigModal from "@/shared/components/ProxyConfigModal";
 import { useTranslations } from "next-intl";
 
 type GlobalProxyConfig = { type: string; host: string; port: number } | null;

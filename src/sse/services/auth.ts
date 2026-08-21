@@ -325,7 +325,10 @@ function normalizeCodexWindowName(windowName: unknown): string | null {
 }
 function applyCodexWindowPolicy(rawWindows: string[], providerSpecificData: JsonRecord): string[] {
   const codexPolicy = getCodexLimitPolicy(providerSpecificData);
-  const normalizedRaw = rawWindows.map(normalizeCodexWindowName).filter(Boolean) as string[];
+  const normalizedRaw = rawWindows.flatMap((w) => {
+    const n = normalizeCodexWindowName(w);
+    return n ? [n] : [];
+  });
 
   // Preserve explicitly configured custom windows, but enforce canonical Codex windows
   // from toggles so weekly exhaustion is never skipped when useWeekly=true.
@@ -424,7 +427,10 @@ export function resolveQuotaLimitPolicy(
 ): QuotaLimitPolicy {
   const rawPolicy = asRecord(providerSpecificData.limitPolicy);
   const rawWindows = Array.isArray(rawPolicy.windows) ? rawPolicy.windows : [];
-  const windows = rawWindows.map(normalizeWindowName).filter(Boolean) as string[];
+  const windows = rawWindows.flatMap((w) => {
+    const n = normalizeWindowName(w);
+    return n ? [n] : [];
+  });
 
   if (provider === "codex") {
     const defaultWindows = applyCodexWindowPolicy(windows, providerSpecificData);

@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import MediaProviderHeader from "../../components/MediaProviderHeader";
 import MediaProviderKindNav from "../../components/MediaProviderKindNav";
 import type { MediaKind } from "../../components/mediaKinds";

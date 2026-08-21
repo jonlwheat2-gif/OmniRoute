@@ -1,6 +1,6 @@
 "use client";
 
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import { useTranslations } from "next-intl";
 import { cn } from "@/shared/utils/cn";
 import { useServiceStatus } from "../hooks/useServiceStatus";

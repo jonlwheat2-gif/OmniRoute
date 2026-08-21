@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { Button, Card, Collapsible, Input, Select, Toggle } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
+import Collapsible from "@/shared/components/Collapsible";
+import Input from "@/shared/components/Input";
+import Select from "@/shared/components/Select";
+import Toggle from "@/shared/components/Toggle";
 import ModelSelectField from "@/shared/components/ModelSelectField";
 import { useTranslations } from "next-intl";
 import { useNotificationStore } from "@/store/notificationStore";

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Card, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Toggle from "@/shared/components/Toggle";
 import { useTranslations } from "next-intl";
 
 export default function LogToolSourcesCard() {

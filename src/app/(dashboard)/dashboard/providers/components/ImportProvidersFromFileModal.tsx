@@ -1,7 +1,8 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Button, Modal } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Modal from "@/shared/components/Modal";
 import type { ParsedProviderImportEntry, ProviderImportParseError } from "./parseProviderImportFile";
 import { useImportProvidersFromFile } from "./useImportProvidersFromFile";
 

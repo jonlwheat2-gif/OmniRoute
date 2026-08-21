@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { CLI_TOOLS } from "@/shared/constants/cliTools";
-import { CardSkeleton } from "@/shared/components";
+import { CardSkeleton } from "@/shared/components/Loading";
 import { CliToolCard, CliConceptCard, CliComparisonCard } from "@/shared/components/cli";
 import { useToolBatchStatuses } from "@/shared/hooks/cli/useToolBatchStatuses";
 

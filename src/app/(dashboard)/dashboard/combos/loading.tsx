@@ -1,4 +1,4 @@
-import { CardSkeleton } from "@/shared/components";
+import { CardSkeleton } from "@/shared/components/Loading";
 
 export default function Loading() {
   return (

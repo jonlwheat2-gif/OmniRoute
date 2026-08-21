@@ -2,7 +2,8 @@
 import React from "react";
 import { type ConnectionRowConnection } from "./ConnectionRow";
 import ConnectionRow from "./ConnectionRow";
-import { Button, DistributeProxiesButton } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import DistributeProxiesButton from "@/shared/components/DistributeProxiesButton";
 import { pickDisplayValue } from "@/shared/utils/maskEmail";
 import { readBooleanToggle, providerCountText } from "../providerPageHelpers";
 import { compareTr } from "@/shared/utils/turkishText";

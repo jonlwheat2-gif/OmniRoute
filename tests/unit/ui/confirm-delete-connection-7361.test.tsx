@@ -40,7 +40,7 @@ vi.mock("@/store/notificationStore", () => ({
 import ConnectionRow, {
   type ConnectionRowConnection,
 } from "@/app/(dashboard)/dashboard/providers/[id]/components/ConnectionRow";
-import { ConfirmModal } from "@/shared/components";
+import { ConfirmModal } from "@/shared/components/Modal";
 import { useConnectionDeleteConfirm } from "@/app/(dashboard)/dashboard/providers/[id]/hooks/useConnectionDeleteConfirm";
 import { useNotificationStore } from "@/store/notificationStore";
 

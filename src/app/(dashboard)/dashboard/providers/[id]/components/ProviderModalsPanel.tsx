@@ -2,15 +2,13 @@
 
 // Phase 1t.5 extraction — Issue #3501
 // Pure composition of all modal elements rendered by ProviderDetailPageClient.
-import {
-  ConfirmModal,
-  OAuthModal,
-  KiroOAuthWrapper,
-  CursorAuthModal,
-  TraeAuthModal,
-  RaycastAuthModal,
-  ProxyConfigModal,
-} from "@/shared/components";
+import { ConfirmModal } from "@/shared/components/Modal";
+import OAuthModal from "@/shared/components/OAuthModal";
+import KiroOAuthWrapper from "@/shared/components/KiroOAuthWrapper";
+import CursorAuthModal from "@/shared/components/CursorAuthModal";
+import TraeAuthModal from "@/shared/components/TraeAuthModal";
+import RaycastAuthModal from "@/shared/components/RaycastAuthModal";
+import ProxyConfigModal from "@/shared/components/ProxyConfigModal";
 import RiskNoticeModal from "../../components/RiskNoticeModal";
 import CodexCliGuideModal from "../../components/CodexCliGuideModal";
 import SiliconFlowEndpointModal from "./SiliconFlowEndpointModal";

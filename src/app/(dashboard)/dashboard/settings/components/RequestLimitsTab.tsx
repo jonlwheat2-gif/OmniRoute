@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Button, Card } from "@/shared/components";
+import Button from "@/shared/components/Button";
+import Card from "@/shared/components/Card";
 import {
   DEFAULT_REQUEST_BODY_LIMIT_MB,
   MAX_REQUEST_BODY_LIMIT_MB,

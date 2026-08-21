@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Card, Button, Badge, Modal, Input, ModelSelectModal } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Button from "@/shared/components/Button";
+import Badge from "@/shared/components/Badge";
+import Modal from "@/shared/components/Modal";
+import Input from "@/shared/components/Input";
+import ModelSelectModal from "@/shared/components/ModelSelectModal";
 import { MITM_TOOL_HOSTS } from "@/shared/constants/mitmToolHosts";
 import { useTranslations } from "next-intl";
 

@@ -1,7 +1,9 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Card, Input, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Input from "@/shared/components/Input";
+import Toggle from "@/shared/components/Toggle";
 import { useTranslations } from "next-intl";
 
 type RoutingSettings = {

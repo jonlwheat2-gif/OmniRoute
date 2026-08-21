@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 
-import { Button } from "@/shared/components";
+import Button from "@/shared/components/Button";
 import {
   fetchNewsPayload,
   listActiveNews,

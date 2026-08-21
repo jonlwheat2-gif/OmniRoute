@@ -1,7 +1,9 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { Card, Input, Toggle } from "@/shared/components";
+import Card from "@/shared/components/Card";
+import Input from "@/shared/components/Input";
+import Toggle from "@/shared/components/Toggle";
 import ApiKeyFilterChip from "./ApiKeyFilterChip";
 import type { KeyStatus, KeyType, ApiKeyCounts } from "../apiManagerPageUtils";
 

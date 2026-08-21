@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTranslations } from "next-intl";
-import { Card } from "@/shared/components";
+import Card from "@/shared/components/Card";
 import A2ADashboardPage from "../endpoint/components/A2ADashboard";
 
 type ServiceStatus = { online: boolean; loading: boolean };
