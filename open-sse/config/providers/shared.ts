@@ -25,6 +25,7 @@ import {
   GLMT_TIMEOUT_MS,
   GLM_SHARED_MODELS,
 } from "../glmProvider.ts";
+import { OPENCODE_ZEN_GO_SHARED_MODELS } from "../opencodeZenGoSharedModels.ts";
 import { MARITALK_DEFAULT_BASE_URL } from "../maritalk.ts";
 import {
   CURSOR_REGISTRY_VERSION,
@@ -719,6 +720,7 @@ export {
   GLM_TIMEOUT_MS,
   GLMT_TIMEOUT_MS,
   GLM_SHARED_MODELS,
+  OPENCODE_ZEN_GO_SHARED_MODELS,
   MARITALK_DEFAULT_BASE_URL,
   CURSOR_REGISTRY_VERSION,
   getAntigravityProviderHeaders,
