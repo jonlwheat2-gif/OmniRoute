@@ -51,7 +51,25 @@ export const opencode_zenProvider: RegistryEntry = {
     { id: "grok-4.6", name: "Grok 4.6" },
 
     // ── Muse ───────────────────────────────────────────────────
-    { id: "muse-spark-1.2", name: "Muse Spark 1.2" },
+    // Muse Spark is served by OpenCode Zen only on the OpenAI Responses API
+    // endpoint, not /chat/completions (see the opencode provider's own
+    // muse-spark entries, #10874/#10867) — this provider is a separate
+    // registry entry for the same upstream and never got the same
+    // targetFormat declaration, so requests routed here still hit
+    // /chat/completions with a mismatched or unanswerable body and the
+    // upstream returns an empty message.
+    {
+      id: "muse-spark-1.2",
+      name: "Muse Spark 1.2",
+      supportsReasoning: true,
+      targetFormat: "openai-responses",
+    },
+    {
+      id: "muse-spark-1.2-contributor-free",
+      name: "Muse Spark 1.2 Contributor Free",
+      supportsReasoning: true,
+      targetFormat: "openai-responses",
+    },
 
     // ── DeepSeek ────────────────────────────────────────────────
     { id: "deepseek-v4-pro", name: "DeepSeek V4 Pro" },

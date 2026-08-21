@@ -138,6 +138,7 @@ export const opencode_goProvider: RegistryEntry = {
       supportsVision: true,
       supportsAudio: true,
       supportsVideo: true,
+      targetFormat: "openai-responses",
     },
     {
       id: "muse-spark-1.2-contributor-minimal",
@@ -148,6 +149,7 @@ export const opencode_goProvider: RegistryEntry = {
       supportsVision: true,
       supportsAudio: true,
       supportsVideo: true,
+      targetFormat: "openai-responses",
     },
     {
       id: "muse-spark-1.2-contributor-low",
@@ -158,6 +160,7 @@ export const opencode_goProvider: RegistryEntry = {
       supportsVision: true,
       supportsAudio: true,
       supportsVideo: true,
+      targetFormat: "openai-responses",
     },
     {
       id: "muse-spark-1.2-contributor-medium",
@@ -168,6 +171,7 @@ export const opencode_goProvider: RegistryEntry = {
       supportsVision: true,
       supportsAudio: true,
       supportsVideo: true,
+      targetFormat: "openai-responses",
     },
     {
       id: "muse-spark-1.2-contributor-high",
@@ -178,6 +182,7 @@ export const opencode_goProvider: RegistryEntry = {
       supportsVision: true,
       supportsAudio: true,
       supportsVideo: true,
+      targetFormat: "openai-responses",
     },
     {
       id: "muse-spark-1.2-contributor-xhigh",
@@ -188,6 +193,7 @@ export const opencode_goProvider: RegistryEntry = {
       supportsVision: true,
       supportsAudio: true,
       supportsVideo: true,
+      targetFormat: "openai-responses",
     },
     // #8353: Grok 4.5 + effort tiers from the OpenCode Go registry.
     { id: "grok-4.5", name: "Grok 4.5", supportsReasoning: true },
