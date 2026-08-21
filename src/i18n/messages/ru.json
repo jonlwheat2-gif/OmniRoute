@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "Вебхуки",
-        "description": "Регистрация, просмотр списка, тестирование и удаление конечных точек вебхуков. Настройка подписок на события (request.completed, provider.error, budget.exceeded и т. д.) и управление повторными попытками доставки."
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "MCP-сервер",

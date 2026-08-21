@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "वेबहुक",
-        "description": "वेबहुक एंडपॉइंट्स को रजिस्टर, सूचीबद्ध, टेस्ट और रिमूव करें। इवेंट सब्सक्रिप्शन (request.completed, provider.error, budget.exceeded, आदि) कॉन्फ़िगर करें और डिलीवरी रीट्राय प्रबंधित करें।"
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "MCP सर्वर",

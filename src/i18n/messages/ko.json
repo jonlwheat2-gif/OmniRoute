@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "웹훅",
-        "description": "웹훅 엔드포인트를 등록, 나열, 테스트 및 제거합니다. 이벤트 구독(request.completed, provider.error, budget.exceeded 등)을 구성하고 전달 재시도를 관리합니다."
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "MCP 서버",

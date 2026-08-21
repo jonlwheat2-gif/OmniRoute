@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "ওয়েবহুক",
-        "description": "ওয়েবহুক এন্ডপয়েন্ট রেজিস্টার, তালিকাভুক্ত, পরীক্ষা এবং অপসারণ করুন। ইভেন্ট সাবস্ক্রিপশন (request.completed, provider.error, budget.exceeded ইত্যাদি) কনফিগার করুন এবং ডেলিভারি রিট্রাই পরিচালনা করুন।"
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "MCP সার্ভার",

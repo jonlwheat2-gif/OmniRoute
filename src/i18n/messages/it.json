@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "Webhook",
-        "description": "Registra, elenca, testa e rimuovi gli endpoint webhook. Configura le sottoscrizioni agli eventi (request.completed, provider.error, budget.exceeded, ecc.) e gestisci i tentativi di recapito."
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "Server MCP",

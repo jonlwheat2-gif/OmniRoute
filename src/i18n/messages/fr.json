@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "Webhooks",
-        "description": "Enregistrer, lister, tester et supprimer des points de terminaison de webhook. Configurer les abonnements aux événements (request.completed, provider.error, budget.exceeded, etc.) et gérer les tentatives de livraison."
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "Serveur MCP",

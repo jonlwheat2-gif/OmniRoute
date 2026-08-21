@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "Webhooks",
-        "description": "רשום, הצג, בדוק והסר נקודות קצה של webhook. הגדר מנויים לאירועים (request.completed, provider.error, budget.exceeded וכו') ונהל ניסיונות מסירה חוזרים."
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "שרת MCP",

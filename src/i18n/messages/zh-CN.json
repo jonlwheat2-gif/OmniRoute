@@ -12202,7 +12202,7 @@
       },
       "omni-webhooks": {
         "name": "Webhooks",
-        "description": "注册、列出、测试和移除 Webhook 端点。配置事件订阅（request.completed、provider.error、budget.exceeded 等）并管理投递重试。"
+        "description": "__MISSING__:Register, list, test, and remove webhook endpoints. Configure event subscriptions (request.completed, request.failed, quota.exceeded, etc.) and manage delivery retries."
       },
       "omni-mcp": {
         "name": "MCP 服务器",
