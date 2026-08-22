@@ -356,7 +356,7 @@ export const WEB_COOKIE_PROVIDERS = {
     icon: "auto_awesome",
     color: "#5B21B6",
     textIcon: "HL",
-    website: "https://hailuo.ai",
+    website: "https://chat.minimax.io",
     authHint:
       "Open hailuo.ai, log in, then open DevTools → Application → Local Storage → copy the " +
       '"_token" value. device_id/uuid fingerprint fields are derived automatically; if ' +
