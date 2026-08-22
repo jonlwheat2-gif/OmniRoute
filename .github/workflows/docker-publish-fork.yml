@@ -1,0 +1,233 @@
+name: Publish to GHCR (fork)
+
+on:
+  push:
+    tags:
+      - "v*"
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version tag or branch to build (e.g. 3.8.50 or release/v3.8.50)"
+        required: true
+        type: string
+        default: "3.8.50"
+      ref_type:
+        description: "Is 'version' a git tag, branch, or hash?"
+        required: true
+        type: choice
+        options:
+          - tag
+          - branch
+          - hash
+        default: "branch"
+      promote_latest:
+        description: "Also tag :latest"
+        required: false
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    name: Resolve metadata
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.meta.outputs.version }}
+      ref: ${{ steps.meta.outputs.ref }}
+      promote_latest: ${{ steps.meta.outputs.promote_latest }}
+    steps:
+      - name: Resolve metadata
+        id: meta
+        run: |
+          VERSION="${{ inputs.version }}"
+          REF_TYPE="${{ inputs.ref_type || 'branch' }}"
+          PROMOTE="${{ inputs.promote_latest || false }}"
+
+          if [ "${{ github.event_name }}" = "push" ]; then
+            VERSION="${{ github.ref_name }}"
+            VERSION="${VERSION#v}"
+            REF_TYPE="tag"
+            PROMOTE="true"
+          fi
+
+          if [ "$REF_TYPE" = "tag" ]; then
+            REF="refs/tags/v${VERSION}"
+          elif [ "$REF_TYPE" = "hash" ]; then
+            REF="$VERSION"
+          else
+            REF="$VERSION"
+          fi
+
+          echo "version=${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "ref=${REF}" >> "$GITHUB_OUTPUT"
+          echo "promote_latest=${PROMOTE}" >> "$GITHUB_OUTPUT"
+
+          echo "Building version=${VERSION} from ref=${REF} promote_latest=${PROMOTE}"
+
+  build:
+    name: Build (${{ matrix.platform }})
+    needs: prepare
+    runs-on: ${{ matrix.runner }}
+    permissions:
+      contents: read
+      packages: write
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: linux/amd64
+            runner: ubuntu-24.04
+            arch: amd64
+          - platform: linux/arm64
+            runner: ubuntu-24.04-arm
+            arch: arm64
+    env:
+      GHCR_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/omniroute
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          ref: ${{ needs.prepare.outputs.ref }}
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push base image by digest
+        id: build-base
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          target: runner-base
+          platforms: ${{ matrix.platform }}
+          outputs: type=image,push-by-digest=true,name-canonical=true,push=true
+          tags: |
+            ${{ env.GHCR_IMAGE_NAME }}
+          build-args: |
+            IMAGE_SOURCE=https://github.com/${{ github.repository_owner }}/OmniRoute
+          cache-from: type=gha,scope=docker-fork-${{ matrix.arch }}
+          cache-to: type=gha,scope=docker-fork-${{ matrix.arch }},mode=max
+
+      - name: Build and push web image by digest
+        id: build-web
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          target: runner-web
+          platforms: ${{ matrix.platform }}
+          outputs: type=image,push-by-digest=true,name-canonical=true,push=true
+          tags: |
+            ${{ env.GHCR_IMAGE_NAME }}
+          build-args: |
+            IMAGE_SOURCE=https://github.com/${{ github.repository_owner }}/OmniRoute
+          cache-from: type=gha,scope=docker-fork-web-${{ matrix.arch }}
+          cache-to: type=gha,scope=docker-fork-web-${{ matrix.arch }},mode=max
+
+      - name: Export digests
+        run: |
+          mkdir -p /tmp/digests/base /tmp/digests/web
+          touch "/tmp/digests/base/${DIGEST_BASE#sha256:}"
+          touch "/tmp/digests/web/${DIGEST_WEB#sha256:}"
+        env:
+          DIGEST_BASE: ${{ steps.build-base.outputs.digest }}
+          DIGEST_WEB: ${{ steps.build-web.outputs.digest }}
+
+      - name: Upload base digests
+        uses: actions/upload-artifact@v7
+        with:
+          name: digests-base-${{ matrix.arch }}
+          path: /tmp/digests/base/*
+          if-no-files-found: error
+          retention-days: 1
+
+      - name: Upload web digests
+        uses: actions/upload-artifact@v7
+        with:
+          name: digests-web-${{ matrix.arch }}
+          path: /tmp/digests/web/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    name: Publish multi-arch manifests
+    needs:
+      - prepare
+      - build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    env:
+      GHCR_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/omniroute
+      VERSION: ${{ needs.prepare.outputs.version }}
+      PROMOTE_LATEST: ${{ needs.prepare.outputs.promote_latest }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          ref: ${{ needs.prepare.outputs.ref }}
+          fetch-depth: 0
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Login to GHCR
+        uses: docker/login-action@v4.6.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Download base digests
+        uses: actions/download-artifact@v8
+        with:
+          pattern: digests-base-*
+          path: /tmp/digests/base
+          merge-multiple: true
+
+      - name: Download web digests
+        uses: actions/download-artifact@v8
+        with:
+          pattern: digests-web-*
+          path: /tmp/digests/web
+          merge-multiple: true
+
+      - name: Create GHCR manifests
+        run: |
+          set -euo pipefail
+
+          create_manifest() {
+            local suffix="$1" dir="$2"
+            local tags=(-t "${GHCR_IMAGE_NAME}:${VERSION}${suffix}")
+            if [ "$PROMOTE_LATEST" = "true" ]; then
+              tags+=(-t "${GHCR_IMAGE_NAME}:latest${suffix}")
+            fi
+            local refs=()
+            while IFS= read -r digest_file; do
+              refs+=("${GHCR_IMAGE_NAME}@sha256:$(basename "$digest_file")")
+            done < <(find "$dir" -type f | sort)
+            if [ "${#refs[@]}" -eq 0 ]; then
+              echo "No image digests in $dir" >&2
+              exit 1
+            fi
+            docker buildx imagetools create "${tags[@]}" "${refs[@]}"
+          }
+
+          create_manifest "" /tmp/digests/base
+          create_manifest "-web" /tmp/digests/web
+
+      - name: Inspect image
+        run: |
+          docker buildx imagetools inspect "${GHCR_IMAGE_NAME}:${VERSION}"
+          docker buildx imagetools inspect "${GHCR_IMAGE_NAME}:${VERSION}-web"
