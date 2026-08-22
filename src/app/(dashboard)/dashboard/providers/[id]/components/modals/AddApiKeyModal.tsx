@@ -31,6 +31,7 @@ import {
 import { getWebSessionCredentialRequirement } from "../../webSessionCredentials";
 import { useOpenRouterPresetControl } from "../OpenRouterPresetInput";
 import WebSessionCredentialGuide from "../WebSessionCredentialGuide";
+import HarImportButton from "../HarImportButton";
 import CcCompatibleRequestDefaultsFields from "./CcCompatibleRequestDefaultsFields";
 import { buildAddProviderSpecificData } from "./connectionProviderSpecificData";
 import { getCommandCodeAuthPhaseLabel } from "./commandCodeAuthPhase";
@@ -209,13 +210,13 @@ export default function AddApiKeyModal({
         ? "Freebuff uses an authentic CLI auth token obtained via codebuff CLI login or automated harvester."
         : isWebSessionCredential
           ? getWebSessionCredentialHint(t, webSessionCredential, providerDisplayName, false)
-        : isLocalSelfHostedProvider
-          ? t("localProviderApiKeyOptionalHint", {
-              provider: localProviderMetadata?.name || providerName || provider || "",
-            })
-          : apiKeyOptional
-            ? t("apiKeyOptionalHint")
-            : undefined;
+          : isLocalSelfHostedProvider
+            ? t("localProviderApiKeyOptionalHint", {
+                provider: localProviderMetadata?.name || providerName || provider || "",
+              })
+            : apiKeyOptional
+              ? t("apiKeyOptionalHint")
+              : undefined;
   const credentialValidationFailedMessage = isWebSessionCredential
     ? providerText(
         t,
@@ -748,6 +749,12 @@ export default function AddApiKeyModal({
                 providerName={providerDisplayName}
                 providerWebsite={providerWebsite}
                 t={t}
+              />
+            )}
+            {provider && (
+              <HarImportButton
+                provider={provider}
+                onImport={(apiKey) => setFormData({ ...formData, apiKey })}
               />
             )}
             {!isNoAuthWebSessionCredential && (

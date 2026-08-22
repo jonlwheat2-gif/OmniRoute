@@ -533,9 +533,9 @@ function getStrategyBadgeClass(strategy) {
   return "bg-blue-500/15 text-blue-600 dark:text-blue-400";
 }
 
-function getI18nOrFallback(t, key, fallback) {
+function getI18nOrFallback(t, key, fallback, values) {
   try {
-    if (typeof t.has === "function" && t.has(key)) return t(key);
+    if (typeof t.has === "function" && t.has(key)) return t(key, values);
   } catch {}
   return fallback;
 }
@@ -1565,7 +1565,8 @@ function StrategyRecommendationsPanel({ strategy, onApply, showNudge }) {
           {getI18nOrFallback(
             t,
             "recommendationsUpdated",
-            "Recommendations updated for {strategy}."
+            "Recommendations updated for {strategy}.",
+            { strategy: strategyLabel }
           ).replace("{strategy}", strategyLabel)}
         </div>
       )}

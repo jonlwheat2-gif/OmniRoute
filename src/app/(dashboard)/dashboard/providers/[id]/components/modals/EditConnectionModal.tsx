@@ -49,6 +49,7 @@ import {
 import { getWebSessionCredentialRequirement } from "../../webSessionCredentials";
 import { useOpenRouterPresetControl } from "../OpenRouterPresetInput";
 import WebSessionCredentialGuide from "../WebSessionCredentialGuide";
+import HarImportButton from "../HarImportButton";
 import CcCompatibleRequestDefaultsFields from "./CcCompatibleRequestDefaultsFields";
 import { CodexConnectionFields } from "./CodexFingerprintFields";
 import { assignEditApiKeyProviderSpecificData } from "./connectionProviderSpecificData";
@@ -907,6 +908,12 @@ export default function EditConnectionModal({
                 providerName={providerDisplayName}
                 providerWebsite={providerWebsite}
                 t={t}
+              />
+            )}
+            {provider && (
+              <HarImportButton
+                provider={provider}
+                onImport={(apiKey) => setFormData({ ...formData, apiKey })}
               />
             )}
             {!isNoAuthWebSessionCredential && (
