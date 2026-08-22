@@ -443,7 +443,7 @@
       "src/shared/components/ModelSelectModal.tsx": 1138,
       "src/shared/constants/providers/apikey/gateways.ts": 1250
     },
-    "src/app/(dashboard)/dashboard/providers/[id]/components/modals/AddApiKeyModal.tsx": 1067,
+    "src/app/(dashboard)/dashboard/providers/[id]/components/modals/AddApiKeyModal.tsx": 1073,
     "src/app/(dashboard)/dashboard/providers/[id]/hooks/useProviderConnections.ts": 1051,
     "src/shared/components/ModelSelectModal.tsx": 1138,
     "src/shared/constants/providers/apikey/gateways.ts": 1298,
