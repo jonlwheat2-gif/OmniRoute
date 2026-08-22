@@ -115,6 +115,8 @@ jobs:
             ${{ env.GHCR_IMAGE_NAME }}
           build-args: |
             IMAGE_SOURCE=https://github.com/${{ github.repository_owner }}/OmniRoute
+            OMNIROUTE_BUILD_MEMORY_MB=${{ matrix.arch == 'arm64' && '2048' || '4096' }}
+            OMNIROUTE_MEMORY_MB=${{ matrix.arch == 'arm64' && '768' || '1024' }}
           cache-from: type=gha,scope=docker-fork-${{ matrix.arch }}
           cache-to: type=gha,scope=docker-fork-${{ matrix.arch }},mode=max
 
@@ -130,6 +132,8 @@ jobs:
             ${{ env.GHCR_IMAGE_NAME }}
           build-args: |
             IMAGE_SOURCE=https://github.com/${{ github.repository_owner }}/OmniRoute
+            OMNIROUTE_BUILD_MEMORY_MB=${{ matrix.arch == 'arm64' && '2048' || '4096' }}
+            OMNIROUTE_MEMORY_MB=${{ matrix.arch == 'arm64' && '768' || '1024' }}
           cache-from: type=gha,scope=docker-fork-web-${{ matrix.arch }}
           cache-to: type=gha,scope=docker-fork-web-${{ matrix.arch }},mode=max
 
