@@ -178,10 +178,14 @@ RUN --mount=type=cache,id=s/92ca8a61-c1ba-421f-a389-d48ac7258c2d-next-cache,targ
 # ── Runner base ────────────────────────────────────────────────────────────
 FROM base AS runner-base
 
+# Override at build time via --build-arg to point at a fork (e.g.
+# docker build --build-arg IMAGE_SOURCE=https://github.com/user/OmniRoute ...)
+ARG IMAGE_SOURCE=https://github.com/diegosouzapw/OmniRoute
+
 LABEL org.opencontainers.image.title="omniroute" \
   org.opencontainers.image.description="Unified AI proxy — route any LLM through one endpoint" \
   org.opencontainers.image.url="https://omniroute.online" \
-  org.opencontainers.image.source="https://github.com/diegosouzapw/OmniRoute" \
+  org.opencontainers.image.source="${IMAGE_SOURCE}" \
   org.opencontainers.image.licenses="MIT"
 
 ENV NODE_ENV=production
