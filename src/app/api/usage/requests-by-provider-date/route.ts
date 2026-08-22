@@ -76,7 +76,7 @@ function resolveDateWindow(searchParams: URLSearchParams, range: string): DateWi
 
 async function resolveRawCutoffDate(): Promise<string> {
   const { getUserDatabaseSettings } = await import("@/lib/db/databaseSettings");
-  const dbSettings = getUserDatabaseSettings();
+  const dbSettings = await getUserDatabaseSettings();
   const rawRetentionDays = dbSettings.aggregation?.rawDataRetentionDays ?? 30;
   const rawCutoff = new Date();
   rawCutoff.setDate(rawCutoff.getDate() - rawRetentionDays);
@@ -87,9 +87,12 @@ function errorResponse(error: unknown): Promise<Response> {
   console.error("Error computing requests-by-provider-date:", error);
   const message = error instanceof Error ? error.message : String(error);
   return import("@omniroute/open-sse/utils/error").then(({ buildErrorBody }) =>
-    NextResponse.json(buildErrorBody(500, message || "Failed to compute requests-by-provider-date"), {
-      status: 500,
-    })
+    NextResponse.json(
+      buildErrorBody(500, message || "Failed to compute requests-by-provider-date"),
+      {
+        status: 500,
+      }
+    )
   );
 }
 

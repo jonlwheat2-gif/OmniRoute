@@ -312,6 +312,8 @@
     "open": "^11.0.1",
     "ora": "^9.4.1",
     "parse5": "^8.0.1",
+    "pg": "^8.23.0",
+    "mysql2": "^3.11.0",
     "pino": "^10.3.1",
     "pino-abstract-transport": "^3.0.0",
     "pino-pretty": "^13.1.3",

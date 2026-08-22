@@ -189,7 +189,7 @@ export async function POST(request) {
         } catch {}
         let settings = {};
         try {
-          settings = getDatabaseSettings();
+          settings = await getDatabaseSettings();
         } catch {}
 
         return handleComboChat({

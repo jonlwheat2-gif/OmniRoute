@@ -37,8 +37,8 @@ export async function POST(req: NextRequest) {
   const enabled = body.enabled === true || body.enabled === "1";
 
   await updateSettings({ call_log_pipeline_enabled: enabled });
-  const databaseSettings = getUserDatabaseSettings();
-  updateDatabaseSettings({
+  const databaseSettings = await getUserDatabaseSettings();
+  await updateDatabaseSettings({
     logs: {
       ...databaseSettings.logs,
       detailedLogsEnabled: enabled,

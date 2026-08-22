@@ -421,8 +421,7 @@ export function countAuditLog(filter: AuditLogFilter = {}) {
   ensureAuditLogSchema(db);
   const { where, params } = buildAuditLogQuery(filter);
   const row = db.prepare(`SELECT COUNT(*) as count FROM audit_log ${where}`).get(...params) as
-    | { count?: number }
-    | undefined;
+    { count?: number } | undefined;
   return Number(row?.count || 0);
 }
 
@@ -437,7 +436,7 @@ export { isNoLog, setNoLog } from "./noLog";
 /**
  * Get the configured retention periods.
  */
-export function getRetentionDays() {
+export async function getRetentionDays() {
   return {
     app: getAppLogRetentionDays(),
     call: getCallLogRetentionDays(),
@@ -497,7 +496,7 @@ export async function cleanupExpiredLogs() {
   const appOverride = getAppLogRetentionDaysOverride();
   let dbRetention: { usageHistory: number; callLogs: number; mcpAudit: number } | null = null;
   try {
-    const r = getUserDatabaseSettings().retention;
+    const r = (await getUserDatabaseSettings()).retention;
     dbRetention = { usageHistory: r.usageHistory, callLogs: r.callLogs, mcpAudit: r.mcpAudit };
   } catch {
     /* settings table unavailable (e.g. very early startup) — keep env fallback */
