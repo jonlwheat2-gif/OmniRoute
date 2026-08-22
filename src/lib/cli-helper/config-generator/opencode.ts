@@ -303,15 +303,18 @@ function buildModelEntry(
   const output =
     typeof userOutput === "number" && userOutput > 0 ? userOutput : (catalogOutput ?? 8_192);
 
-  // `limit.output` is REQUIRED by OpenCode's v1 provider schema regardless of
-  // whether the catalog (or the user's existing config) knows the model's
-  // context window — a model with no catalog metadata at all must still get
-  // a `limit` block, or OpenCode rejects the whole config with "Missing key
-  // provider.omniroute.models.{model}.limit.output" (#10940). `output` above
-  // already resolves to a safe fallback (8K) when nothing else is known, so
-  // we always emit it; `context`/`input` are added only when actually known.
-  const limit: { context?: number; input?: number; output?: number } = { output };
-  if (typeof context === "number") limit.context = context;
+  // Both `limit.context` and `limit.output` are REQUIRED by OpenCode's v1 provider schema
+  // regardless of whether the catalog (or the user's existing config) knows the model's
+  // context window — a model with no catalog metadata at all must still get both
+  // `limit.context` and `limit.output`, or OpenCode rejects the whole config with "Missing key
+  // provider.omniroute.models.{model}.limit.context" (#11035) or ".limit.output" (#10940, #11032).
+  // `output` above resolves to a safe fallback (8K) and `context` resolves to a safe fallback (128K)
+  // when nothing else is known, so we always emit both fields.
+  const resolvedContext = typeof context === "number" && context > 0 ? context : 128_000;
+  const limit: { context: number; input?: number; output: number } = {
+    context: resolvedContext,
+    output,
+  };
   const userInput = existing?.limit?.input;
   if (typeof userInput === "number" && userInput > 0) {
     limit.input = userInput;

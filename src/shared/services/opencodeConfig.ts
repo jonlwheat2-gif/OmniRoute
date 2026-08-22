@@ -57,10 +57,19 @@ export const buildOpenCodeProviderConfig = ({
       ? normalizedModels
       : [...new Set([normalizedModel, ...OPENCODE_DEFAULT_MODELS].filter(Boolean))];
 
-  const modelsRecord: Record<string, { name: string }> = {};
+  const modelsRecord: Record<
+    string,
+    { name: string; limit: { context: number; output: number } }
+  > = {};
   for (const m of uniqueModels) {
     if (m) {
-      modelsRecord[m] = { name: getModelEntryName(m, normalizedLabels) };
+      modelsRecord[m] = {
+        name: getModelEntryName(m, normalizedLabels),
+        limit: {
+          context: 128_000,
+          output: 8_192,
+        },
+      };
     }
   }
 
