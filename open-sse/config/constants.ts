@@ -171,6 +171,7 @@ export const HTTP_STATUS = {
   FORBIDDEN: 403,
   NOT_FOUND: 404,
   NOT_ACCEPTABLE: 406,
+  UNPROCESSABLE_ENTITY: 422,
   REQUEST_TIMEOUT: 408,
   GONE: 410,
   RATE_LIMITED: 429,
@@ -263,11 +264,17 @@ export const PROVIDER_PROFILES = {
     circuitBreakerReset: envInt("OMNIROUTE_CIRCUIT_BREAKER_API_KEY_RESET_MS", 30000),
     // Provider-level circuit breaker (entire provider cooldown after repeated failures)
     providerFailureThreshold: envInt("OMNIROUTE_PROVIDER_BREAKER_API_KEY_FAILURE_THRESHOLD", 15), // Scaled for 500+ connections (was 5)
-    providerFailureWindowMs: envInt("OMNIROUTE_PROVIDER_BREAKER_API_KEY_FAILURE_WINDOW_MS", 1800000), // 30min window (was 20min)
+    providerFailureWindowMs: envInt(
+      "OMNIROUTE_PROVIDER_BREAKER_API_KEY_FAILURE_WINDOW_MS",
+      1800000
+    ), // 30min window (was 20min)
     providerCooldownMs: envInt("OMNIROUTE_PROVIDER_BREAKER_API_KEY_COOLDOWN_MS", 600000), // 10min cooldown when threshold reached
     degradationThreshold: envInt("OMNIROUTE_PROVIDER_BREAKER_API_KEY_DEGRADATION_THRESHOLD", 7),
     maxBackoffMultiplier: envInt("OMNIROUTE_PROVIDER_BREAKER_API_KEY_MAX_BACKOFF_MULTIPLIER", 4),
-    backoffEscalationCount: envInt("OMNIROUTE_PROVIDER_BREAKER_API_KEY_BACKOFF_ESCALATION_COUNT", 3),
+    backoffEscalationCount: envInt(
+      "OMNIROUTE_PROVIDER_BREAKER_API_KEY_BACKOFF_ESCALATION_COUNT",
+      3
+    ),
   },
   // Local providers (localhost inference backends like Ollama, LM Studio, oMLX).
   // Not yet wired into getProviderProfile() — will be used when local provider_nodes

@@ -185,7 +185,21 @@ export interface OpenAiSseScan {
   text: string;
   /** True if any `choices[].delta.tool_calls` appeared — NEVER continue those. */
   sawToolCall: boolean;
-  /** True if a terminal marker (`[DONE]` or a non-null `finish_reason`) appeared. */
+  /**
+   * True only when `tool_calls` appeared in this scan AND its own
+   * `finish_reason: "tool_calls"` has NOT also appeared in the same scan — i.e. the
+   * call is still being streamed (arguments may be mid-flight). Once
+   * `finish_reason: "tool_calls"` closes it, the call is complete, not in flight: the
+   * client has the full arguments and a truncation past this point only drops
+   * trailing prose, which continuation can safely recover.
+   */
+  sawToolCallInFlight: boolean;
+  /**
+   * True if a terminal marker for the OVERALL stream appeared: `[DONE]`, or a
+   * `finish_reason` other than `"tool_calls"`. A `finish_reason: "tool_calls"` ends
+   * that one choice but is not terminal for continuation purposes — the model turn
+   * (and the client-visible SSE) is still eligible to be resumed past it.
+   */
   terminal: boolean;
   /** True if at least one OpenAI-shaped `choices[].delta` was parsed (format gate). */
   parsedOpenAi: boolean;
@@ -199,10 +213,11 @@ export interface OpenAiSseScan {
 export function scanOpenAiSseText(sse: string): OpenAiSseScan {
   let text = "";
   let sawToolCall = false;
+  let toolCallFinished = false;
   let terminal = false;
   let parsedOpenAi = false;
   if (typeof sse !== "string" || sse.length === 0) {
-    return { text, sawToolCall, terminal, parsedOpenAi };
+    return { text, sawToolCall, sawToolCallInFlight: false, terminal, parsedOpenAi };
   }
   for (const line of sse.split("\n")) {
     const trimmed = line.trimStart();
@@ -231,10 +246,17 @@ export function scanOpenAiSseText(sse: string): OpenAiSseScan {
         if (Array.isArray(toolCalls) && toolCalls.length > 0) sawToolCall = true;
       }
       const finishReason = (choice as { finish_reason?: unknown })?.finish_reason;
-      if (finishReason != null) terminal = true;
+      if (finishReason === "tool_calls") {
+        // Ends this one choice, but the overall stream/turn stays continuable —
+        // never counts as the general terminal marker (see OpenAiSseScan.terminal).
+        toolCallFinished = true;
+      } else if (finishReason != null) {
+        terminal = true;
+      }
     }
   }
-  return { text, sawToolCall, terminal, parsedOpenAi };
+  const sawToolCallInFlight = sawToolCall && !toolCallFinished;
+  return { text, sawToolCall, sawToolCallInFlight, terminal, parsedOpenAi };
 }
 
 export interface ContinuableBody {
@@ -369,7 +391,7 @@ export function createRecoverableStream(
   let emittedTail = ""; // raw SSE not yet scanned (awaiting an event boundary)
   let emittedText = ""; // assistant text already delivered to the client
   let emittedTerminal = false;
-  let emittedToolCall = false;
+  let emittedToolCallInFlight = false;
   let emittedParsedOpenAi = false;
 
   // Enqueue to the client and, when continuation is enabled, fold the chunk into the
@@ -388,7 +410,7 @@ export function createRecoverableStream(
     const scan = scanOpenAiSseText(complete);
     emittedText += scan.text;
     if (scan.terminal) emittedTerminal = true;
-    if (scan.sawToolCall) emittedToolCall = true;
+    if (scan.sawToolCallInFlight) emittedToolCallInFlight = true;
     if (scan.parsedOpenAi) emittedParsedOpenAi = true;
   };
 
@@ -402,7 +424,7 @@ export function createRecoverableStream(
     continueEnabled &&
     continuations < maxContinuations &&
     emittedParsedOpenAi &&
-    !emittedToolCall &&
+    !emittedToolCallInFlight &&
     !emittedTerminal &&
     emittedText.length > 0;
 

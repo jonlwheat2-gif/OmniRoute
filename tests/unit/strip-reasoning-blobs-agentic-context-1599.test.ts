@@ -274,7 +274,11 @@ test("explicit custom target opt-in remains an opaque transport override", () =>
   const result = applyReasoningInputPolicy(body, "responses", { preserveEncryptedReasoning: true });
 
   assert.equal(result.incompatibleReasoning, false);
-  assert.deepEqual(body.input, [{ type: "reasoning", encrypted_content: "encrypted-blob" }]);
+  // #11108: a kept opaque item defaults `summary` when the source omitted it —
+  // some upstreams reject `input[]` reasoning items missing the field entirely.
+  assert.deepEqual(body.input, [
+    { type: "reasoning", encrypted_content: "encrypted-blob", summary: [] },
+  ]);
 });
 
 test("preserved opaque reasoning remains redacted from log copies", () => {

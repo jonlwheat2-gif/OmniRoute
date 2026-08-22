@@ -664,6 +664,7 @@ describe("Reasoning Replay Cache — Translator Replay", () => {
       {
         type: "reasoning",
         content: [{ type: "reasoning_text", text: "Cached Chat continuation reasoning" }],
+        summary: [],
       }
     );
   });

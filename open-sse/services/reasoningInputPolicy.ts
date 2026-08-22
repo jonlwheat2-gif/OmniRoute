@@ -1,5 +1,6 @@
 import { REGISTRY } from "../config/providerRegistry.ts";
 import type { ReasoningTransport } from "../config/providerRegistry.ts";
+import { isValidResponsesItemId } from "./responsesItemId.ts";
 
 type JsonRecord = Record<string, unknown>;
 
@@ -279,13 +280,27 @@ function sanitizeResponsesInput(
       if (!hasPlaintext && !hasOpaque && (!hasDisplaySummary(next) || stripOrphanedSummaries)) {
         continue;
       }
-      if (!hasOpaque && typeof next.id === "string") delete next.id;
+      // `id` is only worth keeping on an opaque item with a valid string value —
+      // non-opaque items don't replay their id, and a malformed value (e.g. `null`,
+      // observed on opencode/zen) must not survive either way (#11108).
+      if (!hasOpaque || !isValidResponsesItemId(next.id)) delete next.id;
+      // Some upstreams (e.g. opencode/zen) omit `summary` entirely on opaque
+      // reasoning items instead of sending an empty array. Replaying that shape
+      // verbatim trips strict Responses-API validators that require the field
+      // to be present on every `input[]` item of type `reasoning` (#11108).
+      // Plaintext-only items intentionally have no `summary` key and must stay
+      // untouched.
+      if (hasOpaque && next.summary === undefined) next.summary = [];
       filtered.push(next);
       continue;
     }
 
     const cloned = { ...record };
-    if (typeof cloned.id === "string") delete cloned.id;
+    // Strip `id` whenever present, valid or not: these items don't need a
+    // replayed server id, and a malformed one (e.g. `null`, same opencode/zen
+    // omission pattern as the reasoning branch above) must not survive either
+    // (#11108).
+    if (cloned.id !== undefined) delete cloned.id;
     filtered.push(cloned);
   }
   return filtered;

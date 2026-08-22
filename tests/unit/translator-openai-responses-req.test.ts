@@ -475,6 +475,7 @@ test("Chat -> Responses defaults unannotated targets to plaintext reasoning", ()
     {
       type: "reasoning",
       content: [{ type: "reasoning_text", text: "Inspect the repository first" }],
+      summary: [],
     },
     {
       type: "function_call",
@@ -513,6 +514,7 @@ test("Chat -> DeepSeek Responses accepts the plaintext reasoning alias", () => {
   assert.deepEqual(result.input[0], {
     type: "reasoning",
     content: [{ type: "reasoning_text", text: "Alias plaintext reasoning" }],
+    summary: [],
   });
 });
 
