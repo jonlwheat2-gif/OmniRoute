@@ -155,7 +155,7 @@ export default function AddApiKeyModal({
     if (!isOpen || wasOpen) return;
     // On open, reset baseUrl and assign a unique default name so a second API key
     // for the same provider doesn't reuse "main" and trigger the backend
-    // name-based upsert that would silently overwrite the first connection (#6499).
+    // name-based upsert that would silently overwrite the first connection (#6499, #11033).
     setFormData((current) => ({
       ...current,
       name: computeConnectionDefaultName(existingConnectionCount),
