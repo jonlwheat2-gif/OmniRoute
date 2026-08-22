@@ -436,7 +436,7 @@ export { isNoLog, setNoLog } from "./noLog";
 /**
  * Get the configured retention periods.
  */
-export async function getRetentionDays() {
+export function getRetentionDays() {
   return {
     app: getAppLogRetentionDays(),
     call: getCallLogRetentionDays(),
@@ -496,7 +496,7 @@ export async function cleanupExpiredLogs() {
   const appOverride = getAppLogRetentionDaysOverride();
   let dbRetention: { usageHistory: number; callLogs: number; mcpAudit: number } | null = null;
   try {
-    const r = (await getUserDatabaseSettings()).retention;
+    const r = getUserDatabaseSettings().retention;
     dbRetention = { usageHistory: r.usageHistory, callLogs: r.callLogs, mcpAudit: r.mcpAudit };
   } catch {
     /* settings table unavailable (e.g. very early startup) — keep env fallback */

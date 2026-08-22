@@ -39,3 +39,7 @@ export { runBackendMigrations, loadMigrationFiles, resolveMigrationsDir } from "
 export type { MigrationFile } from "./migrations";
 export { exportSqliteToDialect } from "./export";
 export type { ExportResult, ExportedTable } from "./export";
+export { PersistenceError, classifyError } from "./errors";
+export type { PersistenceErrorCode } from "./errors";
+export { acquireMigrationLock, releaseMigrationLock, isMigrationLocked } from "./migrationLock";
+export type { MigrationLock } from "./migrationLock";

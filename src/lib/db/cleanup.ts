@@ -22,8 +22,8 @@ interface CleanupResult {
   errors: number;
 }
 
-async function getRetentionSettings() {
-  return (await getUserDatabaseSettings()).retention;
+function getRetentionSettings() {
+  return getUserDatabaseSettings().retention;
 }
 
 /**
@@ -31,7 +31,7 @@ async function getRetentionSettings() {
  */
 export async function cleanupQuotaSnapshots(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.quotaSnapshots;
   const cutoffDate = new Date();
@@ -61,7 +61,7 @@ export async function cleanupQuotaSnapshots(): Promise<CleanupResult> {
  */
 export async function cleanupCallLogs(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.callLogs;
   const cutoffDate = new Date();
@@ -89,7 +89,7 @@ export async function cleanupCallLogs(): Promise<CleanupResult> {
  */
 export async function cleanupUsageHistory(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.usageHistory;
   const cutoffDate = new Date();
@@ -138,7 +138,7 @@ export async function cleanupUsageHistory(): Promise<CleanupResult> {
  */
 export async function cleanupCompressionAnalytics(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.compressionAnalytics;
   const cutoffDate = new Date();
@@ -168,7 +168,7 @@ export async function cleanupCompressionAnalytics(): Promise<CleanupResult> {
  */
 export async function cleanupMcpAudit(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.mcpAudit;
   const cutoffDate = new Date();
@@ -198,7 +198,7 @@ export async function cleanupMcpAudit(): Promise<CleanupResult> {
  */
 export async function cleanupA2aEvents(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.a2aEvents;
   const cutoffDate = new Date();
@@ -228,7 +228,7 @@ export async function cleanupA2aEvents(): Promise<CleanupResult> {
  */
 export async function cleanupMemoryEntries(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.memoryEntries;
   const cutoffDate = new Date();
@@ -260,7 +260,7 @@ export async function cleanupMemoryEntries(): Promise<CleanupResult> {
  */
 export async function cleanupDomainCostHistory(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.domainCostHistory;
   const cutoffEpoch = Date.now() - retentionDays * 86_400_000;
@@ -289,7 +289,7 @@ export async function cleanupDomainCostHistory(): Promise<CleanupResult> {
  */
 export async function cleanupCompressionCacheStats(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.compressionCacheStats;
   const cutoffDate = new Date();
@@ -319,7 +319,7 @@ export async function cleanupCompressionCacheStats(): Promise<CleanupResult> {
  */
 export async function cleanupXpAuditLog(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.xpAuditLog;
   const cutoffDate = new Date();
@@ -352,7 +352,7 @@ export async function cleanupXpAuditLog(): Promise<CleanupResult> {
  */
 export async function cleanupCompressionRunTelemetry(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.compressionRunTelemetry;
   const cutoffEpoch = Date.now() - retentionDays * 86_400_000;
@@ -406,7 +406,7 @@ export async function runAutoCleanup(): Promise<{
   totalErrors: number;
   results: Record<string, CleanupResult>;
 }> {
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
   const autoCleanupEnabled = retention.autoCleanupEnabled;
 
   if (!autoCleanupEnabled) {
@@ -704,7 +704,7 @@ export async function resetUsageHistory(period: string): Promise<ResetUsageHisto
  */
 export async function cleanupProxyLogs(): Promise<CleanupResult> {
   const db = getDbInstance();
-  const retention = await getRetentionSettings();
+  const retention = getRetentionSettings();
 
   const retentionDays = retention.callLogs;
   const cutoffDate = new Date();

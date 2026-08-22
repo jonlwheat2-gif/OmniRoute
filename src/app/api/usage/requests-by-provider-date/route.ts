@@ -76,7 +76,7 @@ function resolveDateWindow(searchParams: URLSearchParams, range: string): DateWi
 
 async function resolveRawCutoffDate(): Promise<string> {
   const { getUserDatabaseSettings } = await import("@/lib/db/databaseSettings");
-  const dbSettings = await getUserDatabaseSettings();
+  const dbSettings = getUserDatabaseSettings();
   const rawRetentionDays = dbSettings.aggregation?.rawDataRetentionDays ?? 30;
   const rawCutoff = new Date();
   rawCutoff.setDate(rawCutoff.getDate() - rawRetentionDays);

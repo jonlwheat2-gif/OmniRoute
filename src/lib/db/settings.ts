@@ -2,8 +2,7 @@
  * db/settings.js — Settings, pricing, and proxy config.
  */
 
-import { getDatabaseBackend } from "./backends";
-import type { DatabaseBackend, TransactionHandle } from "./backends";
+import { getDbInstance } from "./core";
 import { backupDbFile } from "./backup";
 import { PROVIDER_ID_TO_ALIAS } from "@omniroute/open-sse/config/providerModels.ts";
 import { invalidateDbCache } from "./readCache";
@@ -14,10 +13,6 @@ import { requestBodyLimitMbFromEnv } from "@/shared/constants/bodySize";
 import { DEFAULT_RESPONSES_PREVIOUS_RESPONSE_ID_MODE } from "@/shared/constants/responsesPreviousResponseId";
 import { type JsonRecord, toRecord } from "./settings/shared";
 import { resolveNoAuthSharedProviderProxy } from "./settings/noAuthProxyFallback";
-
-async function getBackend(): Promise<DatabaseBackend> {
-  return getDatabaseBackend();
-}
 
 type ProxyValue = JsonRecord | string | null;
 type ProxyResolutionResult = {
@@ -107,11 +102,10 @@ export class SettingsRevisionConflictError extends Error {
   }
 }
 
-async function readSettingsRevision(backend: TransactionHandle): Promise<number> {
-  const row = (await backend.queryOne(
-    "SELECT value FROM key_value WHERE namespace = 'settings' AND key = ?",
-    [SETTINGS_REVISION_KEY]
-  )) as { value?: string } | null;
+function readSettingsRevision(db: ReturnType<typeof getDbInstance>): number {
+  const row = db
+    .prepare("SELECT value FROM key_value WHERE namespace = 'settings' AND key = ?")
+    .get(SETTINGS_REVISION_KEY) as { value?: string } | undefined;
   if (!row?.value) return 0;
   try {
     const parsed = JSON.parse(row.value) as unknown;
@@ -122,8 +116,7 @@ async function readSettingsRevision(backend: TransactionHandle): Promise<number>
 }
 
 export async function getSettingsRevision(): Promise<number> {
-  const backend = await getDatabaseBackend();
-  return readSettingsRevision(backend);
+  return readSettingsRevision(getDbInstance());
 }
 
 /**
@@ -146,10 +139,8 @@ function applySessionAffinityLegacyFallback(settings: Record<string, unknown>): 
 }
 
 export async function getSettings() {
-  const backend = await getBackend();
-  const { rows } = await backend.query(
-    "SELECT key, value FROM key_value WHERE namespace = 'settings'"
-  );
+  const db = getDbInstance();
+  const rows = db.prepare("SELECT key, value FROM key_value WHERE namespace = 'settings'").all();
   const settings: Record<string, unknown> = {
     cloudEnabled: true,
     tailscaleEnabled: false,
@@ -290,12 +281,12 @@ export async function getSettings() {
   if (!settings.setupComplete && process.env.INITIAL_PASSWORD) {
     settings.setupComplete = true;
     settings.requireLogin = true;
-    await backend.execute(
+    db.prepare(
       "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('settings', 'setupComplete', 'true')"
-    );
-    await backend.execute(
+    ).run();
+    db.prepare(
       "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('settings', 'requireLogin', 'true')"
-    );
+    ).run();
   }
 
   return settings;
@@ -316,22 +307,23 @@ export async function updateSettings(
     }
   }
 
-  const backend = await getBackend();
-  const sql = "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('settings', ?, ?)";
-  await backend.transaction(async (tx) => {
-    const currentRevision = await readSettingsRevision(tx);
+  const db = getDbInstance();
+  const insert = db.prepare(
+    "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('settings', ?, ?)"
+  );
+  const tx = db.transaction(() => {
+    const currentRevision = readSettingsRevision(db);
     if (options?.expectedRevision !== undefined && options.expectedRevision !== currentRevision) {
       throw new SettingsRevisionConflictError(currentRevision);
     }
     for (const [key, value] of Object.entries(updates)) {
       const toStore = key === "oidcClientSecret" ? encrypt(value as string) : value;
-      await tx.execute(sql, [key, JSON.stringify(toStore)]);
+      insert.run(key, JSON.stringify(toStore));
     }
-    await tx.execute(sql, [SETTINGS_REVISION_KEY, JSON.stringify(currentRevision + 1)]);
+    insert.run(SETTINGS_REVISION_KEY, JSON.stringify(currentRevision + 1));
   });
-  if (!backend.isExternal) {
-    backupDbFile("pre-write");
-  }
+  tx();
+  backupDbFile("pre-write");
   invalidateDbCache("settings"); // Bust the read cache immediately
 
   // Bust proxy resolution cache when proxy toggle settings change
@@ -425,10 +417,8 @@ function migrateProxyEntry(value: unknown): JsonRecord | null {
 }
 
 export async function getProxyConfig() {
-  const backend = await getBackend();
-  const { rows } = await backend.query(
-    "SELECT key, value FROM key_value WHERE namespace = 'proxyConfig'"
-  );
+  const db = getDbInstance();
+  const rows = db.prepare("SELECT key, value FROM key_value WHERE namespace = 'proxyConfig'").all();
 
   const raw: ProxyConfig = { ...DEFAULT_PROXY_CONFIG };
   for (const row of rows) {
@@ -454,11 +444,11 @@ export async function getProxyConfig() {
   }
 
   if (migrated) {
-    const sql =
-      "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', ?, ?)";
-    if (raw.global !== undefined)
-      await backend.execute(sql, ["global", JSON.stringify(raw.global)]);
-    if (raw.providers) await backend.execute(sql, ["providers", JSON.stringify(raw.providers)]);
+    const insert = db.prepare(
+      "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', ?, ?)"
+    );
+    if (raw.global !== undefined) insert.run("global", JSON.stringify(raw.global));
+    if (raw.providers) insert.run("providers", JSON.stringify(raw.providers));
   }
 
   return raw;
@@ -472,15 +462,14 @@ export async function getProxyForLevel(level: string, id?: string | null) {
 }
 
 export async function setProxyForLevel(level: string, id: string | null, proxy: ProxyValue) {
-  const backend = await getBackend();
+  const db = getDbInstance();
   const config = await getProxyConfig();
 
   if (level === "global") {
     config.global = proxy || null;
-    await backend.execute(
-      "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', 'global', ?)",
-      [JSON.stringify(config.global)]
-    );
+    db.prepare(
+      "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', 'global', ?)"
+    ).run(JSON.stringify(config.global));
   } else {
     const mapKey = level + "s";
     const map = toProxyMap(config[mapKey] || {});
@@ -490,15 +479,12 @@ export async function setProxyForLevel(level: string, id: string | null, proxy: 
       if (id) delete map[id];
     }
     config[mapKey] = map;
-    await backend.execute(
-      "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', ?, ?)",
-      [mapKey, JSON.stringify(map)]
-    );
+    db.prepare(
+      "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', ?, ?)"
+    ).run(mapKey, JSON.stringify(map));
   }
 
-  if (!backend.isExternal) {
-    backupDbFile("pre-write");
-  }
+  backupDbFile("pre-write");
   bumpProxyConfigGeneration();
   return config;
 }
@@ -528,15 +514,15 @@ export async function resolveProxyForConnection(
     return cached.result;
   }
 
-  const backend = await getBackend();
+  const db = getDbInstance();
 
   // Step 1: Check global proxyEnabled setting
   // Read only the proxyEnabled key for performance instead of loading all settings.
   let globalProxyEnabled = true;
   try {
-    const proxyEnabledRow = (await backend.queryOne(
-      "SELECT value FROM key_value WHERE namespace = 'settings' AND key = 'proxyEnabled'"
-    )) as { value?: string } | null;
+    const proxyEnabledRow = db
+      .prepare("SELECT value FROM key_value WHERE namespace = 'settings' AND key = 'proxyEnabled'")
+      .get() as { value?: string } | undefined;
     if (proxyEnabledRow?.value) {
       globalProxyEnabled = JSON.parse(proxyEnabledRow.value) !== false;
     }
@@ -556,10 +542,11 @@ export async function resolveProxyForConnection(
   let connectionProxyEnabled = true;
   let connectionPerKeyProxyEnabled = false;
 
-  const row = (await backend.queryOne(
-    "SELECT provider, proxy_enabled, per_key_proxy_enabled FROM provider_connections WHERE id = ?",
-    [connectionId]
-  )) as JsonRecord | null;
+  const row = db
+    .prepare(
+      "SELECT provider, proxy_enabled, per_key_proxy_enabled FROM provider_connections WHERE id = ?"
+    )
+    .get(connectionId);
   if (row) {
     connectionRecord = toRecord(row);
     connectionProvider =
@@ -580,9 +567,11 @@ export async function resolveProxyForConnection(
   // Step 1.5: Check global perKeyProxyEnabled setting
   let globalPerKeyProxyEnabled = false;
   try {
-    const perKeyRow = (await backend.queryOne(
-      "SELECT value FROM key_value WHERE namespace = 'settings' AND key = 'perKeyProxyEnabled'"
-    )) as { value?: string } | null;
+    const perKeyRow = db
+      .prepare(
+        "SELECT value FROM key_value WHERE namespace = 'settings' AND key = 'perKeyProxyEnabled'"
+      )
+      .get() as { value?: string } | undefined;
     if (perKeyRow?.value) {
       globalPerKeyProxyEnabled = JSON.parse(perKeyRow.value) !== false;
     }
@@ -601,21 +590,23 @@ export async function resolveProxyForConnection(
 
     if (perKeyEnabled) {
       try {
-        const apiKeyRow = (await backend.queryOne("SELECT proxy_id FROM api_keys WHERE id = ?", [
-          apiKeyId,
-        ])) as { proxy_id?: string | null } | null;
+        const apiKeyRow = db.prepare("SELECT proxy_id FROM api_keys WHERE id = ?").get(apiKeyId) as
+          { proxy_id?: string | null } | undefined;
         if (apiKeyRow?.proxy_id) {
-          const proxyRow = (await backend.queryOne(
-            "SELECT p.type, p.host, p.port, p.username, p.password, p.family FROM proxy_registry p WHERE p.id = ?",
-            [apiKeyRow.proxy_id]
-          )) as {
-            type: string;
-            host: string;
-            port: number;
-            username: string;
-            password: string;
-            family?: string;
-          } | null;
+          const proxyRow = db
+            .prepare(
+              "SELECT p.type, p.host, p.port, p.username, p.password, p.family FROM proxy_registry p WHERE p.id = ?"
+            )
+            .get(apiKeyRow.proxy_id) as
+            | {
+                type: string;
+                host: string;
+                port: number;
+                username: string;
+                password: string;
+                family?: string;
+              }
+            | undefined;
           if (proxyRow) {
             const result = {
               proxy: {
@@ -680,8 +671,8 @@ export async function resolveProxyForConnection(
     // proxy assignment completely inert). Fall back to the legacy in-memory
     // combos map for any pre-existing legacy data.
     if (connectionProvider && connectionProxyEnabled) {
-      const combosResult = await backend.query("SELECT id, data FROM combos");
-      for (const comboRow of combosResult.rows) {
+      const combos = db.prepare("SELECT id, data FROM combos").all();
+      for (const comboRow of combos) {
         const comboRecord = toRecord(comboRow);
         const comboId = typeof comboRecord.id === "string" ? comboRecord.id : null;
         if (!comboId) continue;
@@ -791,15 +782,16 @@ export async function setProxyConfig(config: Record<string, unknown>) {
     return setProxyForLevel(level, id, proxy);
   }
 
-  const backend = await getBackend();
+  const db = getDbInstance();
   const current = await getProxyConfig();
-  const sql =
-    "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', ?, ?)";
+  const insert = db.prepare(
+    "INSERT OR REPLACE INTO key_value (namespace, key, value) VALUES ('proxyConfig', ?, ?)"
+  );
 
-  await backend.transaction(async (tx) => {
+  const tx = db.transaction(() => {
     if (config.global !== undefined) {
       current.global = toProxyValue(config.global);
-      await tx.execute(sql, ["global", JSON.stringify(current.global)]);
+      insert.run("global", JSON.stringify(current.global));
     }
     for (const mapKey of ["providers", "combos", "keys"]) {
       if (config[mapKey]) {
@@ -808,14 +800,13 @@ export async function setProxyConfig(config: Record<string, unknown>) {
           if (!v) delete merged[k];
         }
         current[mapKey] = merged;
-        await tx.execute(sql, [mapKey, JSON.stringify(merged)]);
+        insert.run(mapKey, JSON.stringify(merged));
       }
     }
   });
+  tx();
 
-  if (!backend.isExternal) {
-    backupDbFile("pre-write");
-  }
+  backupDbFile("pre-write");
   bumpProxyConfigGeneration();
   return current;
 }
@@ -833,7 +824,14 @@ export {
   resetAllPricing,
 } from "./settings/pricing";
 
-export { type LKGPRecord, getLKGP, setLKGP, clearAllLKGP } from "./settings/lkgp";
+export {
+  type LKGPRecord,
+  getLKGP,
+  setLKGP,
+  clearAllLKGP,
+  clearLKGP,
+  deleteLKGPByConnectionIds,
+} from "./settings/lkgp";
 
 export {
   type CacheTrendPoint,

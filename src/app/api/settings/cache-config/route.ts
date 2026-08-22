@@ -50,7 +50,7 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const dbSettings = await getDatabaseSettings();
+    const dbSettings = getDatabaseSettings();
     const cache = dbSettings.cache ?? {};
     // idempotencyWindowMs is not part of the databaseSettings "cache" section —
     // it lives in the flat general settings (src/lib/db/settings.ts), which is
@@ -116,7 +116,7 @@ export async function PUT(request: NextRequest) {
     // updateDatabaseSettings() calls invalidateDbCache("settings") internally,
     // which bumps the model-catalog cache version so in-flight responses pick
     // up the fresh TTL — no separate version bump needed here.
-    await updateDatabaseSettings({ cache: updates });
+    updateDatabaseSettings({ cache: updates });
 
     // idempotencyWindowMs is not part of the databaseSettings "cache" section —
     // persist it through the flat general settings module instead (see GET).

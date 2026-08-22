@@ -202,7 +202,7 @@ export async function getRawDataCutoffDate(): Promise<string> {
   // Using rawDataRetentionDays (default 7 per migration 046) creates a gap:
   // analytics floors raw data at day-7 while cleanup doesn't roll up until
   // day-30, so the window [day-30, day-7) is excluded from BOTH UNION legs.
-  const rawDataRetentionDays = (await getUserDatabaseSettings()).retention.usageHistory;
+  const rawDataRetentionDays = getUserDatabaseSettings().retention.usageHistory;
 
   const cutoffDate = new Date();
   cutoffDate.setDate(cutoffDate.getDate() - rawDataRetentionDays);
@@ -214,5 +214,5 @@ export async function getRawDataCutoffDate(): Promise<string> {
  * Check if aggregation is enabled in settings.
  */
 export async function isAggregationEnabled(): Promise<boolean> {
-  return (await getUserDatabaseSettings()).aggregation.enabled;
+  return getUserDatabaseSettings().aggregation.enabled;
 }

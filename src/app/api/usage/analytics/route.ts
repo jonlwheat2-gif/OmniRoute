@@ -351,7 +351,7 @@ export async function GET(request: Request) {
 
     // Raw-data cutoff: must match cleanupUsageHistory's rollup/delete boundary —
     // retention.usageHistory (src/lib/db/cleanup.ts), NOT aggregation.rawDataRetentionDays.
-    const dbSettings = await getUserDatabaseSettings();
+    const dbSettings = getUserDatabaseSettings();
     const rawRetentionDays = dbSettings.retention?.usageHistory ?? 30;
     const rawCutoff = new Date();
     rawCutoff.setDate(rawCutoff.getDate() - rawRetentionDays);
