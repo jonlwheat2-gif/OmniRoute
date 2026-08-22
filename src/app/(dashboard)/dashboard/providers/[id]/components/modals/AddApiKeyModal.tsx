@@ -757,6 +757,12 @@ export default function AddApiKeyModal({
                   type="password"
                   value={formData.apiKey}
                   onChange={(e) => setFormData({ ...formData, apiKey: e.target.value })}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" && !validating && !saving) {
+                      e.preventDefault();
+                      handleValidate();
+                    }
+                  }}
                   className="flex-1"
                   placeholder={apiCredentialPlaceholder}
                   hint={apiCredentialHint}
