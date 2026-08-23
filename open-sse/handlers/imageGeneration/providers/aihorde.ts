@@ -106,8 +106,13 @@ async function fetchHordeImageBytes(
     // established bounded remote-image fetch (SSRF host guard + DNS-rebinding
     // pin, streaming byte cap, redirect limit, abort-aware timeout) instead of
     // a bare fetch(). Same helper `imageGeneration.ts` already uses for other
-    // providers' remote image URLs.
+    // providers' remote image URLs. The guard is pinned to "public-only"
+    // deliberately: this URL is an untrusted upstream-supplied asset, not a
+    // user-configured provider endpoint, so the local-first default
+    // (#5066/#11062) must not let a compromised Horde response redirect us at
+    // private hosts.
     const remote = await fetchRemoteImage(value, {
+      guard: "public-only",
       timeoutMs: options.timeoutMs,
       signal: options.signal ?? undefined,
       maxBytes: MAX_HORDE_IMAGE_BYTES,
@@ -218,12 +223,15 @@ export async function handleAiHordeImageGeneration({
           throw Object.assign(new Error("Horde image generation timed out"), { status: 504 });
         }
         await sleep(POLL_INTERVAL_MS);
-        const checkRes = await safeOutboundFetch(`${AI_HORDE_API_BASE}/v2/generate/check/${jobId}`, {
-          headers: hordeHeaders(apiKey),
-          signal: signal ?? undefined,
-          guard: "none",
-          timeoutMs: boundedTimeoutMs(deadline, HORDE_API_CALL_TIMEOUT_MS),
-        });
+        const checkRes = await safeOutboundFetch(
+          `${AI_HORDE_API_BASE}/v2/generate/check/${jobId}`,
+          {
+            headers: hordeHeaders(apiKey),
+            signal: signal ?? undefined,
+            guard: "none",
+            timeoutMs: boundedTimeoutMs(deadline, HORDE_API_CALL_TIMEOUT_MS),
+          }
+        );
         const check = await safeJson(checkRes);
         if (!checkRes.ok || !check || typeof check !== "object") {
           throw Object.assign(
@@ -240,12 +248,15 @@ export async function handleAiHordeImageGeneration({
         }
         if (!checkObj.done) continue;
 
-        const statusRes = await safeOutboundFetch(`${AI_HORDE_API_BASE}/v2/generate/status/${jobId}`, {
-          headers: hordeHeaders(apiKey),
-          signal: signal ?? undefined,
-          guard: "none",
-          timeoutMs: boundedTimeoutMs(deadline, HORDE_API_CALL_TIMEOUT_MS),
-        });
+        const statusRes = await safeOutboundFetch(
+          `${AI_HORDE_API_BASE}/v2/generate/status/${jobId}`,
+          {
+            headers: hordeHeaders(apiKey),
+            signal: signal ?? undefined,
+            guard: "none",
+            timeoutMs: boundedTimeoutMs(deadline, HORDE_API_CALL_TIMEOUT_MS),
+          }
+        );
         const status = await safeJson(statusRes);
         if (!statusRes.ok || !status || typeof status !== "object") {
           throw Object.assign(
