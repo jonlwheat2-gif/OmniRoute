@@ -414,7 +414,7 @@ describe("config-generator", () => {
       }
     });
 
-    it("does NOT fabricate a default context when the catalog has no entry", async () => {
+    it("falls back to the 128K context default when the catalog has no entry", async () => {
       const stub = stubFetchOnce(makeCatalogResponse(SAMPLE_CATALOG));
       try {
         const { generateOpencodeConfig } =
@@ -424,16 +424,17 @@ describe("config-generator", () => {
           apiKey: "sk-test",
         });
         const cfg = JSON.parse(out);
-        // NO_CTX_COMBO has no context_length in the catalog — generator
-        // must NOT default to 128K (or any other value). The entry is
-        // emitted without limit.context so OpenCode's own heuristic
-        // applies and the user can fix the upstream.
+        // NO_CTX_COMBO has no context_length in the catalog — OpenCode's
+        // v1 provider schema REQUIRES limit.context (#11035), so the
+        // generator falls back to the safe 128K default (#11054) rather
+        // than emitting a config OpenCode rejects with "Missing key".
         const noCtx = cfg.provider.omniroute.models["NO_CTX_COMBO"];
         assert.strictEqual(
           noCtx.limit?.context,
-          undefined,
-          `NO_CTX_COMBO should not have a fabricated limit.context (got ${noCtx.limit?.context})`
+          128000,
+          `NO_CTX_COMBO should carry the 128K default (got ${noCtx.limit?.context})`
         );
+        assert.strictEqual(noCtx.limit?.input, undefined, "input stays omitted when unknown");
       } finally {
         stub.restore();
       }
@@ -603,11 +604,12 @@ describe("config-generator", () => {
           input: 100000,
           output: 32768,
         });
-        // #10940: `limit.output` is REQUIRED by OpenCode's v1 provider schema,
-        // so even a model with zero catalog metadata still gets a `limit`
-        // block carrying the fallback output value; `context`/`input` stay
-        // omitted since neither the catalog nor the user knows them.
-        assert.deepStrictEqual(models["no-metadata"].limit, { output: 8192 });
+        // #10940/#11054: both `limit.output` and `limit.context` are REQUIRED
+        // by OpenCode's v1 provider schema, so even a model with zero catalog
+        // metadata still gets a full `limit` block — output falls back to 8K,
+        // context to 128K (#11035); `input` stays omitted since neither the
+        // catalog nor the user knows it.
+        assert.deepStrictEqual(models["no-metadata"].limit, { context: 128000, output: 8192 });
 
         for (const model of Object.values(models) as Array<{ limit?: { output?: number } }>) {
           assert.ok(
