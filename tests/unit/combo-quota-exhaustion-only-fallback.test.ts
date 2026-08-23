@@ -110,7 +110,10 @@ async function run(
 }
 
 test("quota classifier rejects terminal-looking evidence on ineligible statuses", async () => {
-  for (const status of [400, 401, 403, 404, 408, 409, 422, 500, 502, 503, 504]) {
+  // 403 is NOT in this list: #10966 made 403 eligible when an explicit terminal
+  // quota signal is present (durable wallet/balance exhaustion). A bare 403
+  // without a quota signal still falls through to false (covered below).
+  for (const status of [400, 401, 404, 408, 409, 422, 500, 502, 503, 504]) {
     for (const terminal of ["insufficient_quota", "quota_exhausted", "credits_exhausted"]) {
       assert.equal(
         await isQuotaExhaustionResponse(
@@ -129,7 +132,9 @@ test("quota classifier rejects terminal-looking evidence on ineligible statuses"
 });
 
 test("quota classifier accepts explicit terminal depletion only on eligible statuses", async () => {
-  for (const status of [402, 429]) {
+  // 403 included since #10966: some upstreams signal durable wallet/balance
+  // exhaustion with a 403 carrying an explicit terminal quota code.
+  for (const status of [402, 403, 429]) {
     assert.equal(
       await isQuotaExhaustionResponse(
         response(status, "Payment required", { code: "insufficient_quota" }),
