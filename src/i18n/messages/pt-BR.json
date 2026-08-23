@@ -6383,7 +6383,28 @@
     "savedModelEndpointSettings": "Configurações do endpoint do modelo salvo",
     "searchByModelAria": "Pesquisar por modelo",
     "selectSupportedEndpoint": "Selecione pelo menos um endpoint suportado",
+    "harImportButtonLabel": "Importar arquivo .har",
+    "harImportButtonBusy": "Importando…",
+    "harImportButtonHint": "Exporte da aba Network do DevTools após enviar pelo menos uma mensagem de chat.",
+    "harImportStatusValid": "Importado — válido por ~{minutes}m.",
+    "harImportStatusExpiringSoon": "Importado — válido por apenas mais ~{minutes}m.",
+    "harImportStatusExpired": "Importado, mas este token já expirou (há {minutes}m) — exporte um HAR novo.",
+    "harImportStatusUnknownExpiry": "Importado. Não foi possível ler a validade.",
+    "harImportErrorNotJson": "Esse arquivo não é JSON válido — é mesmo uma exportação .har?",
+    "harImportErrorNoEntries": "Este HAR não possui entradas de rede registradas.",
+    "harImportErrorNoChathubUrl": "Nenhuma conexão de chat do Copilot encontrada neste HAR. Envie pelo menos uma mensagem de chat em m365.cloud.microsoft antes de exportar.",
+    "harImportErrorUnparsableUrl": "Conexão de chat encontrada, mas não foi possível ler a URL.",
+    "harImportErrorMissingFields": "Conexão de chat encontrada, mas o token estava ausente.",
+    "harImportErrorReadFailed": "Não foi possível ler esse arquivo.",
+    "harImportErrorUnknown": "Não foi possível extrair uma credencial desse arquivo HAR.",
     "antigravityClientProfileHarness": "Harness / CLI"
+  },
+  "cheaperInferenceSponsorBanner": {
+    "title": "Cheaper Inference é um Amigo Open Source da OmniRoute",
+    "description": "Um gateway com ranking de custo que revende dezenas de modelos de ponta por trás de um endpoint compatível com OpenAI — roteando cada requisição para o provedor elegível mais barato, nunca acima do preço de tabela.",
+    "cta": "Obter uma chave de API",
+    "partnerLinkNote": "Link de parceiro",
+    "dismissAriaLabel": "Dispensar"
   },
   "settings": {
     "title": "Configurações",
