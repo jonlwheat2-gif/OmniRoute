@@ -106,7 +106,6 @@ export const AGGREGATOR_PROVIDER_IDS = new Set([
   "empower",
   "poe",
   "chutes",
-  "hackclub",
   "freetheai",
   "g4f-groq",
   "g4f-gemini",
@@ -237,9 +236,7 @@ export function isSelfHostedChatProvider(providerId: unknown): boolean {
 const EXPLICIT_OPTIONAL_APIKEY_PROVIDER_IDS = new Set([
   "searxng-search",
   "firecrawl",
-  "pollinations",
   "copilot-web",
-  "hackclub",
   "g4f-groq",
   "g4f-gemini",
   "g4f-pollinations",

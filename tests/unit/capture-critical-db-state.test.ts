@@ -6,12 +6,13 @@ import path from "node:path";
 
 // Shared across all tests — the module caches DATA_DIR / SQLITE_FILE at load time,
 // so we must create the temp dir and import exactly once.
+type CoreModule = typeof import("../../src/lib/db/core.ts");
 let tempDir: string;
 let originalDataDir: string | undefined;
-let getDbInstance: any;
-let resetDbInstance: any;
-let ensureDbInitialized: any;
-let closeDbInstance: any;
+let getDbInstance: CoreModule["getDbInstance"];
+let resetDbInstance: CoreModule["resetDbInstance"];
+let ensureDbInitialized: CoreModule["ensureDbInitialized"];
+let closeDbInstance: CoreModule["closeDbInstance"];
 
 before(async () => {
   tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "omniroute-db-test-"));

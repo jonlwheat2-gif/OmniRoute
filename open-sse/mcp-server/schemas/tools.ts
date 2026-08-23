@@ -462,25 +462,29 @@ export const listModelsCatalogTool: McpToolDefinition<
 };
 
 // --- Tool 10: omniroute_web_search ---
-export const webSearchInput = z.object({
-  query: z
-    .string()
-    .min(1, "Query is required")
-    .max(500, "Query must be 500 characters or fewer")
-    .describe("The search query string"),
-  max_results: z
-    .number()
-    .int()
-    .min(1)
-    .max(20)
-    .default(5)
-    .describe("Maximum number of search results to return"),
-  search_type: z.enum(["web", "news"]).default("web").describe("Type of search to perform"),
-  provider: z
-    .enum(getActiveSearchProviders())
-    .optional()
-    .describe("Specific search provider to use"),
-});
+export function buildWebSearchInputSchema(blockedProviders: string[] = []) {
+  return z.object({
+    query: z
+      .string()
+      .min(1, "Query is required")
+      .max(500, "Query must be 500 characters or fewer")
+      .describe("The search query string"),
+    max_results: z
+      .number()
+      .int()
+      .min(1)
+      .max(20)
+      .default(5)
+      .describe("Maximum number of search results to return"),
+    search_type: z.enum(["web", "news"]).default("web").describe("Type of search to perform"),
+    provider: z
+      .enum(getActiveSearchProviders(blockedProviders))
+      .optional()
+      .describe("Specific search provider to use"),
+  });
+}
+
+export const webSearchInput = buildWebSearchInputSchema();
 
 export const webSearchOutput = z.object({
   id: z.string(),

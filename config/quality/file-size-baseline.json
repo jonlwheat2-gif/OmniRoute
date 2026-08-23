@@ -443,7 +443,8 @@
       "src/shared/components/ModelSelectModal.tsx": 1138,
       "src/shared/constants/providers/apikey/gateways.ts": 1250
     },
-    "src/app/(dashboard)/dashboard/providers/[id]/components/modals/AddApiKeyModal.tsx": 1080,
+    "src/app/(dashboard)/dashboard/providers/[id]/components/modals/AddApiKeyModal.tsx": 1082,
+    "_rebaseline_2026_08_22_11156_enter_check_disabled": "PR #11156 (rqzbeh) own growth: AddApiKeyModal.tsx 1080->1082 (+2, Enter keydown handler now mirrors the isCheckDisabled condition — owner-requested post-merge polish from #11056; the rest of the diff is Prettier reflow). Covered by tests/unit/ui/add-api-key-modal-enter-key.test.tsx (jsdom render test, Enter dispatch assertions).",
     "src/app/(dashboard)/dashboard/providers/[id]/hooks/useProviderConnections.ts": 1051,
     "src/shared/components/ModelSelectModal.tsx": 1138,
     "src/shared/constants/providers/apikey/gateways.ts": 1298,
