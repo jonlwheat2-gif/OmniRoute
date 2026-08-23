@@ -69,7 +69,10 @@ export default function HarImportButton({ provider, onImport }: HarImportButtonP
 
     const result = importer(text);
     if (!result.ok) {
-      const [key, fallback] = ERROR_MESSAGE_KEYS[result.error] ?? [
+      // Discriminant narrowing on `ok` doesn't apply under strict:false for
+      // this union shape — check the error branch explicitly.
+      const errorCode = "error" in result ? result.error : "unknown";
+      const [key, fallback] = ERROR_MESSAGE_KEYS[errorCode] ?? [
         "harImportErrorUnknown",
         "Couldn't extract a credential from that HAR file.",
       ];
