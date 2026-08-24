@@ -144,7 +144,7 @@ export default function CsvMappingStep({
             </span>
             <span className="text-xs text-[var(--color-text-muted)]">→</span>
             <select
-              className="flex-1 rounded border border-[var(--color-border)] bg-[var(--color-bg-alt)] px-2 py-1 text-xs text-[var(--color-text)] focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)]"
+              className="flex-1 rounded border border-[var(--color-border)] bg-[var(--color-bg-alt)] px-2 py-1 text-xs text-[var(--color-text)] focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-[var(--color-accent)]"
               value={mapping[col] ?? ""}
               onChange={(e) => handleColumnMap(col, e.target.value)}
             >

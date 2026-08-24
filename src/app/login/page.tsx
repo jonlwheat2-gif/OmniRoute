@@ -149,7 +149,7 @@ export default function LoginPage() {
       <div className="min-h-screen flex flex-col items-center justify-center p-6">
         {nodeWarningBanner}
         <div
-          className={`w-full max-w-md transition-all duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          className={`w-full max-w-md transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/10 mb-6">
@@ -187,7 +187,7 @@ export default function LoginPage() {
       <div className="min-h-screen flex flex-col items-center justify-center p-6">
         {nodeWarningBanner}
         <div
-          className={`w-full max-w-md transition-all duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+          className={`w-full max-w-md transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <div className="text-center mb-10">
             <div className="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/10 mb-6">
@@ -230,7 +230,7 @@ export default function LoginPage() {
       <div className="flex-1 flex">
         <div className="flex-1 flex items-center justify-center p-6">
           <div
-            className={`w-full max-w-sm transition-all duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            className={`w-full max-w-sm transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-700 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
             <div className="mb-10">
               <div className="flex items-center gap-3 mb-8">
@@ -325,7 +325,7 @@ export default function LoginPage() {
 
         <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-primary/5 via-primary/3 to-transparent items-center justify-center p-12">
           <div
-            className={`max-w-md transition-all duration-700 delay-200 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+            className={`max-w-md transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-700 delay-200 ease-out ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
             <div className="space-y-8">
               <div>

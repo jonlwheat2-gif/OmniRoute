@@ -63,7 +63,11 @@ export default function VercelRelayModal({ isOpen, onClose, onDeployed }: Vercel
             </span>
             {t("vercelRelayModalTitle")}
           </h2>
-          <button onClick={onClose} aria-label={t("close")} className="text-text-muted hover:text-text">
+          <button
+            onClick={onClose}
+            aria-label={t("close")}
+            className="text-text-muted hover:text-text"
+          >
             <span className="material-symbols-outlined" aria-hidden="true">
               close
             </span>
@@ -84,13 +88,11 @@ export default function VercelRelayModal({ isOpen, onClose, onDeployed }: Vercel
               type="password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
-              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
+              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
               placeholder="vercel_pat_..."
               autoComplete="off"
             />
-            <p className="text-xs text-text-muted mt-1">
-              {t("vercelRelayTokenHint")}
-            </p>
+            <p className="text-xs text-text-muted mt-1">{t("vercelRelayTokenHint")}</p>
           </div>
           <div>
             <label className="text-sm font-medium mb-1 block" htmlFor="vercel-project-name">
@@ -101,7 +103,7 @@ export default function VercelRelayModal({ isOpen, onClose, onDeployed }: Vercel
               type="text"
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
-              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
+              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
               placeholder="omniroute-relay"
             />
           </div>

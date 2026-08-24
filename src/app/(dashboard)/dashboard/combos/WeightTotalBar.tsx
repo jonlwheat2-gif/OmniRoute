@@ -50,7 +50,7 @@ export default function WeightTotalBar({ models }: WeightTotalBarProps) {
           return (
             <div
               key={i}
-              className={`${WEIGHT_COLORS[i % WEIGHT_COLORS.length]} transition-all duration-300`}
+              className={`${WEIGHT_COLORS[i % WEIGHT_COLORS.length]} transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300`}
               style={{ width: `${Math.min(m.weight, 100)}%` }}
             />
           );

@@ -159,7 +159,7 @@ export default function PricingModal({ isOpen, onClose, onSave }) {
                                     onChange={(e) =>
                                       handlePricingChange(provider, model, field, e.target.value)
                                     }
-                                    className="w-20 px-2 py-1 text-right bg-bg-base border border-border rounded focus:outline-none focus:border-primary"
+                                    className="w-20 px-2 py-1 text-right bg-bg-base border border-border rounded focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
                                   />
                                 </td>
                               ))}

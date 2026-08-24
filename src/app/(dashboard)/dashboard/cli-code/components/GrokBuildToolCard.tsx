@@ -355,11 +355,22 @@ export default function GrokBuildToolCard({
   const rowClass = "flex items-center gap-2";
   const labelClass = "w-32 shrink-0 text-right text-sm font-semibold text-text-main";
   const inputClass =
-    "min-w-0 flex-1 rounded border border-border bg-surface px-2 py-1.5 text-xs focus:outline-none focus:ring-1 focus:ring-primary/50";
+    "min-w-0 flex-1 rounded border border-border bg-surface px-2 py-1.5 text-xs focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50";
 
   return (
     <Card padding="sm" className="overflow-hidden">
-      <div className="flex cursor-pointer items-center justify-between" onClick={onToggle}>
+      <div
+        className="flex cursor-pointer items-center justify-between"
+        onClick={onToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+      >
         <div className="flex items-center gap-3">
           <div className="flex size-8 shrink-0 items-center justify-center">
             <ProviderIcon providerId="grok" size={32} type="color" />

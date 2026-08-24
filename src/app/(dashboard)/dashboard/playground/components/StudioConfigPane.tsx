@@ -184,7 +184,7 @@ export default function StudioConfigPane({ configState, setConfigState }: Studio
           <select
             value={configState.endpoint}
             onChange={(e) => update("endpoint", e.target.value as PlaygroundEndpoint)}
-            className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main"
+            className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main"
           >
             {ENDPOINT_OPTIONS.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -207,7 +207,7 @@ export default function StudioConfigPane({ configState, setConfigState }: Studio
               update("model", "");
             }}
             disabled={loadingProviders}
-            className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main"
+            className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main"
           >
             <option value="">{tp("autoProvider")}</option>
             {providerOptions.map((opt) => (
@@ -232,14 +232,14 @@ export default function StudioConfigPane({ configState, setConfigState }: Studio
                   onChange={(e) => setModelQuery(e.target.value)}
                   placeholder={t("search")}
                   aria-label={t("search")}
-                  className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main"
+                  className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main"
                 />
               )}
               <select
                 value={configState.model}
                 onChange={(e) => update("model", e.target.value)}
                 disabled={loadingModels}
-                className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main"
+                className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main"
               >
                 {filteredModels.map((m) => (
                   <option key={m} value={m}>
@@ -254,7 +254,7 @@ export default function StudioConfigPane({ configState, setConfigState }: Studio
               value={configState.model}
               onChange={(e) => update("model", e.target.value)}
               placeholder={tp("modelPlaceholder")}
-              className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main"
+              className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main"
             />
           )}
         </div>
@@ -269,7 +269,7 @@ export default function StudioConfigPane({ configState, setConfigState }: Studio
             onChange={(e) => update("systemPrompt", e.target.value)}
             placeholder={tp("systemPromptPlaceholder")}
             rows={4}
-            className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main resize-y"
+            className="w-full text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main resize-y"
           />
           {/* ImprovePromptButton — injected by F7 */}
           <ImprovePromptButton configState={configState} setConfigState={setConfigState} />

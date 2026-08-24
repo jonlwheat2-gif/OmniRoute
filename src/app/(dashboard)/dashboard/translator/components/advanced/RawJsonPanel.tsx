@@ -316,7 +316,7 @@ export default function RawJsonPanel({
                 <button
                   type="button"
                   onClick={handleSwapFormats}
-                  className="p-2 rounded-full hover:bg-primary/10 text-text-muted hover:text-primary transition-all mt-4 sm:mt-5"
+                  className="p-2 rounded-full hover:bg-primary/10 text-text-muted hover:text-primary transition-[color,background-color,border-color,box-shadow,transform,opacity] mt-4 sm:mt-5"
                   title={tr("swapFormats", "Swap formats")}
                   aria-label={tr("swapFormats", "Swap formats")}
                 >
@@ -604,7 +604,7 @@ export default function RawJsonPanel({
                       type="button"
                       onClick={() => loadTemplate(template)}
                       className={`
-                        group flex flex-col items-center gap-1.5 p-3 rounded-lg border transition-all text-center
+                        group flex flex-col items-center gap-1.5 p-3 rounded-lg border transition-[color,background-color,border-color,box-shadow,transform,opacity] text-center
                         ${
                           activeTemplate === template.id
                             ? "border-primary bg-primary/5 text-primary"

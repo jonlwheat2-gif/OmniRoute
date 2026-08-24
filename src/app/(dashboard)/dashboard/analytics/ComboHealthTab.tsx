@@ -124,7 +124,10 @@ function DistributionBar({ label, value, meta }: { label: string; value: number;
         <span className="shrink-0 text-xs text-text-muted">{meta}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
-        <div className="h-full rounded-full bg-primary transition-all" style={{ width }} />
+        <div
+          className="h-full rounded-full bg-primary transition-[color,background-color,border-color,box-shadow,transform,opacity]"
+          style={{ width }}
+        />
       </div>
     </div>
   );
@@ -591,7 +594,7 @@ function ComboHealthCard({
                   </div>
                   <div className="mt-3 h-2 overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
                     <div
-                      className="h-full rounded-full bg-primary transition-all"
+                      className="h-full rounded-full bg-primary transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                       style={{ width }}
                     />
                   </div>

@@ -396,7 +396,7 @@ export default function ComboDefaultsTab() {
                   }
                 }}
                 className={cn(
-                  "px-2 py-1 rounded text-xs font-medium transition-all flex items-center justify-center gap-0.5",
+                  "px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] flex items-center justify-center gap-0.5",
                   comboDefaults.strategy === s.value
                     ? "bg-white dark:bg-white/10 text-text-main shadow-sm"
                     : "text-text-muted hover:text-text-main"
@@ -852,7 +852,7 @@ export default function ComboDefaultsTab() {
                       setSearchQuery(e.target.value);
                       setHighlightedIdx(0);
                     }}
-                    className="w-full px-2 py-1.5 text-xs rounded-md border border-border/50 bg-transparent outline-none focus:border-amber-500 transition-colors"
+                    className="w-full px-2 py-1.5 text-xs rounded-md border border-border/50 bg-transparent outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-amber-500 transition-colors"
                     placeholder={t("searchProviderPlaceholder") || "Search providers..."}
                     aria-label={t("searchProviderAria") || "Search providers"}
                     onKeyDown={handleDropdownKeyDown}

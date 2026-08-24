@@ -271,13 +271,11 @@ export default function HealthPage() {
       {/* Verdict Header */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">
-          {
-            data.status === "healthy"
-              ? t("healthVerdictReady")
-              : data.status === "cooling"
-                ? t("healthVerdictCoolingDown")
-                : t("healthVerdictActionRequired")
-          }
+          {data.status === "healthy"
+            ? t("healthVerdictReady")
+            : data.status === "cooling"
+              ? t("healthVerdictCoolingDown")
+              : t("healthVerdictActionRequired")}
         </h1>
         <p className="text-text-muted text-lg">{t("healthSubtitle")}</p>
       </div>
@@ -300,9 +298,7 @@ export default function HealthPage() {
           {data.status === "healthy" ? "check_circle" : "error"}
         </span>
         <span className={data.status === "healthy" ? "text-green-400" : "text-red-400"}>
-          {data.status === "healthy"
-            ? t("allOperational")
-            : t("issuesDetected")}
+          {data.status === "healthy" ? t("allOperational") : t("issuesDetected")}
         </span>
       </div>
 
@@ -789,7 +785,7 @@ export default function HealthPage() {
               <button
                 onClick={handleResetHealth}
                 disabled={resetting}
-                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                   resetting
                     ? "bg-surface/50 text-text-muted cursor-wait"
                     : "bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:text-red-300 border border-red-500/20"
@@ -1142,7 +1138,7 @@ export default function HealthPage() {
               className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg
                 bg-amber-500/10 border border-amber-500/30 text-amber-600
                 hover:bg-amber-500/15 hover:border-amber-500/50
-                dark:text-amber-400 transition-all duration-200
+                dark:text-amber-400 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200
                 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <span className="material-symbols-outlined text-[16px]">lock_open</span>
@@ -1178,7 +1174,7 @@ export default function HealthPage() {
                     className="flex items-center gap-1 px-2.5 py-1 text-xs font-medium rounded-lg
                       bg-amber-500/10 border border-amber-500/20 text-amber-600
                       hover:bg-amber-500/15 hover:border-amber-500/40
-                      dark:text-amber-400 transition-all duration-200
+                      dark:text-amber-400 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200
                       disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
                   >
                     <span className="material-symbols-outlined text-[14px]">lock_open</span>

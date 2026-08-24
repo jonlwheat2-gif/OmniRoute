@@ -275,7 +275,7 @@ const ProviderModelPermissionList = memo(function ProviderModelPermissionList({
                             type="button"
                             disabled={!isToggleable}
                             onClick={() => handleToggleModel(model)}
-                            className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-mono transition-all ${
+                            className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-mono transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                               isSelected
                                 ? "bg-primary text-white"
                                 : "bg-surface border border-border text-text-muted hover:border-primary/50 hover:text-text-main"

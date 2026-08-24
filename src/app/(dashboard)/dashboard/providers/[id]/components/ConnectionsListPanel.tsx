@@ -261,7 +261,7 @@ export default function ConnectionsListPanel({
         onChange={(e) => setAccountSearch(e.target.value)}
         placeholder={t("accountSearchPlaceholder", "Search accounts…")}
         aria-label={t("accountSearchPlaceholder", "Search accounts…")}
-        className="w-full rounded-lg border border-border bg-sidebar/50 py-1.5 pl-7 pr-3 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+        className="w-full rounded-lg border border-border bg-sidebar/50 py-1.5 pl-7 pr-3 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
       />
     </div>
   );

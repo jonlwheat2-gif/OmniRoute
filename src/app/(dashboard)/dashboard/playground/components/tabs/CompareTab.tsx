@@ -353,7 +353,7 @@ export default function CompareTab({ configState }: CompareTabProps) {
           onChange={(e) => setPrompt(e.target.value)}
           placeholder={t("comparePromptPlaceholder")}
           rows={3}
-          className="w-full text-sm bg-surface border border-border rounded px-3 py-2 focus:outline-none focus:ring-1 focus:ring-primary text-text-main resize-y"
+          className="w-full text-sm bg-surface border border-border rounded px-3 py-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main resize-y"
           aria-label={t("userPrompt")}
         />
       </div>
@@ -394,7 +394,7 @@ export default function CompareTab({ configState }: CompareTabProps) {
             }}
             placeholder={t("modelPlaceholderCompare")}
             disabled={atColumnLimit}
-            className="text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main w-40 disabled:opacity-40"
+            className="text-xs bg-surface border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main w-40 disabled:opacity-40"
             aria-label={t("newColumnModelName")}
           />
           <button

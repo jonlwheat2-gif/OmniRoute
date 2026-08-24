@@ -40,7 +40,7 @@ export function CoverageBar({ coverage }: CoverageBarProps): JSX.Element {
             aria-valuemin={0}
             aria-valuemax={api.total}
             aria-label={`${t("categoryApi")} ${api.have}/${api.total}`}
-            className={`h-full rounded-full transition-all duration-500 ${barColor(api.have, api.total)}`}
+            className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${barColor(api.have, api.total)}`}
             style={{ width: `${api.total > 0 ? (api.have / api.total) * 100 : 0}%` }}
           />
         </div>
@@ -62,7 +62,7 @@ export function CoverageBar({ coverage }: CoverageBarProps): JSX.Element {
             aria-valuemin={0}
             aria-valuemax={config.total}
             aria-label={`${t("categoryConfig")} ${config.have}/${config.total}`}
-            className={`h-full rounded-full transition-all duration-500 ${barColor(config.have, config.total)}`}
+            className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${barColor(config.have, config.total)}`}
             style={{ width: `${config.total > 0 ? (config.have / config.total) * 100 : 0}%` }}
           />
         </div>
@@ -84,7 +84,7 @@ export function CoverageBar({ coverage }: CoverageBarProps): JSX.Element {
             aria-valuemin={0}
             aria-valuemax={cli.total}
             aria-label={`${t("categoryCli")} ${cli.have}/${cli.total}`}
-            className={`h-full rounded-full transition-all duration-500 ${barColor(cli.have, cli.total)}`}
+            className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${barColor(cli.have, cli.total)}`}
             style={{ width: `${cli.total > 0 ? (cli.have / cli.total) * 100 : 0}%` }}
           />
         </div>

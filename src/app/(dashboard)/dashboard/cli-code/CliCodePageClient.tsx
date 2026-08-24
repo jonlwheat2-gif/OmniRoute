@@ -174,7 +174,7 @@ export default function CliCodePageClient({ machineId: _machineId }: CliCodePage
           <select
             value={detectionFilter}
             onChange={handleDetectionChange}
-            className="h-8 px-2 text-sm rounded-lg border border-black/10 dark:border-white/10 bg-surface text-text-main focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="h-8 px-2 text-sm rounded-lg border border-black/10 dark:border-white/10 bg-surface text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
           >
             <option value="all">{t("detectionAll")}</option>
             <option value="installed">{t("detectionInstalled")}</option>
@@ -190,7 +190,7 @@ export default function CliCodePageClient({ machineId: _machineId }: CliCodePage
           <select
             value={baseUrlFilter}
             onChange={handleBaseUrlChange}
-            className="h-8 px-2 text-sm rounded-lg border border-black/10 dark:border-white/10 bg-surface text-text-main focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="h-8 px-2 text-sm rounded-lg border border-black/10 dark:border-white/10 bg-surface text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
           >
             <option value="all">{t("baseUrlAll")}</option>
             <option value="full">{t("baseUrlFull")}</option>

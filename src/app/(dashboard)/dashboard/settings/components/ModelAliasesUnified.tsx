@@ -118,10 +118,7 @@ export default function ModelAliasesUnified() {
       const currentWildcards = Array.isArray(settingsData.wildcardAliases)
         ? settingsData.wildcardAliases
         : wildcardAliases;
-      const updated = [
-        ...currentWildcards,
-        { pattern: fromValue.trim(), target: toValue.trim() },
-      ];
+      const updated = [...currentWildcards, { pattern: fromValue.trim(), target: toValue.trim() }];
       const res = await fetch("/api/settings", {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
@@ -314,7 +311,7 @@ export default function ModelAliasesUnified() {
                   type="button"
                   onClick={() => void removeExactAlias(from)}
                   disabled={saving}
-                  className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-all"
+                  className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                 >
                   <span className="material-symbols-outlined text-[16px]">close</span>
                 </button>
@@ -352,7 +349,7 @@ export default function ModelAliasesUnified() {
                   type="button"
                   onClick={() => void removeWildcardAlias(index)}
                   disabled={saving}
-                  className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-all"
+                  className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                 >
                   <span className="material-symbols-outlined text-[16px]">close</span>
                 </button>

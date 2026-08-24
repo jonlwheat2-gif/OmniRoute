@@ -212,7 +212,7 @@ function TriStateSelect({ t, value, disabled, onChange, ariaLabel }: TriStateSel
       disabled={disabled}
       value={toTriState(value)}
       onChange={(e) => onChange(fromTriState(e.target.value as TriState))}
-      className="rounded-md border border-border bg-sidebar/50 px-2 py-1 text-xs text-text-main focus:outline-none focus:ring-1 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
+      className="rounded-md border border-border bg-sidebar/50 px-2 py-1 text-xs text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
     >
       <option value="inherit">{providerText(t, "ccAliasStateInherit", "Inherit")}</option>
       <option value="on">{providerText(t, "ccAliasStateOn", "On")}</option>
@@ -347,7 +347,7 @@ function AddOverrideRow({
           onSubmit();
         }}
         placeholder={providerText(t, "ccAliasAddModelPlaceholder", "Model id (e.g. gpt-4o)")}
-        className="flex-1 rounded-lg border border-border bg-sidebar/50 px-3 py-1.5 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+        className="flex-1 rounded-lg border border-border bg-sidebar/50 px-3 py-1.5 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
       />
       <button
         type="button"

@@ -394,7 +394,7 @@ export default function Sidebar({
   const renderNavLink = (item) => {
     const active = !item.external && activeHref === item.href;
     const className = cn(
-      "flex items-center gap-3 rounded-lg transition-all group",
+      "flex items-center gap-3 rounded-lg transition-[color,background-color,border-color,box-shadow,transform,opacity] group",
       collapsed ? "justify-center px-2 py-2.5" : "px-3 py-1.5",
       active
         ? "bg-primary/10 text-primary"
@@ -459,7 +459,7 @@ export default function Sidebar({
       <aside
         ref={sidebarRef}
         className={cn(
-          "flex h-full min-h-0 flex-col border-r border-black/5 bg-sidebar transition-all duration-300 ease-in-out dark:border-white/5",
+          "flex h-full min-h-0 flex-col border-r border-black/5 bg-sidebar transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 ease-in-out dark:border-white/5",
           collapsed ? "w-16" : "w-[220px]"
         )}
         style={{ paddingTop: isMacElectron ? "var(--desktop-safe-top)" : undefined }}
@@ -612,7 +612,7 @@ export default function Sidebar({
                     }}
                     title={isPinned ? t("unpinSection") : t("pinSectionOpen")}
                     className={cn(
-                      "p-0.5 rounded transition-all shrink-0",
+                      "p-0.5 rounded transition-[color,background-color,border-color,box-shadow,transform,opacity] shrink-0",
                       isPinned
                         ? "text-primary opacity-100"
                         : "text-text-muted/30 opacity-0 group-hover/header:opacity-100 hover:text-text-muted/70"
@@ -631,7 +631,7 @@ export default function Sidebar({
 
                   <span
                     className={cn(
-                      "material-symbols-outlined text-[14px] text-text-muted/40 transition-all duration-200 group-hover/header:text-text-muted/70 shrink-0",
+                      "material-symbols-outlined text-[14px] text-text-muted/40 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200 group-hover/header:text-text-muted/70 shrink-0",
                       isExpanded && "rotate-180"
                     )}
                   >
@@ -683,7 +683,7 @@ export default function Sidebar({
             onClick={() => setShowRestartModal(true)}
             title={t("restart")}
             className={cn(
-              "flex items-center justify-center gap-2 rounded-lg font-medium transition-all",
+              "flex items-center justify-center gap-2 rounded-lg font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity]",
               "text-amber-500 hover:bg-amber-500/10 border border-amber-500/20 hover:border-amber-500/40",
               collapsed ? "p-2" : "flex-1 min-w-0 px-2 py-1.5 text-xs"
             )}
@@ -695,7 +695,7 @@ export default function Sidebar({
             onClick={() => setShowShutdownModal(true)}
             title={t("shutdown")}
             className={cn(
-              "flex items-center justify-center gap-2 rounded-lg font-medium transition-all",
+              "flex items-center justify-center gap-2 rounded-lg font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity]",
               "text-red-500 hover:bg-red-500/10 border border-red-500/20 hover:border-red-500/40",
               collapsed ? "p-2" : "flex-1 min-w-0 px-2 py-1.5 text-xs"
             )}

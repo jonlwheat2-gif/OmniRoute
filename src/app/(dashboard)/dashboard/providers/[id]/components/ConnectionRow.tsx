@@ -625,7 +625,7 @@ export default function ConnectionRow({
             <span className="text-text-muted/30 select-none">|</span>
             <button
               onClick={() => onToggleRateLimit(!rateLimitEnabled)}
-              className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer ${
+              className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                 rateLimitEnabled
                   ? "bg-emerald-500/15 text-emerald-500 hover:bg-emerald-500/25"
                   : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"
@@ -649,7 +649,7 @@ export default function ConnectionRow({
                 <button
                   onClick={() => onToggleAutoSync?.(!autoSyncEnabled)}
                   disabled={connection.isActive === false}
-                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
+                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed ${
                     autoSyncEnabled
                       ? "bg-emerald-500/15 text-emerald-500 hover:bg-emerald-500/25"
                       : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"
@@ -666,7 +666,7 @@ export default function ConnectionRow({
                 <span className="text-text-muted/30 select-none">|</span>
                 <button
                   onClick={() => onToggleClaudeExtraUsage?.(!claudeBlockExtraUsageEnabled)}
-                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                     !claudeBlockExtraUsageEnabled
                       ? "bg-amber-500/15 text-amber-500 hover:bg-amber-500/25"
                       : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"
@@ -696,7 +696,7 @@ export default function ConnectionRow({
                       e.target.value as "native" | "cliproxyapi" | "dario" | "fallback"
                     )
                   }
-                  className="text-xs font-medium rounded px-1.5 py-0.5 border-0 bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/70 hover:text-text-muted cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
+                  className="text-xs font-medium rounded px-1.5 py-0.5 border-0 bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/70 hover:text-text-muted cursor-pointer focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/30"
                   title="Upstream proxy routing for Claude Code traffic"
                 >
                   <option value="native">Native</option>
@@ -713,7 +713,7 @@ export default function ConnectionRow({
                         e.target.value as "cliproxyapi" | "dario"
                       )
                     }
-                    className="text-xs font-medium rounded px-1.5 py-0.5 border-0 bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/70 hover:text-text-muted cursor-pointer focus:outline-none focus:ring-1 focus:ring-primary/30"
+                    className="text-xs font-medium rounded px-1.5 py-0.5 border-0 bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/70 hover:text-text-muted cursor-pointer focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/30"
                     title="Fallback retry backend"
                   >
                     <option value="cliproxyapi">→ CLIProxyAPI</option>
@@ -738,7 +738,7 @@ export default function ConnectionRow({
                 )}
                 <button
                   onClick={() => onToggleCodex5h?.(!codex5hEnabled)}
-                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                     codex5hEnabled
                       ? "bg-blue-500/15 text-blue-500 hover:bg-blue-500/25"
                       : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"
@@ -750,7 +750,7 @@ export default function ConnectionRow({
                 </button>
                 <button
                   onClick={() => onToggleCodexWeekly?.(!codexWeeklyEnabled)}
-                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                     codexWeeklyEnabled
                       ? "bg-violet-500/15 text-violet-500 hover:bg-violet-500/25"
                       : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"
@@ -768,7 +768,7 @@ export default function ConnectionRow({
                 <button
                   onClick={() => onToggleProxyEnabled(!proxyEnabled)}
                   aria-label={proxyEnabled ? t("proxyEnabledTitle") : t("proxyDisabledTitle")}
-                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                     proxyEnabled
                       ? "bg-emerald-500/15 text-emerald-500 hover:bg-emerald-500/25"
                       : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"
@@ -790,7 +790,7 @@ export default function ConnectionRow({
                       ? t("perKeyProxyEnabledTitle")
                       : t("perKeyProxyDisabledTitle")
                   }
-                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-all cursor-pointer ${
+                  className={`inline-flex items-center gap-1 px-1.5 py-0.5 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                     perKeyProxyEnabled
                       ? "bg-violet-500/15 text-violet-500 hover:bg-violet-500/25"
                       : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"

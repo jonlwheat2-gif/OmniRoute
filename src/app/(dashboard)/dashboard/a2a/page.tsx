@@ -60,7 +60,7 @@ function ServiceToggle({
       <button
         onClick={onToggle}
         disabled={toggling}
-        className="relative inline-flex items-center h-7 w-[52px] rounded-full transition-all duration-300 focus:outline-none border"
+        className="relative inline-flex items-center h-7 w-[52px] rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 border"
         style={{
           background: enabled ? "rgb(34,197,94)" : "var(--color-bg-tertiary)",
           borderColor: enabled ? "rgba(34,197,94,0.5)" : "var(--color-border)",
@@ -70,7 +70,7 @@ function ServiceToggle({
         title={enabled ? t("disableLabel", { label }) : t("enableLabel", { label })}
       >
         <span
-          className="inline-block w-5 h-5 rounded-full shadow-md transition-all duration-300"
+          className="inline-block w-5 h-5 rounded-full shadow-md transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300"
           style={{
             transform: enabled ? "translateX(26px)" : "translateX(3px)",
             background: enabled ? "#fff" : "var(--color-text-muted)",

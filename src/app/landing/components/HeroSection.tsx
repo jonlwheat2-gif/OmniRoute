@@ -33,7 +33,7 @@ export default function HeroSection() {
         <div className="flex flex-wrap items-center justify-center gap-4 w-full">
           <button
             onClick={() => router.push("/dashboard")}
-            className="w-full sm:w-auto h-12 px-8 rounded-lg bg-[#E54D5E] hover:bg-[#C93D4E] text-white text-base font-bold transition-all shadow-[0_0_15px_rgba(229,77,94,0.4)] flex items-center justify-center gap-2"
+            className="w-full sm:w-auto h-12 px-8 rounded-lg bg-[#E54D5E] hover:bg-[#C93D4E] text-white text-base font-bold transition-[color,background-color,border-color,box-shadow,transform,opacity] shadow-[0_0_15px_rgba(229,77,94,0.4)] flex items-center justify-center gap-2"
           >
             <span className="material-symbols-outlined" aria-hidden="true">
               rocket_launch
@@ -44,7 +44,7 @@ export default function HeroSection() {
             href="https://github.com/diegosouzapw/OmniRoute"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto h-12 px-8 rounded-lg border border-[#2D333B] bg-[#111520] hover:bg-[#2D333B] text-white text-base font-bold transition-all flex items-center justify-center gap-2"
+            className="w-full sm:w-auto h-12 px-8 rounded-lg border border-[#2D333B] bg-[#111520] hover:bg-[#2D333B] text-white text-base font-bold transition-[color,background-color,border-color,box-shadow,transform,opacity] flex items-center justify-center gap-2"
           >
             <span className="material-symbols-outlined" aria-hidden="true">
               code

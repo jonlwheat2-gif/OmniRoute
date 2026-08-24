@@ -281,7 +281,7 @@ function TestBenchContent() {
                 onChange={(e) => setModel(e.target.value)}
                 list="testbench-acc-model-suggestions"
                 placeholder={t("modelPlaceholder")}
-                className="w-full bg-bg-subtle border border-border rounded-lg px-3 py-2 text-sm text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary transition-colors"
+                className="w-full bg-bg-subtle border border-border rounded-lg px-3 py-2 text-sm text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary transition-colors"
               />
               <datalist id="testbench-acc-model-suggestions">
                 {availableModels.map((m) => (
@@ -321,7 +321,7 @@ function TestBenchContent() {
             {/* Progress bar */}
             <div className="w-full h-2 bg-bg-subtle rounded-full overflow-hidden">
               <div
-                className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500"
                 style={{ width: `${compatibility}%` }}
               />
             </div>
@@ -338,7 +338,7 @@ function TestBenchContent() {
           return (
             <Card
               key={scenario.id}
-              className={`transition-all ${
+              className={`transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 result?.status === "pass"
                   ? "border-green-500/30"
                   : result?.status === "error"

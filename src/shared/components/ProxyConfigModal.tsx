@@ -23,7 +23,9 @@ const BUILD_TIME_SOCKS5 = !["false", "0", "no", "off"].includes(
   (process.env.NEXT_PUBLIC_ENABLE_SOCKS5_PROXY ?? "").trim().toLowerCase()
 );
 export function buildProxyTypes(socks5Enabled: boolean) {
-  return socks5Enabled ? ALL_PROXY_TYPES : ALL_PROXY_TYPES.filter((type) => type.value !== "socks5");
+  return socks5Enabled
+    ? ALL_PROXY_TYPES
+    : ALL_PROXY_TYPES.filter((type) => type.value !== "socks5");
 }
 
 type ProxyConfigLevel = "global" | "provider" | "combo" | "key";
@@ -196,7 +198,9 @@ export default function ProxyConfigModal({
             const assignedProxy = registryItems.find((item) => item.id === target.proxyId);
             if (assignedProxy?.source === DASHBOARD_CUSTOM_PROXY_SOURCE) {
               const normalizedType = String(assignedProxy.type || "http").toLowerCase();
-              const hasTypeOption = runtimeProxyTypes.some((entry) => entry.value === normalizedType);
+              const hasTypeOption = runtimeProxyTypes.some(
+                (entry) => entry.value === normalizedType
+              );
               setMode("custom");
               setProxyType(hasTypeOption ? normalizedType : runtimeProxyTypes[0]?.value || "http");
               setHost(assignedProxy.host || "");
@@ -614,7 +618,7 @@ export default function ProxyConfigModal({
                     <button
                       key={t.value}
                       onClick={() => setProxyType(t.value)}
-                      className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                      className={`flex-1 px-4 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                         proxyType === t.value
                           ? "bg-primary text-white shadow-sm"
                           : "text-text-muted hover:text-text-primary hover:bg-black/5 dark:hover:bg-white/5"
@@ -637,7 +641,7 @@ export default function ProxyConfigModal({
                     value={host}
                     onChange={(e) => setHost(e.target.value)}
                     placeholder={t("hostPlaceholder")}
-                    className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary transition-colors"
                   />
                 </div>
                 <div>
@@ -649,7 +653,7 @@ export default function ProxyConfigModal({
                     value={port}
                     onChange={(e) => setPort(e.target.value)}
                     placeholder={getDefaultPort(proxyType)}
-                    className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                    className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary transition-colors"
                   />
                 </div>
               </div>
@@ -676,7 +680,7 @@ export default function ProxyConfigModal({
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         placeholder={t("usernamePlaceholder")}
-                        className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                        className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary transition-colors"
                       />
                     </div>
                     <div>
@@ -688,7 +692,7 @@ export default function ProxyConfigModal({
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder={t("passwordPlaceholder")}
-                        className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus:border-primary transition-colors"
+                        className="w-full px-3 py-2.5 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary transition-colors"
                       />
                     </div>
                   </div>

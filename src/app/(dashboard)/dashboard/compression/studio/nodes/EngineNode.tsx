@@ -76,7 +76,7 @@ export function EngineNode({ data }: NodeProps) {
 
   return (
     <div
-      className="rounded-lg border-2 bg-bg transition-all duration-300 min-w-[150px] max-w-[180px]"
+      className="rounded-lg border-2 bg-bg transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 min-w-[150px] max-w-[180px]"
       style={{
         borderColor,
         boxShadow: running ? `0 0 14px #f59e0b40` : skipped ? "none" : `0 0 10px ${color}30`,

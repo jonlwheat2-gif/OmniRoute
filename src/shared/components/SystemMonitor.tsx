@@ -176,7 +176,7 @@ export default function SystemMonitor({ compact = false }) {
       <div className="mt-3">
         <div className="h-1.5 bg-surface rounded-full overflow-hidden">
           <div
-            className={`h-full rounded-full transition-all duration-500 ${
+            className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${
               memPercent > 80 ? "bg-red-400" : memPercent > 60 ? "bg-amber-400" : "bg-green-400"
             }`}
             style={{ width: `${memPercent}%` }}

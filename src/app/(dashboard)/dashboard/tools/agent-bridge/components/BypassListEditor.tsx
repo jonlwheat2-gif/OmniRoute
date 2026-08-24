@@ -3,12 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 
-const DEFAULT_BYPASS_PATTERNS = [
-  "*.bank.*",
-  "*.gov.*",
-  "*.okta.com",
-  "*.auth0.com",
-];
+const DEFAULT_BYPASS_PATTERNS = ["*.bank.*", "*.gov.*", "*.okta.com", "*.auth0.com"];
 
 interface BypassListEditorProps {
   patterns: string[];
@@ -60,7 +55,7 @@ export function BypassListEditor({ patterns, onSave }: BypassListEditorProps) {
           {t("bypassUserLabel") || "Custom bypass patterns (one per line, glob or regex)"}
         </label>
         <textarea
-          className="w-full min-h-[80px] rounded-lg border border-border/50 bg-card px-3 py-2 text-sm font-mono focus:outline-none focus:ring-2 focus:ring-primary/50"
+          className="w-full min-h-[80px] rounded-lg border border-border/50 bg-card px-3 py-2 text-sm font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/50"
           placeholder="*.internal.corp&#10;sso.example.com"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}

@@ -93,7 +93,7 @@ export function ComboCompressionModeSelect({
       disabled={disabled || isSaving}
       className={
         className ||
-        "text-xs py-1 px-2 rounded border border-black/10 dark:border-white/10 bg-surface text-text-main focus:border-primary focus:outline-none transition-colors disabled:opacity-50"
+        "text-xs py-1 px-2 rounded border border-black/10 dark:border-white/10 bg-surface text-text-main focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 transition-colors disabled:opacity-50"
       }
       title={title}
     >

@@ -153,7 +153,7 @@ export default function CacheStatsCard() {
               {/* Progress bar */}
               <div className="mt-2 h-2 rounded-full bg-border/30 overflow-hidden">
                 <div
-                  className="h-full bg-green-500 transition-all duration-300"
+                  className="h-full bg-green-500 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300"
                   style={{ width: `${Math.min(cacheHitRate, 100)}%` }}
                 />
               </div>

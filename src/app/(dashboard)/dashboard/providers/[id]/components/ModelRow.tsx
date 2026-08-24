@@ -132,7 +132,7 @@ export function ModelVisibilityToolbar({
           value={filterValue}
           onChange={(e) => onFilterChange(e.target.value)}
           placeholder={providerText(t, "filterModels", "Filter models…")}
-          className="w-full rounded-lg border border-border bg-sidebar/50 py-1.5 pl-7 pr-3 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus:ring-1 focus:ring-primary"
+          className="w-full rounded-lg border border-border bg-sidebar/50 py-1.5 pl-7 pr-3 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
         />
       </div>
       {visibilityFilter !== undefined && onVisibilityFilterChange && (
@@ -370,7 +370,7 @@ export default function ModelRow({
                 onBlur={handleAliasSubmit}
                 onKeyDown={handleKeyDown}
                 placeholder={providerText(t, "aliasInputPlaceholder", "alias name")}
-                className="bg-surface border border-primary/50 rounded px-1 py-0.5 text-[9px] text-text-main outline-none w-24"
+                className="bg-surface border border-primary/50 rounded px-1 py-0.5 text-[9px] text-text-main outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 w-24"
               />
             ) : (
               <span

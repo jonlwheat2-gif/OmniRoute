@@ -186,7 +186,7 @@ export default function BuilderIntelligentStep({
           <select
             value={normalizedConfig.modePack}
             onChange={(event) => updateConfig({ modePack: event.target.value })}
-            className="w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none"
+            className="w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
           >
             {MODE_PACK_OPTIONS.map((modePack) => (
               <option key={modePack.id} value={modePack.id}>
@@ -207,7 +207,7 @@ export default function BuilderIntelligentStep({
           <select
             value={normalizedConfig.routerStrategy}
             onChange={(event) => updateConfig({ routerStrategy: event.target.value })}
-            className="w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none"
+            className="w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
           >
             {ROUTER_STRATEGY_OPTIONS.map((strategy) => (
               <option key={strategy.id} value={strategy.id}>
@@ -255,7 +255,7 @@ export default function BuilderIntelligentStep({
                     slaTargetP95Ms: event.target.value ? Number(event.target.value) : undefined,
                   })
                 }
-                className="mt-2 w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none"
+                className="mt-2 w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
               />
             </label>
 
@@ -273,7 +273,7 @@ export default function BuilderIntelligentStep({
                     slaMaxErrorRate: event.target.value ? Number(event.target.value) : undefined,
                   })
                 }
-                className="mt-2 w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none"
+                className="mt-2 w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
               />
             </label>
 
@@ -292,7 +292,7 @@ export default function BuilderIntelligentStep({
                       : undefined,
                   })
                 }
-                className="mt-2 w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none"
+                className="mt-2 w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
               />
             </label>
           </div>
@@ -351,7 +351,7 @@ export default function BuilderIntelligentStep({
                 budgetCap: event.target.value ? Number(event.target.value) : undefined,
               })
             }
-            className="w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none"
+            className="w-full text-xs py-2 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
           />
         </Card.Section>
       </div>

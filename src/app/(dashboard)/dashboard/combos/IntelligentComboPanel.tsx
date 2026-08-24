@@ -266,7 +266,7 @@ export default function IntelligentComboPanel({
 
                       <div className="mt-2 h-2 rounded-full bg-black/8 dark:bg-white/8 overflow-hidden">
                         <div
-                          className="h-full rounded-full bg-blue-500 transition-all"
+                          className="h-full rounded-full bg-blue-500 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                           style={{ width: `${percentage}%` }}
                         />
                       </div>

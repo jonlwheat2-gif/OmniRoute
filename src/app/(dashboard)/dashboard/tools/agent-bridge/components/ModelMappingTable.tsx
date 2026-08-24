@@ -91,7 +91,7 @@ export function ModelMappingTable({ agentId, mappings, onSave }: ModelMappingTab
                         value={row.source}
                         onChange={(e) => updateSource(i, e.target.value)}
                         placeholder="e.g., gpt-4"
-                        className="w-full rounded border border-border/40 bg-card px-2 py-1 text-xs font-mono focus:outline-none focus:ring-2 focus:ring-primary/50"
+                        className="w-full rounded border border-border/40 bg-card px-2 py-1 text-xs font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/50"
                       />
                     </td>
                     <td className="px-3 py-2">

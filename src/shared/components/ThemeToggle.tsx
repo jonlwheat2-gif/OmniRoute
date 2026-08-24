@@ -31,7 +31,7 @@ export default function ThemeToggle({
       "backdrop-blur-md shadow-sm hover:shadow-md",
       "text-text-muted-light hover:text-primary",
       "hover:text-primary",
-      "transition-all group"
+      "transition-[color,background-color,border-color,box-shadow,transform,opacity] group"
     ),
   };
 

@@ -97,7 +97,7 @@ export default function DenoRelayModal({ isOpen, onClose, onDeployed }: DenoRela
               type="password"
               value={denoToken}
               onChange={(e) => setDenoToken(e.target.value)}
-              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
+              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
               placeholder="ddo_..."
               autoComplete="off"
             />
@@ -112,7 +112,7 @@ export default function DenoRelayModal({ isOpen, onClose, onDeployed }: DenoRela
               type="text"
               value={orgDomain}
               onChange={(e) => setOrgDomain(e.target.value)}
-              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
+              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
               placeholder="your-org.deno.net"
             />
             <p className="text-xs text-text-muted mt-1">{t("denoRelayOrgDomainHint")}</p>
@@ -126,7 +126,7 @@ export default function DenoRelayModal({ isOpen, onClose, onDeployed }: DenoRela
               type="text"
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
-              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus:border-primary"
+              className="w-full text-sm bg-surface-alt border border-border rounded px-3 py-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
               placeholder="omniroute-deno-relay"
             />
           </div>

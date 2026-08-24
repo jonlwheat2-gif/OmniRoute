@@ -215,7 +215,7 @@ export default function CompareTab({ providers, onMetrics }: CompareTabProps) {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t("compareQueryPlaceholder")}
-            className="flex-1 bg-bg-alt border border-border rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="flex-1 bg-bg-alt border border-border rounded-lg px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
             onKeyDown={(e) => {
               if (e.key === "Enter") void handleRun();
             }}

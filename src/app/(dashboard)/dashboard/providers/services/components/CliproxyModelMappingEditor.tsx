@@ -179,7 +179,7 @@ export function CliproxyModelMappingEditor() {
       )}
 
       <textarea
-        className={`w-full font-mono text-xs rounded border px-3 py-2 resize-y min-h-[120px] bg-bg-subtle focus:outline-none focus:ring-1 transition-colors ${
+        className={`w-full font-mono text-xs rounded border px-3 py-2 resize-y min-h-[120px] bg-bg-subtle focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 transition-colors ${
           !isValid && rawText !== EMPTY_MAPPING
             ? "border-red-400 focus:ring-red-400"
             : "border-border focus:ring-primary"

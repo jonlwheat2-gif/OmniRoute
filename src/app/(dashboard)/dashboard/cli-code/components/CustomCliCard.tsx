@@ -119,7 +119,18 @@ export default function CustomCliCard({
 
   return (
     <Card padding="sm" className="overflow-hidden">
-      <div className="flex items-center justify-between hover:cursor-pointer" onClick={onToggle}>
+      <div
+        className="flex items-center justify-between hover:cursor-pointer"
+        onClick={onToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+      >
         <div className="flex items-center gap-3">
           <div className="size-8 rounded-lg flex items-center justify-center shrink-0 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
             <span className="material-symbols-outlined text-xl">{tool.icon || "terminal"}</span>
@@ -189,7 +200,7 @@ export default function CustomCliCard({
                   value={cliName}
                   onChange={(e) => setCliName(e.target.value)}
                   placeholder={translateOrFallback("customCliNamePlaceholder", "e.g. My Team CLI")}
-                  className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                 />
               </div>
 
@@ -201,7 +212,7 @@ export default function CustomCliCard({
                   value={effectiveDefaultModel}
                   onChange={(e) => setDefaultModel(e.target.value)}
                   disabled={!hasActiveProviders}
-                  className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50 disabled:opacity-60"
+                  className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50 disabled:opacity-60"
                 >
                   <option value="">
                     {translateOrFallback("modelPlaceholder", "Select a model")}
@@ -228,7 +239,7 @@ export default function CustomCliCard({
                   <select
                     value={effectiveSelectedApiKeyId}
                     onChange={(e) => setSelectedApiKeyId(e.target.value)}
-                    className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                    className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                   >
                     {apiKeys.map((key) => (
                       <option key={key.id} value={key.id}>
@@ -291,13 +302,13 @@ export default function CustomCliCard({
                           "customCliAliasPlaceholder",
                           "e.g. review"
                         )}
-                        className="px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                        className="px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                       />
                       <select
                         value={mapping.model}
                         onChange={(e) => handleUpdateMapping(mapping.id, "model", e.target.value)}
                         disabled={!hasActiveProviders}
-                        className="px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50 disabled:opacity-60"
+                        className="px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50 disabled:opacity-60"
                       >
                         <option value="">
                           {translateOrFallback("customCliTargetModelLabel", "Target model")}

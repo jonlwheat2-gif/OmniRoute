@@ -35,7 +35,7 @@ function MiniBarGraph({
       {data.slice(-9).map((val, idx) => (
         <div
           key={`bar-${idx}-${val}`}
-          className={`flex-1 rounded-t-sm transition-all duration-500 ${colorClass}`}
+          className={`flex-1 rounded-t-sm transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${colorClass}`}
           style={{ height: `${Math.max((val / max) * 100, 5)}%` }}
           title={String(val)}
         />
@@ -253,7 +253,7 @@ export default function UsageStats() {
               role="switch"
               aria-checked={autoRefresh}
               aria-label={t("toggleAutoRefresh")}
-              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-primary/50 ${
+              className={`relative inline-flex h-5 w-9 items-center rounded-full transition-colors focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/50 ${
                 autoRefresh ? "bg-primary" : "bg-bg-subtle border border-border"
               }`}
             >

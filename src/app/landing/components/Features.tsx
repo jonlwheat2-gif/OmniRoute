@@ -115,7 +115,7 @@ export default function Features() {
           {FEATURES.map((feature) => (
             <div
               key={feature.titleKey}
-              className={`p-6 rounded-xl bg-[#23180f] border border-[#3a2f27] ${feature.colors.border} ${feature.colors.bg} transition-all duration-300 group`}
+              className={`p-6 rounded-xl bg-[#23180f] border border-[#3a2f27] ${feature.colors.border} ${feature.colors.bg} transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 group`}
             >
               <div
                 className={`w-10 h-10 rounded-lg ${feature.colors.iconBg} flex items-center justify-center mb-4 ${feature.colors.iconText} group-hover:scale-110 transition-transform duration-300`}

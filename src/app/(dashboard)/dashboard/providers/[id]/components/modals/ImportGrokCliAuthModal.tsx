@@ -165,7 +165,7 @@ export default function ImportGrokCliAuthModal({
         {tab === "paste" && (
           <div className="flex flex-col gap-3">
             <textarea
-              className="w-full h-32 p-3 text-sm font-mono bg-input border border-border rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full h-32 p-3 text-sm font-mono bg-input border border-border rounded-md resize-none focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary"
               placeholder='{"https://auth.x.ai::clientId": {"key": "eyJ...", ...}}'
               value={pasteText}
               onChange={(e) => handlePasteChange(e.target.value)}
@@ -196,7 +196,7 @@ export default function ImportGrokCliAuthModal({
               placeholder={t("grokConnectionName")}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full p-2 text-sm bg-input border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full p-2 text-sm bg-input border border-border rounded-md focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary"
             />
           </div>
         )}

@@ -150,7 +150,7 @@ export default function PassthroughModelRow({
                 onBlur={handleAliasSubmit}
                 onKeyDown={handleKeyDown}
                 placeholder={providerText(t, "aliasInputPlaceholder", "alias name")}
-                className="bg-surface border border-primary/50 rounded px-1 py-0.5 text-[9px] text-text-main outline-none w-24"
+                className="bg-surface border border-primary/50 rounded px-1 py-0.5 text-[9px] text-text-main outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 w-24"
               />
             ) : (
               <span

@@ -114,7 +114,7 @@ export default function ThinkingBudgetTab() {
             key={m.value}
             onClick={() => save({ mode: m.value })}
             disabled={loading || saving}
-            className={`flex items-start gap-3 p-3 rounded-lg border text-left transition-all ${
+            className={`flex items-start gap-3 p-3 rounded-lg border text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               config.mode === m.value
                 ? "border-violet-500/50 bg-violet-500/5 ring-1 ring-violet-500/20"
                 : "border-border/50 hover:border-border hover:bg-surface/30"
@@ -178,7 +178,7 @@ export default function ThinkingBudgetTab() {
                 key={e.value}
                 onClick={() => save({ effortLevel: e.value })}
                 disabled={loading || saving}
-                className={`px-3 py-2 rounded-lg text-xs font-medium border transition-all ${
+                className={`px-3 py-2 rounded-lg text-xs font-medium border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                   config.effortLevel === e.value
                     ? "border-violet-500/50 bg-violet-500/10 text-violet-400"
                     : "border-border/50 text-text-muted hover:border-border"

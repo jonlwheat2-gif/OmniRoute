@@ -133,7 +133,7 @@ export function ProviderCascadeNode({ data }: NodeProps) {
 
   return (
     <div
-      className="flex flex-col rounded-lg border-2 bg-bg transition-all duration-300 min-w-[150px] max-w-[190px]"
+      className="flex flex-col rounded-lg border-2 bg-bg transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 min-w-[150px] max-w-[190px]"
       style={{ borderColor, boxShadow: glow }}
       data-testid={`provider-cascade-node-${targetIndex}`}
     >

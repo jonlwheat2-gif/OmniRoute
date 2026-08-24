@@ -230,7 +230,7 @@ export default function OnboardingWizard() {
           {STEPS.map((s, i) => (
             <div key={s.id} className="flex items-center gap-2">
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-all duration-300 ${
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 ${
                   i < step
                     ? "bg-green-500/20 text-green-400"
                     : i === step
@@ -332,7 +332,7 @@ export default function OnboardingWizard() {
                       onChange={(e) => setPassword(e.target.value)}
                       onKeyDown={(e) => setCapsLockOn(e.getModifierState("CapsLock"))}
                       onKeyUp={(e) => setCapsLockOn(e.getModifierState("CapsLock"))}
-                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
                     />
                     <input
                       type="password"
@@ -341,7 +341,7 @@ export default function OnboardingWizard() {
                       onChange={(e) => setConfirmPassword(e.target.value)}
                       onKeyDown={(e) => setCapsLockOn(e.getModifierState("CapsLock"))}
                       onKeyUp={(e) => setCapsLockOn(e.getModifierState("CapsLock"))}
-                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
                     />
                     {capsLockOn && (
                       <p className="text-xs text-amber-500 dark:text-amber-400 flex items-center gap-1 animate-in fade-in duration-200">
@@ -385,7 +385,7 @@ export default function OnboardingWizard() {
                           setSelectedProvider(p.id);
                           setProviderName(p.name);
                         }}
-                        className={`p-3 rounded-xl border text-center text-xs font-medium transition-all cursor-pointer ${
+                        className={`p-3 rounded-xl border text-center text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer ${
                           selectedProvider === p.id
                             ? "border-primary/60 bg-primary/10 text-primary"
                             : "border-white/10 bg-white/[0.03] text-text-muted hover:border-white/20"
@@ -403,14 +403,14 @@ export default function OnboardingWizard() {
                       placeholder={t("apiKeyRequired")}
                       value={providerKey}
                       onChange={(e) => setProviderKey(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
                     />
                     <input
                       type="text"
                       placeholder={t("customUrlOptional")}
                       value={providerUrl}
                       onChange={(e) => setProviderUrl(e.target.value)}
-                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/40"
+                      className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
                     />
                   </div>
                 )}

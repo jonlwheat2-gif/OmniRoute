@@ -84,7 +84,7 @@ export function ModelSelectorModal({
           <input
             type="text"
             autoFocus
-            className="w-full rounded-lg border border-border/50 bg-surface px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="w-full rounded-lg border border-border/50 bg-surface px-3 py-2 text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/50"
             placeholder={t("modelSelectorSearch")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}

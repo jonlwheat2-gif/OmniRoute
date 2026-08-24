@@ -50,20 +50,20 @@ export default function Error({ error, reset }: ErrorProps) {
         <button
           onClick={reset}
           aria-label={t("error.retryAriaLabel")}
-          className="px-6 py-2.5 rounded-lg text-white text-sm font-semibold cursor-pointer transition-all duration-200 motion-reduce:transition-none bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+          className="px-6 py-2.5 rounded-lg text-white text-sm font-semibold cursor-pointer transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200 motion-reduce:transition-none bg-[var(--color-accent)] hover:bg-[var(--color-accent-hover)] focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
         >
           {t("error.tryAgain")}
         </button>
         <a
           href="/dashboard"
-          className="px-6 py-2.5 rounded-lg text-[var(--color-text-main)] text-sm font-semibold cursor-pointer transition-all duration-200 motion-reduce:transition-none border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+          className="px-6 py-2.5 rounded-lg text-[var(--color-text-main)] text-sm font-semibold cursor-pointer transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200 motion-reduce:transition-none border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
           aria-label={t("error.dashboardAriaLabel")}
         >
           {tc("goToDashboard")}
         </a>
         <a
           href="/status"
-          className="px-6 py-2.5 rounded-lg text-[var(--color-text-main)] text-sm font-semibold cursor-pointer transition-all duration-200 motion-reduce:transition-none border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
+          className="px-6 py-2.5 rounded-lg text-[var(--color-text-main)] text-sm font-semibold cursor-pointer transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200 motion-reduce:transition-none border border-[var(--color-border)] hover:bg-[var(--color-bg-alt)] no-underline focus:outline-2 focus:outline-offset-2 focus:outline-[var(--color-accent)]"
           aria-label={t("error.statusAriaLabel")}
         >
           {t("error.systemStatus")}

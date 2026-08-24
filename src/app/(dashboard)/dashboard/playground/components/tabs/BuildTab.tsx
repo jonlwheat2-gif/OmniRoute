@@ -143,10 +143,7 @@ export default function BuildTab({ configState }: BuildTabProps) {
       const assistantMsg = choice?.message;
 
       if (assistantMsg == null) {
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content: "(empty response)" },
-        ]);
+        setMessages((prev) => [...prev, { role: "assistant", content: "(empty response)" }]);
         return;
       }
 
@@ -166,14 +163,11 @@ export default function BuildTab({ configState }: BuildTabProps) {
             toolCallId: tc.id,
             functionName: tc.function.name,
             draft: "",
-          })),
+          }))
         );
       } else {
         const content = assistantMsg.content ?? "";
-        setMessages((prev) => [
-          ...prev,
-          { role: "assistant", content },
-        ]);
+        setMessages((prev) => [...prev, { role: "assistant", content }]);
 
         // Validate structured output response if enabled
         if (structuredOutput.enabled && structuredOutput.schema != null) {
@@ -253,17 +247,12 @@ export default function BuildTab({ configState }: BuildTabProps) {
           {toolCalls.map((tc) => {
             const draft = toolResultDrafts.find((d) => d.toolCallId === tc.id);
             return (
-              <div
-                key={tc.id}
-                className="border border-amber-500/40 rounded-lg p-3 bg-amber-500/5"
-              >
+              <div key={tc.id} className="border border-amber-500/40 rounded-lg p-3 bg-amber-500/5">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="material-symbols-outlined text-[14px] text-amber-500">
                     function
                   </span>
-                  <code className="text-xs font-mono text-text-main">
-                    {tc.function.name}
-                  </code>
+                  <code className="text-xs font-mono text-text-main">{tc.function.name}</code>
                 </div>
                 <pre className="text-[11px] font-mono text-text-muted bg-bg-alt rounded p-2 overflow-x-auto mb-2 whitespace-pre-wrap break-all">
                   {tc.function.arguments}
@@ -277,13 +266,13 @@ export default function BuildTab({ configState }: BuildTabProps) {
                     onChange={(e) =>
                       setToolResultDrafts((prev) =>
                         prev.map((d) =>
-                          d.toolCallId === tc.id ? { ...d, draft: e.target.value } : d,
-                        ),
+                          d.toolCallId === tc.id ? { ...d, draft: e.target.value } : d
+                        )
                       )
                     }
                     rows={3}
                     placeholder={t("enterToolResult")}
-                    className="text-xs font-mono bg-bg-alt border border-border rounded px-2 py-1.5 focus:outline-none focus:ring-1 focus:ring-primary text-text-main resize-y"
+                    className="text-xs font-mono bg-bg-alt border border-border rounded px-2 py-1.5 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary text-text-main resize-y"
                   />
                   <button
                     onClick={() => void sendToolResult(tc.id)}
@@ -307,7 +296,9 @@ export default function BuildTab({ configState }: BuildTabProps) {
               : "border-destructive/40 bg-destructive/5 text-destructive"
           }`}
         >
-          {validationResult.valid ? "✅ Valid JSON schema response" : `❌ ${validationResult.error}`}
+          {validationResult.valid
+            ? "✅ Valid JSON schema response"
+            : `❌ ${validationResult.error}`}
         </div>
       )}
     </div>

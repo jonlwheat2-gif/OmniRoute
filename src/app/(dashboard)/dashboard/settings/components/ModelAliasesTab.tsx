@@ -101,7 +101,7 @@ export default function ModelAliasesTab() {
             placeholder={t("deprecatedModelId")}
             value={newFrom}
             onChange={(e) => setNewFrom(e.target.value)}
-            className="flex-1 px-3 py-2 rounded-lg text-sm bg-surface border border-border/50 focus:border-amber-500/50 focus:outline-none"
+            className="flex-1 px-3 py-2 rounded-lg text-sm bg-surface border border-border/50 focus:border-amber-500/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
           />
           <span className="text-text-muted text-lg">→</span>
           <input
@@ -109,12 +109,12 @@ export default function ModelAliasesTab() {
             placeholder={t("newModelId")}
             value={newTo}
             onChange={(e) => setNewTo(e.target.value)}
-            className="flex-1 px-3 py-2 rounded-lg text-sm bg-surface border border-border/50 focus:border-amber-500/50 focus:outline-none"
+            className="flex-1 px-3 py-2 rounded-lg text-sm bg-surface border border-border/50 focus:border-amber-500/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
           />
           <button
             onClick={addAlias}
             disabled={saving || !newFrom.trim() || !newTo.trim()}
-            className="px-4 py-2 rounded-lg text-sm font-medium bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 disabled:opacity-50 transition-all"
+            className="px-4 py-2 rounded-lg text-sm font-medium bg-amber-500/10 text-amber-500 hover:bg-amber-500/20 disabled:opacity-50 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
           >
             {t("add")}
           </button>
@@ -138,7 +138,7 @@ export default function ModelAliasesTab() {
                 <button
                   onClick={() => removeAlias(from)}
                   disabled={saving}
-                  className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-all"
+                  className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                 >
                   <span className="material-symbols-outlined text-[16px]">close</span>
                 </button>

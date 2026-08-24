@@ -36,7 +36,7 @@ function HitRateBar({ hitRate, label }: { hitRate: number; label: string }) {
       </div>
       <div className="w-full h-2 rounded-full bg-surface/50 overflow-hidden">
         <div
-          className={`h-full rounded-full transition-all duration-500 ${colorClass}`}
+          className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${colorClass}`}
           style={{ width: `${Math.min(hitRate, 100)}%` }}
         />
       </div>

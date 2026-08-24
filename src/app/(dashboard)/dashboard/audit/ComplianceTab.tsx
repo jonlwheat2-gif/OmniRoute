@@ -206,7 +206,7 @@ export default function ComplianceTab() {
                 setEventType(event.target.value);
               }}
               placeholder={t("eventTypePlaceholder")}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
             />
             <datalist id="compliance-event-types">
               {eventTypes.map((type) => (
@@ -226,7 +226,7 @@ export default function ComplianceTab() {
                 setActor(event.target.value);
               }}
               placeholder={t("actorPlaceholder")}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
             />
             <datalist id="compliance-actors">
               {actors.map((a) => (
@@ -244,7 +244,7 @@ export default function ComplianceTab() {
                 setOffset(0);
                 setSeverity(event.target.value as "all" | Severity);
               }}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
             >
               <option value="all">{t("allSeverities")}</option>
               <option value="info">{t("info")}</option>
@@ -263,7 +263,7 @@ export default function ComplianceTab() {
                 setOffset(0);
                 setFrom(event.target.value);
               }}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
             />
           </label>
           <label className="space-y-1">
@@ -277,7 +277,7 @@ export default function ComplianceTab() {
                 setOffset(0);
                 setTo(event.target.value);
               }}
-              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+              className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
             />
           </label>
           <div className="flex items-end">
@@ -330,7 +330,9 @@ export default function ComplianceTab() {
                       </td>
                       <td className="px-4 py-3">
                         <span className="rounded-md border border-border bg-surface px-2 py-1 font-mono text-xs text-text-main">
-                          {t.has(`eventTypes.${entry.action}`) ? t(`eventTypes.${entry.action}`) : entry.action}
+                          {t.has(`eventTypes.${entry.action}`)
+                            ? t(`eventTypes.${entry.action}`)
+                            : entry.action}
                         </span>
                       </td>
                       <td className="px-4 py-3">

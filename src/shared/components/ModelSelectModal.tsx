@@ -843,7 +843,7 @@ export default function ModelSelectModal({
             placeholder={t("search")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-8 pr-3 py-1.5 bg-surface border border-border rounded text-xs focus:outline-none focus:ring-1 focus:ring-primary/50"
+            className="w-full pl-8 pr-3 py-1.5 bg-surface border border-border rounded text-xs focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
           />
         </div>
       </div>
@@ -994,7 +994,7 @@ export default function ModelSelectModal({
                       handleSelect({ id: combo.name, name: combo.name, value: combo.name })
                     }
                     className={`
-                      px-2 py-1 rounded-xl text-xs font-medium transition-all border hover:cursor-pointer
+                      px-2 py-1 rounded-xl text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] border hover:cursor-pointer
                       ${
                         isSelected
                           ? "bg-primary text-white border-primary"
@@ -1062,7 +1062,7 @@ export default function ModelSelectModal({
                       key={model.id}
                       onClick={() => handleSelect(model)}
                       className={`
-                      px-2 py-1 rounded-xl text-xs font-medium transition-all border hover:cursor-pointer
+                      px-2 py-1 rounded-xl text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] border hover:cursor-pointer
                       ${
                         isSelected
                           ? "bg-primary text-white border-primary"

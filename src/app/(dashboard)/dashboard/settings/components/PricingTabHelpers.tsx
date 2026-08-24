@@ -1,4 +1,12 @@
-export function HeroStat({ label, value, accent }: { label: string; value: number; accent?: string }) {
+export function HeroStat({
+  label,
+  value,
+  accent,
+}: {
+  label: string;
+  value: number;
+  accent?: string;
+}) {
   return (
     <div className="text-center">
       <div className="text-[10px] uppercase tracking-wide text-text-muted font-semibold truncate">
@@ -43,7 +51,7 @@ export function FilterSelect({
       <select
         value={value}
         onChange={(event) => onChange(event.target.value)}
-        className="bg-bg-base border border-border rounded-md px-2 py-1.5 text-xs text-text-main cursor-pointer focus:outline-none focus:border-primary"
+        className="bg-bg-base border border-border rounded-md px-2 py-1.5 text-xs text-text-main cursor-pointer focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>

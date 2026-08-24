@@ -43,11 +43,7 @@ export default function RerankConfigCard({ settings, providers, onSave, saving }
           }}
           disabled={saving || (!rerankEnabled && !hasProvider)}
           aria-disabled={saving || (!rerankEnabled && !hasProvider)}
-          title={
-            !rerankEnabled && !hasProvider
-              ? t("rerank.noProviderWithKey")
-              : undefined
-          }
+          title={!rerankEnabled && !hasProvider ? t("rerank.noProviderWithKey") : undefined}
           role="switch"
           aria-checked={rerankEnabled}
           className={`relative w-11 h-6 rounded-full transition-colors shrink-0 disabled:opacity-50 disabled:cursor-not-allowed ${
@@ -88,7 +84,7 @@ export default function RerankConfigCard({ settings, providers, onSave, saving }
                 onChange={(e) => handleProviderModelChange(e.target.value)}
                 disabled={saving}
                 data-testid="rerank-provider-model-select"
-                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               >
                 <option value="">{t("rerank.selectProviderModel")}</option>
                 {rerankProviders.map((p) =>
@@ -96,7 +92,7 @@ export default function RerankConfigCard({ settings, providers, onSave, saving }
                     <option key={m.id} value={m.id}>
                       {m.name}
                     </option>
-                  )),
+                  ))
                 )}
               </select>
             )}

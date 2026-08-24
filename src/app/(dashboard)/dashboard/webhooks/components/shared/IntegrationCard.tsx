@@ -48,7 +48,7 @@ export function IntegrationCard({
       type="button"
       onClick={!disabled && onSelect ? () => onSelect(kind as WebhookKind) : undefined}
       disabled={disabled}
-      className={`relative flex w-full flex-col items-start gap-2 rounded-xl border p-4 text-left transition-all disabled:cursor-not-allowed disabled:opacity-50 ${
+      className={`relative flex w-full flex-col items-start gap-2 rounded-xl border p-4 text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] disabled:cursor-not-allowed disabled:opacity-50 ${
         disabled
           ? "border-border bg-surface"
           : selected

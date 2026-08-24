@@ -50,7 +50,7 @@ export function ResponseNode({ data }: NodeProps) {
 
   return (
     <div
-      className="flex flex-col items-center gap-1.5 px-3 py-2 rounded-lg border-2 bg-bg transition-all duration-300"
+      className="flex flex-col items-center gap-1.5 px-3 py-2 rounded-lg border-2 bg-bg transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300"
       style={{
         borderColor: color,
         boxShadow: `0 0 10px ${color}30`,

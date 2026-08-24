@@ -335,7 +335,7 @@ export function DarioAccountPanel() {
               placeholder="alias (optional)"
               value={aliasInput}
               onChange={(e) => setAliasInput(e.target.value)}
-              className="flex-1 min-w-[140px] bg-transparent text-xs border border-border rounded px-2 py-1.5 outline-none placeholder:text-text-muted"
+              className="flex-1 min-w-[140px] bg-transparent text-xs border border-border rounded px-2 py-1.5 outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 placeholder:text-text-muted"
             />
             <Button size="sm" disabled={busy !== null} onClick={startLogin}>
               {busy === "start" ? "Starting…" : "Start Login"}
@@ -375,7 +375,7 @@ export function DarioAccountPanel() {
                 placeholder="code#state or bare code"
                 value={codeInput}
                 onChange={(e) => setCodeInput(e.target.value)}
-                className="flex-1 min-w-[180px] bg-transparent text-xs border border-border rounded px-2 py-1.5 outline-none placeholder:text-text-muted font-mono"
+                className="flex-1 min-w-[180px] bg-transparent text-xs border border-border rounded px-2 py-1.5 outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 placeholder:text-text-muted font-mono"
               />
               <Button
                 size="sm"

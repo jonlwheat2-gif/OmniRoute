@@ -172,7 +172,18 @@ export default function CopilotToolCard({
   return (
     <Card padding="sm" className="overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between hover:cursor-pointer" onClick={onToggle}>
+      <div
+        className="flex items-center justify-between hover:cursor-pointer"
+        onClick={onToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+      >
         <div className="flex items-center gap-3">
           <div className="size-8 rounded-lg flex items-center justify-center shrink-0">
             <Image
@@ -250,7 +261,7 @@ export default function CopilotToolCard({
                 <select
                   value={selectedApiKeyId}
                   onChange={(e) => handleApiKeyChange(e.target.value)}
-                  className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="w-full px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                 >
                   {apiKeys.map((key: any) => (
                     <option key={key.id} value={key.id}>
@@ -301,7 +312,7 @@ export default function CopilotToolCard({
                   value={searchFilter}
                   onChange={(e) => setSearchFilter(e.target.value)}
                   placeholder={t("copilotFilterModelsPlaceholder")}
-                  className="w-full px-3 py-1.5 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                  className="w-full px-3 py-1.5 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                 />
               </div>
 
@@ -356,7 +367,7 @@ export default function CopilotToolCard({
                     type="number"
                     value={maxInputTokens}
                     onChange={(e) => setMaxInputTokens(Number(e.target.value) || 128000)}
-                    className="w-full px-3 py-1.5 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                    className="w-full px-3 py-1.5 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                   />
                 </div>
                 <div>
@@ -367,7 +378,7 @@ export default function CopilotToolCard({
                     type="number"
                     value={maxOutputTokens}
                     onChange={(e) => setMaxOutputTokens(Number(e.target.value) || 16000)}
-                    className="w-full px-3 py-1.5 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                    className="w-full px-3 py-1.5 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                   />
                 </div>
                 <label className="flex items-center gap-2 cursor-pointer">

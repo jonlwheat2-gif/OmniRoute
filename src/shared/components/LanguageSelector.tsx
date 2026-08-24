@@ -67,7 +67,7 @@ export default function LanguageSelector() {
       {/* Trigger button */}
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-medium text-text-main hover:bg-surface-hover transition-all border border-transparent hover:border-border"
+        className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-sm font-medium text-text-main hover:bg-surface-hover transition-[color,background-color,border-color,box-shadow,transform,opacity] border border-transparent hover:border-border"
         title={currentLang.name}
       >
         <CountryFlag emoji={currentLang.flag} alt={currentLang.name} />

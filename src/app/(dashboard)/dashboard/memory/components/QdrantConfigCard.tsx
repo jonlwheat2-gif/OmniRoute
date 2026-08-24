@@ -40,7 +40,8 @@ export default function QdrantConfigCard() {
     collection?: { exists: boolean; vectorSize?: number; vectorName?: string | null };
   } | null>(null);
   const [searchValidated, setSearchValidated] = useState(false);
-  const [tutorialOpen, setTutorialOpen] = useState(false);  const [checking, setChecking] = useState(false);
+  const [tutorialOpen, setTutorialOpen] = useState(false);
+  const [checking, setChecking] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searching, setSearching] = useState(false);
   const [searchResults, setSearchResults] = useState<
@@ -109,7 +110,8 @@ export default function QdrantConfigCard() {
       // invalidate in-flight checks so they cannot overwrite the new state.
       healthSeqRef.current += 1;
       setHealth(null);
-      setSearchValidated(false);      setQdrant(next);
+      setSearchValidated(false);
+      setQdrant(next);
       setSaving(true);
       setSaveStatus("");
       try {
@@ -153,7 +155,8 @@ export default function QdrantConfigCard() {
         setSaving(false);
       }
     },
-    [qdrant, checkHealth]  );
+    [qdrant, checkHealth]
+  );
 
   // Auto-check on mount once settings load: without this the status badge
   // renders red after a page refresh because `health` starts as null and the
@@ -245,7 +248,8 @@ export default function QdrantConfigCard() {
                 ? "text-text-muted"
                 : health.ok
                   ? "text-emerald-500"
-                  : "text-red-500"          }`}
+                  : "text-red-500"
+          }`}
         >
           <span
             className={`inline-block w-2.5 h-2.5 rounded-full ${
@@ -361,7 +365,7 @@ export default function QdrantConfigCard() {
             value={qdrant.host}
             onChange={(e) => setQdrant((s) => ({ ...s, host: e.target.value }))}
             placeholder="http://127.0.0.1"
-            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
           />
           <p className="text-[11px] text-text-muted mt-1.5">{t("qdrant.hostHelp")}</p>
         </div>
@@ -377,7 +381,7 @@ export default function QdrantConfigCard() {
               }))
             }
             placeholder="6333"
-            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
           />
         </div>
         <div className="p-3 rounded-lg bg-surface/30 border border-border/30">
@@ -386,7 +390,7 @@ export default function QdrantConfigCard() {
             value={qdrant.collection}
             onChange={(e) => setQdrant((s) => ({ ...s, collection: e.target.value }))}
             placeholder="omniroute_memory"
-            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
           />
           <p className="text-[11px] text-text-muted mt-1.5">{t("qdrant.collectionHelp")}</p>
         </div>
@@ -400,7 +404,7 @@ export default function QdrantConfigCard() {
               onChange={(e) => {
                 if (e.target.value) setQdrant((s) => ({ ...s, embeddingModel: e.target.value }));
               }}
-              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm mb-2 focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm mb-2 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
             >
               <option value="">{t("qdrant.quickSelectModel")}</option>
               {embeddingOptions.map((opt) => (
@@ -414,7 +418,7 @@ export default function QdrantConfigCard() {
             value={qdrant.embeddingModel}
             onChange={(e) => setQdrant((s) => ({ ...s, embeddingModel: e.target.value }))}
             placeholder="openai/text-embedding-3-small"
-            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
           />
           <p className="text-[11px] text-text-muted mt-1.5">{t("qdrant.embeddingModelHelp")}</p>
         </div>
@@ -433,7 +437,7 @@ export default function QdrantConfigCard() {
               placeholder={
                 qdrant.hasApiKey ? t("qdrant.apiKeyKeepPlaceholder") : t("qdrant.apiKeyOptional")
               }
-              className="flex-1 px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus:ring-1 focus:ring-emerald-500"
+              className="flex-1 px-3 py-2 rounded-lg bg-background border border-border text-sm font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
             />
             {qdrant.hasApiKey && (
               <button
@@ -464,7 +468,7 @@ export default function QdrantConfigCard() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t("qdrant.searchPlaceholder")}
             onKeyDown={(e) => e.key === "Enter" && runSearch()}
-            className="flex-1 px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-emerald-500"
+            className="flex-1 px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-emerald-500"
           />
           <button
             data-testid="qdrant-search-test"

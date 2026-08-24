@@ -112,7 +112,7 @@ export function AgentList({
           </span>
           <input
             type="text"
-            className="rounded-lg border border-border/50 bg-surface pl-8 pr-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-primary/50"
+            className="rounded-lg border border-border/50 bg-surface pl-8 pr-3 py-1.5 text-xs focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/50"
             placeholder={t("searchAgents") || "Search agents…"}
             value={search}
             onChange={(e) => setSearch(e.target.value)}

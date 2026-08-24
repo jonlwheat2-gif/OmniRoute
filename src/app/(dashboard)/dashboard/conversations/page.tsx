@@ -710,7 +710,7 @@ function ConversationsPageContent() {
                   localStorage.setItem(POLL_STORAGE_KEY, String(next));
                 } catch {}
               }}
-              className="w-10 bg-transparent text-center font-mono focus:outline-none"
+              className="w-10 bg-transparent text-center font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
             />
             <span>s</span>
           </label>

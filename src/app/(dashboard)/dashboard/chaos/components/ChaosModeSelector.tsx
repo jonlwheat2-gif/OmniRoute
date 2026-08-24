@@ -29,7 +29,7 @@ export function ChaosModeSelector({
         <button
           type="button"
           onClick={() => onChange("parallel")}
-          className={`flex-1 px-3 py-2 rounded-md text-xs font-semibold transition-all ${
+          className={`flex-1 px-3 py-2 rounded-md text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
             mode === "parallel"
               ? "bg-primary text-white"
               : "bg-black/5 dark:bg-white/5 text-text-muted hover:bg-black/10 dark:hover:bg-white/10"
@@ -44,7 +44,7 @@ export function ChaosModeSelector({
         <button
           type="button"
           onClick={() => onChange("collaborative")}
-          className={`flex-1 px-3 py-2 rounded-md text-xs font-semibold transition-all ${
+          className={`flex-1 px-3 py-2 rounded-md text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
             mode === "collaborative"
               ? "bg-primary text-white"
               : "bg-black/5 dark:bg-white/5 text-text-muted hover:bg-black/10 dark:hover:bg-white/10"

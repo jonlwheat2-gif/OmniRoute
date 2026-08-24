@@ -344,7 +344,7 @@ export default function SecurityTab() {
                     key={provider.id}
                     onClick={() => toggleBlockedProvider(provider.id)}
                     disabled={loading}
-                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all border ${
+                    className={`inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] border ${
                       isBlocked
                         ? "bg-red-500/10 border-red-500/30 text-red-600 dark:text-red-400"
                         : "bg-black/[0.02] dark:bg-white/[0.02] border-transparent text-text-muted hover:bg-black/[0.05] dark:hover:bg-white/[0.05]"

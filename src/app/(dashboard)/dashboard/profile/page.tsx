@@ -211,7 +211,7 @@ export default function ProfilePage() {
             </div>
             <div className="w-full h-3 rounded-full bg-border overflow-hidden">
               <div
-                className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-all duration-500"
+                className="h-full rounded-full bg-gradient-to-r from-violet-500 to-fuchsia-500 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500"
                 style={{ width: `${Math.min(xpProgress, 100)}%` }}
               />
             </div>
@@ -256,7 +256,7 @@ export default function ProfilePage() {
                 <button
                   key={badge.id}
                   onClick={() => setSelectedBadge(badge)}
-                  className={`relative p-4 rounded-xl border transition-all text-left ${
+                  className={`relative p-4 rounded-xl border transition-[color,background-color,border-color,box-shadow,transform,opacity] text-left ${
                     isEarned
                       ? `${rarityColor} bg-surface hover:shadow-md`
                       : "border-border/50 bg-surface/50 opacity-50 grayscale hover:opacity-70"

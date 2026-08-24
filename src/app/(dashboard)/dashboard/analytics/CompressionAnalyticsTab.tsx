@@ -95,7 +95,7 @@ function ModeBar({
       </div>
       <div className="h-2 rounded-full bg-bg-muted overflow-hidden">
         <div
-          className="h-full rounded-full bg-primary transition-all"
+          className="h-full rounded-full bg-primary transition-[color,background-color,border-color,box-shadow,transform,opacity]"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -130,7 +130,7 @@ function ProviderBar({
       </div>
       <div className="h-2 rounded-full bg-bg-muted overflow-hidden">
         <div
-          className="h-full rounded-full bg-primary transition-all"
+          className="h-full rounded-full bg-primary transition-[color,background-color,border-color,box-shadow,transform,opacity]"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -352,7 +352,7 @@ export default function CompressionAnalyticsTab() {
               return (
                 <div key={idx} className="flex-1 flex flex-col items-center gap-2">
                   <div
-                    className="w-full rounded-t-sm bg-gradient-to-b from-primary to-primary/70 transition-all hover:opacity-80 cursor-pointer group relative"
+                    className="w-full rounded-t-sm bg-gradient-to-b from-primary to-primary/70 transition-[color,background-color,border-color,box-shadow,transform,opacity] hover:opacity-80 cursor-pointer group relative"
                     style={{ height: `${Math.max(countPct, 5)}%` }}
                     title={t("compressionAnalyticsChartPoint", {
                       hour: entry.hour,

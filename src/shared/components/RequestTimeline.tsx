@@ -574,7 +574,7 @@ export default function RequestTimeline({
                   localStorage.setItem(CONVERSATION_LANE_REUSE_STORAGE_KEY, String(next));
                 } catch {}
               }}
-              className="w-10 bg-transparent text-center font-mono focus:outline-none"
+              className="w-10 bg-transparent text-center font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
             />
             <span>min</span>
           </label>
@@ -596,7 +596,7 @@ export default function RequestTimeline({
                   localStorage.setItem(TIMELINE_LIST_POLL_STORAGE_KEY, String(next));
                 } catch {}
               }}
-              className="w-10 bg-transparent text-center font-mono focus:outline-none"
+              className="w-10 bg-transparent text-center font-mono focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
             />
             <span>s</span>
           </label>

@@ -22,7 +22,7 @@ export function IoNode({ data }: NodeProps) {
 
   return (
     <div
-      className="rounded-xl border-2 bg-bg px-4 py-3 min-w-[120px] text-center transition-all duration-200"
+      className="rounded-xl border-2 bg-bg px-4 py-3 min-w-[120px] text-center transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200"
       style={{
         borderColor: color,
         boxShadow: `0 0 12px ${color}25`,

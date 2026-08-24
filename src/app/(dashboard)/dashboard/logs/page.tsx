@@ -133,7 +133,7 @@ function LogsPageContent() {
             disabled={cleaningHistory}
             className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg
               border border-red-500/30 bg-red-500/10 text-red-700 hover:bg-red-500/15
-              hover:border-red-500/50 dark:text-red-300 dark:hover:bg-red-500/20 transition-all duration-200
+              hover:border-red-500/50 dark:text-red-300 dark:hover:bg-red-500/20 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200
               disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg
@@ -161,7 +161,7 @@ function LogsPageContent() {
               className="flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg
                 bg-[var(--card-bg,#1e1e2e)] border border-[var(--border,#333)]
                 text-[var(--text-secondary,#aaa)] hover:text-[var(--text-primary,#fff)]
-                hover:border-[var(--accent,#7c3aed)] transition-all duration-200
+                hover:border-[var(--accent,#7c3aed)] transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200
                 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <svg

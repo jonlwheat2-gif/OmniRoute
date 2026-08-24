@@ -43,7 +43,7 @@ function MemoryPageContent() {
               type="button"
               data-testid={`tab-${tab}`}
               onClick={() => setTab(tab)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 activeTab === tab
                   ? "bg-bg text-text-main shadow-sm"
                   : "text-text-muted hover:text-text-main"

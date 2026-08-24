@@ -673,7 +673,7 @@ export default function RequestLoggerDetail({
                     className="flex items-center gap-1 px-2.5 py-1 text-[10px] font-medium rounded-lg
                       bg-amber-500/10 border border-amber-500/30 text-amber-600
                       hover:bg-amber-500/15 hover:border-amber-500/50
-                      dark:text-amber-400 transition-all duration-200
+                      dark:text-amber-400 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200
                       disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <svg
@@ -713,7 +713,7 @@ export default function RequestLoggerDetail({
                     className="flex items-center gap-1 px-2.5 py-1 text-[10px] font-medium rounded-lg
                       bg-amber-500/10 border border-amber-500/30 text-amber-600
                       hover:bg-amber-500/15 hover:border-amber-500/50
-                      dark:text-amber-400 transition-all duration-200
+                      dark:text-amber-400 transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200
                       disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <svg

@@ -2117,7 +2117,7 @@ export default function APIPageClient({ machineId }: Readonly<APIPageClientProps
           {/* Sync Progress / Success */}
           {(cloudSyncing || modalSuccess) && (
             <div
-              className={`flex items-center gap-3 p-3 rounded-lg border transition-all duration-300 ${
+              className={`flex items-center gap-3 p-3 rounded-lg border transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 ${
                 modalSuccess
                   ? "bg-green-500/10 border-green-500/30"
                   : "bg-primary/10 border-primary/30"
@@ -2485,4 +2485,3 @@ function EndpointCard({
     </div>
   );
 }
-

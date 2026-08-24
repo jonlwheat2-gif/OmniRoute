@@ -135,7 +135,7 @@ export default function FeatureFlagCard({
     <div
       role="group"
       aria-label={flag.label}
-      className={`rounded-xl border bg-card p-4 shadow-soft transition-all duration-200 hover:-translate-y-px hover:border-black/15 hover:bg-bg-subtle/60 hover:shadow-elevated dark:hover:border-white/15 dark:hover:bg-surface ${cardBorder}`}
+      className={`rounded-xl border bg-card p-4 shadow-soft transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200 hover:-translate-y-px hover:border-black/15 hover:bg-bg-subtle/60 hover:shadow-elevated dark:hover:border-white/15 dark:hover:bg-surface ${cardBorder}`}
     >
       {/* Top row: category badge + toggle/select */}
       <div className="flex items-center justify-between mb-3">
@@ -173,7 +173,7 @@ export default function FeatureFlagCard({
               disabled={saving}
               value={flag.effectiveValue}
               onChange={(e) => onToggle(flag.key, e.target.value)}
-              className="rounded-md border border-border bg-bg-subtle px-2 py-0.5 text-xs text-text-primary focus:outline-none focus:ring-1 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-md border border-border bg-bg-subtle px-2 py-0.5 text-xs text-text-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary disabled:cursor-not-allowed disabled:opacity-50"
             >
               {(flag.enumValues ?? []).map((val) => (
                 <option key={val} value={val} className="bg-card text-text-primary">

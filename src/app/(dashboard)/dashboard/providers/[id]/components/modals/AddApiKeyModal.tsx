@@ -579,7 +579,7 @@ export default function AddApiKeyModal({
             {openRouterPreset.input}
             {freeModelsToggle}
             <textarea
-              className="w-full rounded border border-border bg-background p-2 text-sm font-mono resize-y min-h-[140px] focus:outline-none focus:ring-1 focus:ring-primary"
+              className="w-full rounded border border-border bg-background p-2 text-sm font-mono resize-y min-h-[140px] focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
               placeholder={
                 isCloudflare
                   ? "name1|account-id-1|cf-token-1\nname2|account-id-2|cf-token-2"
@@ -779,48 +779,49 @@ export default function AddApiKeyModal({
                 onImport={(apiKey) => setFormData({ ...formData, apiKey })}
               />
             )}
-            {!isNoAuthWebSessionCredential && (() => {
-              const isCheckDisabled =
-                (!isCompatible && !apiKeyOptional && !formData.apiKey) ||
-                (isGooglePse && !formData.cx.trim()) ||
-                validating ||
-                saving;
-              return (
-                <div className="flex gap-2">
-                  <Input
-                    label={apiCredentialLabel}
-                    type="password"
-                    value={formData.apiKey}
-                    onChange={(e) => setFormData({ ...formData, apiKey: e.target.value })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter" && !isCheckDisabled) {
-                        e.preventDefault();
-                        handleValidate();
-                      }
-                    }}
-                    className="flex-1"
-                    placeholder={apiCredentialPlaceholder}
-                    hint={apiCredentialHint}
-                    autoComplete="off"
-                    spellCheck={false}
-                    autoCapitalize="off"
-                  />
-                  <div className="pt-6">
-                    <Button
-                      onClick={handleValidate}
-                      disabled={isCheckDisabled}
-                      variant="secondary"
-                    >
-                      {validating
-                        ? t("checking")
-                        : webSessionCredential
-                          ? getWebSessionCredentialCheckLabel(t, webSessionCredential)
-                          : t("check")}
-                    </Button>
+            {!isNoAuthWebSessionCredential &&
+              (() => {
+                const isCheckDisabled =
+                  (!isCompatible && !apiKeyOptional && !formData.apiKey) ||
+                  (isGooglePse && !formData.cx.trim()) ||
+                  validating ||
+                  saving;
+                return (
+                  <div className="flex gap-2">
+                    <Input
+                      label={apiCredentialLabel}
+                      type="password"
+                      value={formData.apiKey}
+                      onChange={(e) => setFormData({ ...formData, apiKey: e.target.value })}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && !isCheckDisabled) {
+                          e.preventDefault();
+                          handleValidate();
+                        }
+                      }}
+                      className="flex-1"
+                      placeholder={apiCredentialPlaceholder}
+                      hint={apiCredentialHint}
+                      autoComplete="off"
+                      spellCheck={false}
+                      autoCapitalize="off"
+                    />
+                    <div className="pt-6">
+                      <Button
+                        onClick={handleValidate}
+                        disabled={isCheckDisabled}
+                        variant="secondary"
+                      >
+                        {validating
+                          ? t("checking")
+                          : webSessionCredential
+                            ? getWebSessionCredentialCheckLabel(t, webSessionCredential)
+                            : t("check")}
+                      </Button>
+                    </div>
                   </div>
-                </div>
-              );
-            })()}
+                );
+              })()}
             {isChatGptWebCodex && (
               <div className="space-y-3 rounded-lg border border-border bg-surface/40 p-3">
                 <div>
@@ -1132,7 +1133,7 @@ export default function AddApiKeyModal({
                   <select
                     value={formData.apiRegion}
                     onChange={(e) => setFormData({ ...formData, apiRegion: e.target.value })}
-                    className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:border-primary"
+                    className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
                   >
                     <option value="international">{t("apiRegionInternational")}</option>
                     <option value="china">{t("apiRegionChina")}</option>

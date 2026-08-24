@@ -433,7 +433,7 @@ export default function RadarPage() {
                         onChange={(e) => setKeyInput(e.target.value)}
                         placeholder="omr_..."
                         aria-label={t("keySectionTitle")}
-                        className="flex-1 px-3 py-2 text-sm font-mono rounded-lg border border-border bg-transparent focus:outline-none focus:ring-2 focus:ring-violet-500"
+                        className="flex-1 px-3 py-2 text-sm font-mono rounded-lg border border-border bg-transparent focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-violet-500"
                       />
                       <button
                         type="button"

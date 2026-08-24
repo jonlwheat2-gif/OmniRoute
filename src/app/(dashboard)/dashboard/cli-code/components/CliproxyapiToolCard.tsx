@@ -132,7 +132,18 @@ export default function CliproxyapiToolCard({ isExpanded = false, onToggle = () 
 
   return (
     <Card padding="sm" className="overflow-hidden">
-      <div className="flex items-center justify-between hover:cursor-pointer" onClick={onToggle}>
+      <div
+        className="flex items-center justify-between hover:cursor-pointer"
+        onClick={onToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+      >
         <div className="flex items-center gap-3">
           <div className="size-8 rounded-lg flex items-center justify-center shrink-0 bg-indigo-500/10">
             <span className="material-symbols-outlined text-indigo-500 text-xl">swap_horiz</span>

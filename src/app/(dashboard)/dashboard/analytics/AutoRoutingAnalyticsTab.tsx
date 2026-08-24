@@ -113,7 +113,7 @@ export default function AutoRoutingAnalyticsTab() {
                 </div>
                 <div className="flex-1 h-3 bg-border rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-indigo-500 rounded-full transition-all"
+                    className="h-full bg-indigo-500 rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>

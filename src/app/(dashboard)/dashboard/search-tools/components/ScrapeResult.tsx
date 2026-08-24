@@ -145,7 +145,7 @@ export default function ScrapeResult({ result, latencyMs }: ScrapeResultProps) {
         <textarea
           readOnly
           value={displayContent}
-          className="w-full h-64 bg-surface border border-border rounded-lg p-3 text-xs text-text-main font-mono resize-none focus:outline-none"
+          className="w-full h-64 bg-surface border border-border rounded-lg p-3 text-xs text-text-main font-mono resize-none focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
           data-testid="raw-content"
           aria-label={t("rawScrapedContent")}
         />
@@ -173,7 +173,7 @@ export default function ScrapeResult({ result, latencyMs }: ScrapeResultProps) {
             <textarea
               readOnly
               value={result.content}
-              className="flex-1 bg-bg-alt p-4 text-xs text-text-main font-mono resize-none focus:outline-none rounded-b-xl"
+              className="flex-1 bg-bg-alt p-4 text-xs text-text-main font-mono resize-none focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 rounded-b-xl"
               data-testid="raw-modal-content"
             />
           </div>

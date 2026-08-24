@@ -157,7 +157,7 @@ export default function BackgroundDegradationTab() {
               <button
                 onClick={addMapping}
                 disabled={saving || !newFrom.trim() || !newTo.trim()}
-                className="px-3 py-2 rounded-lg text-sm font-medium bg-sky-500/10 text-sky-500 hover:bg-sky-500/20 disabled:opacity-50 transition-all"
+                className="px-3 py-2 rounded-lg text-sm font-medium bg-sky-500/10 text-sky-500 hover:bg-sky-500/20 disabled:opacity-50 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
               >
                 {t("add")}
               </button>
@@ -176,7 +176,7 @@ export default function BackgroundDegradationTab() {
                     <button
                       onClick={() => removeMapping(from)}
                       disabled={saving}
-                      className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-all"
+                      className="p-1 rounded hover:bg-red-500/10 text-text-muted hover:text-red-400 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                     >
                       <span className="material-symbols-outlined text-[16px]">close</span>
                     </button>
@@ -202,12 +202,12 @@ export default function BackgroundDegradationTab() {
                 placeholder={t("newPattern")}
                 value={newPattern}
                 onChange={(e) => setNewPattern(e.target.value)}
-                className="flex-1 px-3 py-2 rounded-lg text-sm bg-surface border border-border/50 focus:border-sky-500/50 focus:outline-none"
+                className="flex-1 px-3 py-2 rounded-lg text-sm bg-surface border border-border/50 focus:border-sky-500/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
               />
               <button
                 onClick={addPattern}
                 disabled={saving || !newPattern.trim()}
-                className="px-3 py-2 rounded-lg text-sm font-medium bg-sky-500/10 text-sky-500 hover:bg-sky-500/20 disabled:opacity-50 transition-all"
+                className="px-3 py-2 rounded-lg text-sm font-medium bg-sky-500/10 text-sky-500 hover:bg-sky-500/20 disabled:opacity-50 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
               >
                 {t("add")}
               </button>

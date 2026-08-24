@@ -60,12 +60,12 @@ export function OmniSkillsList({
               value={searchTerm}
               onChange={(e) => onSearchTermChange(e.target.value)}
               placeholder={t("filterSkillsPlaceholder")}
-              className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+              className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
             />
             <select
               value={modeFilter}
               onChange={(e) => onModeFilterChange(e.target.value as "all" | "on" | "off" | "auto")}
-              className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+              className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
             >
               <option value="all">{t("allModes")}</option>
               <option value="on">{t("onMode")}</option>

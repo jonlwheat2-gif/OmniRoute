@@ -39,7 +39,13 @@ interface SearchFormProps extends SearchFormExtendedProps {
   providers: SearchProvider[];
 }
 
-export default function SearchForm({ onSearch, loading, onCancel, providers, catalogProviders }: SearchFormProps) {
+export default function SearchForm({
+  onSearch,
+  loading,
+  onCancel,
+  providers,
+  catalogProviders,
+}: SearchFormProps) {
   const t = useTranslations("search");
   const tc = useTranslations("common");
   const [query, setQuery] = useState("");
@@ -105,7 +111,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t("queryPlaceholder")}
-          className="w-full bg-surface border border-border rounded-lg p-2.5 text-sm text-text-main resize-none h-16 focus:outline-none focus:ring-2 focus:ring-primary/30"
+          className="w-full bg-surface border border-border rounded-lg p-2.5 text-sm text-text-main resize-none h-16 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
           onKeyDown={(e) => {
             if (e.key === "Enter" && !e.shiftKey) {
               e.preventDefault();
@@ -171,10 +177,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
                       : "● missing"}
                 </span>
                 {catalogInfo.status === "missing" && (
-                  <Link
-                    href={catalogInfo.configureHref}
-                    className="text-accent hover:underline"
-                  >
+                  <Link href={catalogInfo.configureHref} className="text-accent hover:underline">
                     Configure →
                   </Link>
                 )}
@@ -206,7 +209,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
             onChange={(e) => setMaxResults(parseInt(e.target.value) || 5)}
             min={1}
             max={100}
-            className="w-full bg-surface border border-border rounded-lg px-2.5 py-1.5 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/30"
+            className="w-full bg-surface border border-border rounded-lg px-2.5 py-1.5 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
           />
         </div>
       </div>
@@ -231,7 +234,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
                   value={country}
                   onChange={(e) => setCountry(e.target.value)}
                   placeholder={t("optionAny")}
-                  className="w-full bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none"
+                  className="w-full bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
                 />
               </div>
               <div className="flex-1">
@@ -240,7 +243,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
                   placeholder={t("optionAny")}
-                  className="w-full bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none"
+                  className="w-full bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
                 />
               </div>
             </div>
@@ -268,7 +271,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
                   value={domainInput}
                   onChange={(e) => setDomainInput(e.target.value)}
                   placeholder={t("domainPlaceholder")}
-                  className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none"
+                  className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
                   onKeyDown={(e) => e.key === "Enter" && addDomain("include")}
                 />
                 <button onClick={() => addDomain("include")} className="text-primary text-lg px-1">
@@ -303,7 +306,7 @@ export default function SearchForm({ onSearch, loading, onCancel, providers, cat
                   value={excludeDomainInput}
                   onChange={(e) => setExcludeDomainInput(e.target.value)}
                   placeholder={t("domainPlaceholder")}
-                  className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none"
+                  className="flex-1 bg-surface border border-border rounded-md px-2 py-1.5 text-xs text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
                   onKeyDown={(e) => e.key === "Enter" && addDomain("exclude")}
                 />
                 <button onClick={() => addDomain("exclude")} className="text-primary text-lg px-1">

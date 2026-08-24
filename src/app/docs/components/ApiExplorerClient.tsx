@@ -234,7 +234,7 @@ export function ApiExplorerClient() {
                   type="text"
                   value={baseUrl}
                   onChange={(e) => setBaseUrl(e.target.value)}
-                  className="w-full px-3 py-2 text-sm bg-bg-subtle border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full px-3 py-2 text-sm bg-bg-subtle border border-border rounded-lg focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
                 />
               </div>
               <div>
@@ -244,7 +244,7 @@ export function ApiExplorerClient() {
                   value={apiKey}
                   onChange={(e) => setApiKey(e.target.value)}
                   placeholder="sk-..."
-                  className="w-full px-3 py-2 text-sm bg-bg-subtle border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full px-3 py-2 text-sm bg-bg-subtle border border-border rounded-lg focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
                 />
               </div>
             </div>
@@ -256,7 +256,7 @@ export function ApiExplorerClient() {
                   value={requestBody}
                   onChange={(e) => setRequestBody(e.target.value)}
                   rows={8}
-                  className="w-full px-3 py-2 text-sm font-mono bg-bg-subtle border border-border rounded-lg focus:outline-none focus:ring-1 focus:ring-primary"
+                  className="w-full px-3 py-2 text-sm font-mono bg-bg-subtle border border-border rounded-lg focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
                 />
               </div>
             )}

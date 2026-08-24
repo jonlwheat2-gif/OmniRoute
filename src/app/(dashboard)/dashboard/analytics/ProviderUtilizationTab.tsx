@@ -340,12 +340,8 @@ export default function ProviderUtilizationTab() {
                           <ProviderIcon providerId={providerPart} size={22} />
                         </div>
                         <div>
-                          <p className="text-sm font-semibold text-text-main">
-                            {cardTitle}
-                          </p>
-                          <p className="text-xs text-text-muted">
-                            {cardSubtitle}
-                          </p>
+                          <p className="text-sm font-semibold text-text-main">{cardTitle}</p>
+                          <p className="text-xs text-text-muted">{cardSubtitle}</p>
                         </div>
                       </div>
                       <span
@@ -383,7 +379,7 @@ export default function ProviderUtilizationTab() {
                     <div className="flex flex-col gap-2">
                       <div className="h-2 overflow-hidden rounded-full bg-black/5 dark:bg-white/5">
                         <div
-                          className={`h-full rounded-full transition-all ${
+                          className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                             point.isExhausted ? "bg-error" : isLow ? "bg-warning" : "bg-primary"
                           }`}
                           style={{ width: `${Math.max(point.remainingPct, 0)}%` }}

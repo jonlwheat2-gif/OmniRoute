@@ -247,7 +247,7 @@ export function AgentSkillsPageClient(): JSX.Element {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder={t("filters.searchPlaceholder")}
-            className="w-full rounded-lg border border-border bg-bg py-2 pl-9 pr-3 text-sm text-text-main placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary/40"
+            className="w-full rounded-lg border border-border bg-bg py-2 pl-9 pr-3 text-sm text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
             data-testid="search-input"
           />
         </div>

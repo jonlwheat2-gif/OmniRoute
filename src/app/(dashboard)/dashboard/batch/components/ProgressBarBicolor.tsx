@@ -28,8 +28,14 @@ export default function ProgressBarBicolor({
         </div>
       )}
       <div className="h-1.5 rounded-full bg-[var(--color-bg-alt)] overflow-hidden flex">
-        <div className="h-full bg-emerald-500 transition-all" style={{ width: `${donePct}%` }} />
-        <div className="h-full bg-red-500 transition-all" style={{ width: `${failedPct}%` }} />
+        <div
+          className="h-full bg-emerald-500 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
+          style={{ width: `${donePct}%` }}
+        />
+        <div
+          className="h-full bg-red-500 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
+          style={{ width: `${failedPct}%` }}
+        />
       </div>
     </div>
   );

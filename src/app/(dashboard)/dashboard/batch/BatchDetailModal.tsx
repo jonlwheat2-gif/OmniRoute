@@ -291,11 +291,11 @@ export default function BatchDetailModal({
               </div>
               <div className="h-2 rounded-full bg-[var(--color-bg-alt)] overflow-hidden flex">
                 <div
-                  className="h-full bg-emerald-500 transition-all"
+                  className="h-full bg-emerald-500 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                   style={{ width: `${donePct}%` }}
                 />
                 <div
-                  className="h-full bg-red-500 transition-all"
+                  className="h-full bg-red-500 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                   style={{ width: `${failedPct}%` }}
                 />
               </div>

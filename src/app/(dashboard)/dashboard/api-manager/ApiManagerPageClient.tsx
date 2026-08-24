@@ -1164,7 +1164,7 @@ export default function ApiManagerPageClient() {
                       </>
                     ) : (
                       <span
-                        className="p-1 text-text-muted/40 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all shrink-0 cursor-help"
+                        className="p-1 text-text-muted/40 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-[color,background-color,border-color,box-shadow,transform,opacity] shrink-0 cursor-help"
                         title={t("keyOnlyAvailableAtCreation")}
                       >
                         <span className="material-symbols-outlined text-[14px]">lock</span>
@@ -1348,7 +1348,7 @@ export default function ApiManagerPageClient() {
                   <div className="col-span-2 flex items-center justify-end gap-1">
                     <a
                       href={`/dashboard/costs?range=all&apiKeyIds=${encodeURIComponent(key.id)}&groupBy=model`}
-                      className="p-2 hover:bg-emerald-500/10 rounded text-text-muted hover:text-emerald-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
+                      className="p-2 hover:bg-emerald-500/10 rounded text-text-muted hover:text-emerald-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                       title={`View costs for ${key.name}`}
                       aria-label={`View costs for ${key.name}`}
                     >
@@ -1356,21 +1356,21 @@ export default function ApiManagerPageClient() {
                     </a>
                     <button
                       onClick={() => handleRegenerateKey(key.id)}
-                      className="p-2 hover:bg-amber-500/10 rounded text-text-muted hover:text-amber-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
+                      className="p-2 hover:bg-amber-500/10 rounded text-text-muted hover:text-amber-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                       title={t("regenerateKey")}
                     >
                       <span className="material-symbols-outlined text-[18px]">refresh</span>
                     </button>
                     <button
                       onClick={() => handleOpenPermissions(key)}
-                      className="p-2 hover:bg-primary/10 rounded text-text-muted hover:text-primary opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
+                      className="p-2 hover:bg-primary/10 rounded text-text-muted hover:text-primary opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                       title={t("editPermissions")}
                     >
                       <span className="material-symbols-outlined text-[18px]">tune</span>
                     </button>
                     <button
                       onClick={() => handleDeleteKey(key.id)}
-                      className="p-2 hover:bg-red-500/10 rounded text-red-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-all"
+                      className="p-2 hover:bg-red-500/10 rounded text-red-500 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                       title={t("deleteKey")}
                     >
                       <span className="material-symbols-outlined text-[18px]">delete</span>
@@ -2129,7 +2129,7 @@ const PermissionsModal = memo(function PermissionsModal({
         <div className="flex gap-2 p-1 bg-surface rounded-lg">
           <button
             onClick={handleSelectAll}
-            className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+            className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               allowAll
                 ? "bg-primary text-white"
                 : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2140,7 +2140,7 @@ const PermissionsModal = memo(function PermissionsModal({
           </button>
           <button
             onClick={handleRestrictMode}
-            className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-all ${
+            className={`flex-1 flex items-center justify-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               !allowAll
                 ? "bg-primary text-white"
                 : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2389,7 +2389,7 @@ const PermissionsModal = memo(function PermissionsModal({
                               : [...prev, dayIdx].sort((a, b) => a - b)
                           )
                         }
-                        className={`px-2 py-1 text-[11px] font-medium rounded transition-all ${
+                        className={`px-2 py-1 text-[11px] font-medium rounded transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                           selected
                             ? "bg-primary text-white"
                             : "bg-surface border border-border text-text-muted hover:border-primary/50"
@@ -2478,7 +2478,7 @@ const PermissionsModal = memo(function PermissionsModal({
             <button
               type="button"
               onClick={() => setStreamDefaultMode("legacy")}
-              className={`inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-semibold transition-all ${
+              className={`inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 streamDefaultMode === "legacy"
                   ? "bg-primary text-white"
                   : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2490,7 +2490,7 @@ const PermissionsModal = memo(function PermissionsModal({
             <button
               type="button"
               onClick={() => setStreamDefaultMode("json")}
-              className={`inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-semibold transition-all ${
+              className={`inline-flex flex-1 sm:flex-none items-center justify-center gap-1.5 px-2.5 py-1.5 rounded text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 streamDefaultMode === "json"
                   ? "bg-primary text-white"
                   : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2877,7 +2877,7 @@ const PermissionsModal = memo(function PermissionsModal({
                     setAllowAllConnections(true);
                     setSelectedConnections([]);
                   }}
-                  className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                  className={`px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                     allowAllConnections
                       ? "bg-primary text-white"
                       : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2887,7 +2887,7 @@ const PermissionsModal = memo(function PermissionsModal({
                 </button>
                 <button
                   onClick={() => setAllowAllConnections(false)}
-                  className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                  className={`px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                     !allowAllConnections
                       ? "bg-primary text-white"
                       : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2924,7 +2924,7 @@ const PermissionsModal = memo(function PermissionsModal({
                           <button
                             key={conn.id}
                             onClick={() => handleToggleConnection(conn.id)}
-                            className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-left text-xs transition-all ${
+                            className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-left text-xs transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                               isSelected
                                 ? "bg-primary/10 text-primary"
                                 : "text-text-muted hover:bg-surface/50 hover:text-text-main"
@@ -2970,7 +2970,7 @@ const PermissionsModal = memo(function PermissionsModal({
                     setAllowAllCombos(true);
                     setSelectedCombos([]);
                   }}
-                  className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                  className={`px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                     allowAllCombos
                       ? "bg-primary text-white"
                       : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -2980,7 +2980,7 @@ const PermissionsModal = memo(function PermissionsModal({
                 </button>
                 <button
                   onClick={() => setAllowAllCombos(false)}
-                  className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                  className={`px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                     !allowAllCombos
                       ? "bg-primary text-white"
                       : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -3006,7 +3006,7 @@ const PermissionsModal = memo(function PermissionsModal({
                       <button
                         key={combo.id || combo.name}
                         onClick={() => handleToggleCombo(combo.name)}
-                        className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-left text-xs transition-all ${
+                        className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-left text-xs transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                           isSelected
                             ? "bg-primary/10 text-primary"
                             : "text-text-muted hover:bg-surface/50 hover:text-text-main"
@@ -3056,7 +3056,7 @@ const PermissionsModal = memo(function PermissionsModal({
                   setAllowAllEndpoints(true);
                   setSelectedEndpoints([]);
                 }}
-                className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                className={`px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                   allowAllEndpoints
                     ? "bg-primary text-white"
                     : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -3066,7 +3066,7 @@ const PermissionsModal = memo(function PermissionsModal({
               </button>
               <button
                 onClick={() => setAllowAllEndpoints(false)}
-                className={`px-2 py-1 rounded text-xs font-medium transition-all ${
+                className={`px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                   !allowAllEndpoints
                     ? "bg-primary text-white"
                     : "text-text-muted hover:bg-black/5 dark:hover:bg-white/5"
@@ -3084,7 +3084,7 @@ const PermissionsModal = memo(function PermissionsModal({
                   <button
                     key={cat.id}
                     onClick={() => handleToggleEndpoint(cat.id)}
-                    className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-left text-xs transition-all ${
+                    className={`w-full flex items-center gap-2 px-2 py-1.5 rounded text-left text-xs transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                       isSelected
                         ? "bg-primary/10 text-primary"
                         : "text-text-muted hover:bg-surface/50 hover:text-text-main"

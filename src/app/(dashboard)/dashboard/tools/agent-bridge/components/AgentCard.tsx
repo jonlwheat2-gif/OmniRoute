@@ -115,7 +115,7 @@ export function AgentCard({
   return (
     <>
       <div
-        className="rounded-xl border border-border/50 bg-card overflow-hidden transition-all hover:border-border/80"
+        className="rounded-xl border border-border/50 bg-card overflow-hidden transition-[color,background-color,border-color,box-shadow,transform,opacity] hover:border-border/80"
         style={{ borderLeftWidth: 3, borderLeftColor: target.color }}
       >
         {/* Card header */}

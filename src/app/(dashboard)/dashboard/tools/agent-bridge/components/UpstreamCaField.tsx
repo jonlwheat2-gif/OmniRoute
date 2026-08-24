@@ -48,7 +48,7 @@ export function UpstreamCaField({ value, onChange, onSave }: UpstreamCaFieldProp
       <div className="flex gap-2">
         <input
           type="text"
-          className="flex-1 rounded-lg border border-border/50 bg-card px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50"
+          className="flex-1 rounded-lg border border-border/50 bg-card px-3 py-2 text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/50"
           placeholder={t("upstreamCaPlaceholder") || "/etc/ssl/certs/corp-ca.pem"}
           value={value}
           onChange={(e) => onChange(e.target.value)}

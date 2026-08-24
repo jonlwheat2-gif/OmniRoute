@@ -25,7 +25,7 @@ export function TelegramConfigForm({ value, onChange, t, isEditing }: TelegramCo
           onChange={(e) => onChange({ ...value, botToken: e.target.value })}
           placeholder={isEditing ? t("secretEditPlaceholder") : t("telegram.botTokenPlaceholder")}
           autoComplete="new-password"
-          className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+          className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
         />
         <p className="mt-1 text-xs text-text-muted">{t("telegram.botTokenHint")}</p>
       </div>
@@ -37,7 +37,7 @@ export function TelegramConfigForm({ value, onChange, t, isEditing }: TelegramCo
           value={value.chatId}
           onChange={(e) => onChange({ ...value, chatId: e.target.value })}
           placeholder={t("telegram.chatIdPlaceholder")}
-          className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+          className="mt-1 w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
         />
         <p className="mt-1 text-xs text-text-muted">{t("telegram.chatIdHint")}</p>
       </div>

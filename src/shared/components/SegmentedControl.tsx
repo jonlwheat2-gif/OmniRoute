@@ -49,12 +49,12 @@ export default function SegmentedControl({
           tabIndex={value === option.value ? 0 : -1}
           onClick={() => onChange(option.value)}
           className={cn(
-            "px-4 rounded-md font-medium transition-all",
+            "px-4 rounded-md font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity]",
             sizes[size],
             value === option.value
               ? "bg-white dark:bg-white/10 text-text-main shadow-sm"
               : "text-text-muted hover:text-text-main",
-            option.icon && "flex items-center",
+            option.icon && "flex items-center"
           )}
         >
           {option.icon && (

@@ -814,7 +814,7 @@ export default function HomePageClient({ machineId }: HomePageClientProps) {
                 .map((s) => (
                   <div
                     key={s.step}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-all ${
+                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                       s.status === "running"
                         ? "border-primary/40 bg-primary/5"
                         : s.status === "done"

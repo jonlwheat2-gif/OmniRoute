@@ -596,7 +596,7 @@ export default function PricingTab() {
               placeholder={t("searchProvidersModels")}
               value={searchQuery}
               onChange={(event) => setSearchQuery(event.target.value)}
-              className="w-full pl-10 pr-3 py-2 bg-bg-base border border-border rounded-lg focus:outline-none focus:border-primary text-sm"
+              className="w-full pl-10 pr-3 py-2 bg-bg-base border border-border rounded-lg focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary text-sm"
             />
           </div>
 
@@ -841,7 +841,7 @@ function ProviderSection({
               <>
                 <div className="w-20 h-1.5 bg-bg-subtle rounded-full overflow-hidden">
                   <div
-                    className={`h-full ${barColor} rounded-full transition-all`}
+                    className={`h-full ${barColor} rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity]`}
                     style={{ width: `${pct}%` }}
                   />
                 </div>
@@ -963,7 +963,7 @@ function ModelRow({
             min="0"
             value={pricing?.[field] || 0}
             onChange={(event) => onPricingChange(field, event.target.value)}
-            className="w-full px-2 py-1 text-right text-xs bg-transparent border border-transparent hover:border-border focus:border-primary focus:bg-bg-base rounded transition-colors outline-none tabular-nums"
+            className="w-full px-2 py-1 text-right text-xs bg-transparent border border-transparent hover:border-border focus:border-primary focus:bg-bg-base rounded transition-colors outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 tabular-nums"
           />
         </td>
       ))}

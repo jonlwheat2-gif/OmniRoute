@@ -161,7 +161,7 @@ function LinearMeter({
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-surface/60">
         <div
-          className={`h-full rounded-full transition-all duration-500 ${colorClass}`}
+          className={`h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-500 ${colorClass}`}
           style={{ width: `${Math.min(value, 100)}%` }}
         />
       </div>
@@ -448,7 +448,7 @@ export default function CachePage() {
           type="button"
           onClick={() => setActiveView("prompt")}
           aria-pressed={activeView === "prompt"}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
             activeView === "prompt"
               ? "bg-white dark:bg-white/10 text-text-main shadow-sm"
               : "text-text-muted hover:text-text-main"
@@ -460,7 +460,7 @@ export default function CachePage() {
           type="button"
           onClick={() => setActiveView("semantic")}
           aria-pressed={activeView === "semantic"}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
             activeView === "semantic"
               ? "bg-white dark:bg-white/10 text-text-main shadow-sm"
               : "text-text-muted hover:text-text-main"
@@ -472,7 +472,7 @@ export default function CachePage() {
           type="button"
           onClick={() => setActiveView("reasoning")}
           aria-pressed={activeView === "reasoning"}
-          className={`px-4 py-2 rounded-md text-sm font-medium transition-all ${
+          className={`px-4 py-2 rounded-md text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
             activeView === "reasoning"
               ? "bg-white dark:bg-white/10 text-text-main shadow-sm"
               : "text-text-muted hover:text-text-main"

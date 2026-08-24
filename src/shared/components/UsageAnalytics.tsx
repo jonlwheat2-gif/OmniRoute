@@ -218,7 +218,7 @@ export default function UsageAnalytics() {
               <button
                 key={r.value}
                 onClick={() => handleRangeSelect(r.value)}
-                className={`px-3 py-1 rounded-md text-xs font-semibold transition-all ${
+                className={`px-3 py-1 rounded-md text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                   range === r.value
                     ? "bg-primary text-white shadow-sm"
                     : "text-text-muted hover:text-text-main hover:bg-black/5 dark:hover:bg-white/5"
@@ -229,7 +229,7 @@ export default function UsageAnalytics() {
             ))}
             <button
               onClick={() => handleRangeSelect("custom")}
-              className={`px-3 py-1 rounded-md text-xs font-semibold transition-all flex items-center gap-1 ${
+              className={`px-3 py-1 rounded-md text-xs font-semibold transition-[color,background-color,border-color,box-shadow,transform,opacity] flex items-center gap-1 ${
                 range === "custom"
                   ? "bg-primary text-white shadow-sm"
                   : "text-text-muted hover:text-text-main hover:bg-black/5 dark:hover:bg-white/5"

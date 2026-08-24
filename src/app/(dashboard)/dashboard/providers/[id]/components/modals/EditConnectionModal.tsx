@@ -1354,7 +1354,7 @@ export default function EditConnectionModal({
               <select
                 value={formData.apiRegion}
                 onChange={(e) => setFormData({ ...formData, apiRegion: e.target.value })}
-                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus:border-primary"
+                className="w-full px-3 py-2 text-sm border border-border rounded-lg bg-background focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
               >
                 <option value="international">{t("apiRegionInternational")}</option>
                 <option value="china">{t("apiRegionChina")}</option>
@@ -1503,7 +1503,7 @@ export default function EditConnectionModal({
                 value={newExtraKey}
                 onChange={(e) => setNewExtraKey(e.target.value)}
                 placeholder={t("addAnotherApiKey")}
-                className="flex-1 text-sm bg-sidebar/50 border border-border rounded px-3 py-2 text-text-main placeholder:text-text-muted focus:ring-1 focus:ring-primary outline-none"
+                className="flex-1 text-sm bg-sidebar/50 border border-border rounded px-3 py-2 text-text-main placeholder:text-text-muted focus:ring-1 focus:ring-primary outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && newExtraKey.trim()) {
                     setExtraApiKeys([...extraApiKeys, newExtraKey.trim()]);

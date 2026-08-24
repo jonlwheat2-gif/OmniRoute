@@ -405,9 +405,11 @@ export function LlmChatCard({
               value={model || firstModel}
               onChange={(e) => setModel(e.target.value)}
               disabled={loading}
-              className="min-w-0 flex-1 rounded-md border border-border bg-bg-subtle text-xs px-2 py-1 text-text-main focus:outline-none focus:ring-1 focus:ring-primary disabled:opacity-60"
+              className="min-w-0 flex-1 rounded-md border border-border bg-bg-subtle text-xs px-2 py-1 text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary disabled:opacity-60"
             >
-              {modelOptions.length === 0 && !loading && <option value="">{initialModel || "—"}</option>}
+              {modelOptions.length === 0 && !loading && (
+                <option value="">{initialModel || "—"}</option>
+              )}
               {loading && <option value="">{t("loading") ?? "Loading…"}</option>}
               {modelOptions.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -437,7 +439,7 @@ export function LlmChatCard({
               <select
                 value={selectedKey}
                 onChange={(e) => setSelectedKey(e.target.value)}
-                className="rounded-md border border-border bg-bg-subtle text-xs px-2 py-1 text-text-main focus:outline-none focus:ring-1 focus:ring-primary"
+                className="rounded-md border border-border bg-bg-subtle text-xs px-2 py-1 text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
               >
                 <option value="">{t("defaultKey")}</option>
                 {keys.map((k) => (
@@ -558,7 +560,7 @@ export function LlmChatCard({
           onKeyDown={handleKeyDown}
           rows={1}
           placeholder={`${t("send")}…`}
-          className="flex-1 bg-transparent text-sm py-1.5 text-text-main placeholder:text-text-muted focus:outline-none resize-none max-h-32"
+          className="flex-1 bg-transparent text-sm py-1.5 text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 resize-none max-h-32"
         />
         {streaming ? (
           <button

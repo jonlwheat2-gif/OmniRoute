@@ -38,7 +38,7 @@ const linesToArray = (text: string): string[] =>
 const arrayToLines = (arr?: string[]): string => (arr ?? []).join("\n");
 
 const INPUT_CLASS =
-  "w-full text-xs py-1.5 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none";
+  "w-full text-xs py-1.5 px-2 rounded border border-black/10 dark:border-white/10 bg-transparent focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50";
 const LABEL_CLASS = "text-[11px] font-medium text-text-muted block mb-0.5";
 
 const CONDITIONS: JsonPathCondition[] = ["exists", "nonEmpty", "equals", "notEquals"];
@@ -134,7 +134,11 @@ export function ResponseValidationEditor({
         </label>
         <div className="flex flex-col gap-1.5">
           {predicates.map((predicate, index) => (
-            <div key={index} className="flex flex-wrap items-center gap-1.5" data-testid="rv-predicate-row">
+            <div
+              key={index}
+              className="flex flex-wrap items-center gap-1.5"
+              data-testid="rv-predicate-row"
+            >
               <input
                 type="text"
                 value={predicate.path}

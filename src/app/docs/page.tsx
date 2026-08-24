@@ -94,7 +94,7 @@ export default async function DocsHomePage() {
             key={link.href}
             href={link.href}
             className="flex flex-col items-center text-center p-6 bg-fd-card border border-fd-border rounded-xl
-              hover:border-fd-primary hover:bg-fd-accent transition-all group"
+              hover:border-fd-primary hover:bg-fd-accent transition-[color,background-color,border-color,box-shadow,transform,opacity] group"
           >
             <span className="material-symbols-outlined text-3xl text-fd-primary mb-3">
               {link.icon}

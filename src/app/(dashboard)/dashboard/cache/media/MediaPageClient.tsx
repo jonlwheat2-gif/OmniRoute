@@ -700,7 +700,7 @@ export default function MediaPageClient() {
             <button
               key={key}
               onClick={() => switchTab(key)}
-              className={`flex-1 min-w-[110px] flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${
+              className={`flex-1 min-w-[110px] flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 isActive
                   ? "bg-primary/10 text-primary shadow-sm border border-primary/20"
                   : "text-text-muted hover:text-text-main hover:bg-surface/80"
@@ -723,7 +723,7 @@ export default function MediaPageClient() {
             <select
               value={selectedProvider}
               onChange={(e) => handleProviderChange(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
             >
               {currentProviders.map((p) => (
                 <option key={p.id} value={p.id}>
@@ -739,7 +739,7 @@ export default function MediaPageClient() {
             <select
               value={selectedModel}
               onChange={(e) => setSelectedModel(e.target.value)}
-              className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+              className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
             >
               {currentModels.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -776,7 +776,7 @@ export default function MediaPageClient() {
               <select
                 value={speechVoice}
                 onChange={(e) => setSpeechVoice(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
               >
                 {voiceList.map((v) => (
                   <option key={v.id} value={v.id}>
@@ -790,7 +790,7 @@ export default function MediaPageClient() {
               <select
                 value={speechFormat}
                 onChange={(e) => setSpeechFormat(e.target.value)}
-                className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30"
+                className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30"
               >
                 {currentSpeechFormats.map((f) => (
                   <option key={f} value={f}>
@@ -824,7 +824,7 @@ export default function MediaPageClient() {
                 }
                 setAudioFile(file);
               }}
-              className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:text-sm"
+              className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:text-sm"
             />
             {fileSizeError && (
               <p className="text-xs text-red-400 mt-1 flex items-center gap-1">
@@ -851,7 +851,7 @@ export default function MediaPageClient() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImageInputFile(e.target.files?.[0] ?? null)}
-                    className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:text-sm"
+                    className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:text-sm"
                   />
                   {imageInputFile && (
                     <p className="text-xs text-text-muted mt-1">
@@ -868,7 +868,7 @@ export default function MediaPageClient() {
                     type="file"
                     accept="image/*"
                     onChange={(e) => setImageMaskFile(e.target.files?.[0] ?? null)}
-                    className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:text-sm"
+                    className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30 file:mr-3 file:py-1 file:px-3 file:rounded file:border-0 file:bg-primary/10 file:text-primary file:text-sm"
                   />
                   {imageMaskFile && (
                     <p className="text-xs text-text-muted mt-1">
@@ -900,7 +900,7 @@ export default function MediaPageClient() {
                       ? t(config.placeholderKey)
                       : undefined
                 }
-                className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
+                className="w-full px-3 py-2 rounded-lg bg-surface border border-black/10 dark:border-white/10 text-text-main text-sm placeholder:text-text-muted/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/30 resize-none"
               />
             </div>
           </>
@@ -910,7 +910,7 @@ export default function MediaPageClient() {
         <button
           onClick={handleGenerate}
           disabled={isGenerateDisabled}
-          className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-medium transition-all bg-gradient-to-r ${config.color} ${
+          className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-white font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] bg-gradient-to-r ${config.color} ${
             isGenerateDisabled
               ? "opacity-50 cursor-not-allowed"
               : "hover:opacity-90 hover:shadow-lg"

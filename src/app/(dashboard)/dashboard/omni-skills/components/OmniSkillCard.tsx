@@ -44,7 +44,7 @@ export function OmniSkillCard({ skill, selected, onClick }: OmniSkillCardProps):
       role="button"
       onClick={onClick}
       aria-pressed={selected}
-      className={`w-full text-left rounded-lg border p-3 transition-all focus:outline-none focus:ring-2 focus:ring-violet-500/50 ${
+      className={`w-full text-left rounded-lg border p-3 transition-[color,background-color,border-color,box-shadow,transform,opacity] focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-violet-500/50 ${
         selected
           ? "border-violet-500 bg-violet-500/5"
           : "border-border bg-surface/30 hover:border-border/80 hover:bg-surface/50"
@@ -87,7 +87,9 @@ export function OmniSkillCard({ skill, selected, onClick }: OmniSkillCardProps):
         <div className="flex items-center gap-1.5 shrink-0">
           <span className={`inline-block size-2 rounded-full ${modeDot}`} />
           <span className={`text-[10px] font-medium ${modeColor}`}>
-            {t(effectiveMode === "on" ? "onMode" : effectiveMode === "auto" ? "autoMode" : "offMode")}
+            {t(
+              effectiveMode === "on" ? "onMode" : effectiveMode === "auto" ? "autoMode" : "offMode"
+            )}
           </span>
         </div>
       </div>

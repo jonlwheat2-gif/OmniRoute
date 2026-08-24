@@ -52,8 +52,7 @@ export default function DestinationStep({
   const selectedEndpoint = destination?.endpoint ?? "/v1/chat/completions";
   const selectedModel = destination?.model ?? "";
 
-  const providerModels =
-    batchProviders.find((p) => p.id === selectedProvider)?.models ?? [];
+  const providerModels = batchProviders.find((p) => p.id === selectedProvider)?.models ?? [];
 
   function handleProviderChange(providerId: string) {
     if (!providerId) {
@@ -94,7 +93,7 @@ export default function DestinationStep({
 
   const selectClass =
     "w-full rounded-lg border border-[var(--color-border)] bg-[var(--color-bg-alt)] " +
-    "px-3 py-2 text-sm text-[var(--color-text)] focus:outline-none " +
+    "px-3 py-2 text-sm text-[var(--color-text)] focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 " +
     "focus:ring-1 focus:ring-[var(--color-accent)] disabled:opacity-50";
 
   return (

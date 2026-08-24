@@ -1316,7 +1316,7 @@ export default function EvalsTab() {
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <label
-              className={`inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-lg border border-black/10 bg-white px-4 text-sm font-medium text-text-main shadow-sm transition-all duration-200 hover:bg-black/5 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/5 ${
+              className={`inline-flex h-9 cursor-pointer items-center justify-center gap-2 rounded-lg border border-black/10 bg-white px-4 text-sm font-medium text-text-main shadow-sm transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-200 hover:bg-black/5 dark:border-white/10 dark:bg-white/10 dark:hover:bg-white/5 ${
                 running !== null || runningAll ? "pointer-events-none opacity-50" : ""
               }`}
             >
@@ -1371,7 +1371,7 @@ export default function EvalsTab() {
             </div>
             <div className="h-2 overflow-hidden rounded-full bg-black/10 dark:bg-white/10">
               <div
-                className="h-full rounded-full bg-primary transition-all duration-300"
+                className="h-full rounded-full bg-primary transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300"
                 style={{ width: `${runAllPercent}%` }}
               />
             </div>
@@ -1846,7 +1846,11 @@ export default function EvalsTab() {
   );
 }
 
-const HeroSection = memo(function HeroSection({ t }: { t: (key: string, values?: Record<string, unknown>) => string }) {
+const HeroSection = memo(function HeroSection({
+  t,
+}: {
+  t: (key: string, values?: Record<string, unknown>) => string;
+}) {
   return (
     <Card className="p-0 overflow-hidden">
       <div
@@ -2102,7 +2106,7 @@ function SuiteBuilderModal({
                     }
                     rows={3}
                     placeholder={t("suiteBuilderCaseSystemPromptPlaceholder")}
-                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-text-main outline-none focus:border-primary"
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-text-main outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
                   />
                 </label>
                 <label className="flex flex-col gap-1">
@@ -2116,7 +2120,7 @@ function SuiteBuilderModal({
                     }
                     rows={4}
                     placeholder={t("suiteBuilderCaseUserPromptPlaceholder")}
-                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-text-main outline-none focus:border-primary"
+                    className="w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-text-main outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
                   />
                 </label>
                 <Input

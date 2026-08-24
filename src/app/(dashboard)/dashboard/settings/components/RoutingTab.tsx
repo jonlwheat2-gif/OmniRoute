@@ -479,7 +479,7 @@ function OpEditor({
               value={op.text || ""}
               disabled={disabled}
               onChange={(e) => updateField("text", e.target.value)}
-              className="w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-text-main font-mono focus:ring-1 focus:ring-primary/30 focus:border-primary/50 focus:outline-none transition-all shadow-inner disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full rounded-md border border-black/10 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-2 text-sm text-text-main font-mono focus:ring-1 focus:ring-primary/30 focus:border-primary/50 focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 transition-[color,background-color,border-color,box-shadow,transform,opacity] shadow-inner disabled:opacity-50 disabled:cursor-not-allowed"
             />
             <p className="text-xs text-text-muted">{t(FIELD_HINTS.blockText)}</p>
           </div>
@@ -960,7 +960,7 @@ export default function RoutingTab() {
                 key={option.value}
                 onClick={() => updateSetting({ autoRoutingDefaultVariant: option.value })}
                 disabled={loading}
-                className={`p-2 rounded-lg border text-left transition-all ${
+                className={`p-2 rounded-lg border text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                   settings.autoRoutingDefaultVariant === option.value
                     ? "border-indigo-500/50 bg-indigo-500/5 ring-1 ring-indigo-500/20"
                     : "border-border/50 hover:border-border hover:bg-surface/30"
@@ -1303,7 +1303,7 @@ export default function RoutingTab() {
                   disabled={loading}
                   aria-pressed={checked}
                   title={titleText}
-                  className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-all ${
+                  className={`flex items-start gap-3 rounded-lg border p-3 text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                     checked
                       ? "border-indigo-500/50 bg-indigo-500/5 ring-1 ring-indigo-500/20"
                       : "border-border/50 hover:border-border hover:bg-surface/30"
@@ -1365,7 +1365,7 @@ export default function RoutingTab() {
               key={option.value}
               onClick={() => updateSetting({ alwaysPreserveClientCache: option.value })}
               disabled={loading}
-              className={`w-full flex flex-col items-start gap-1 p-3 rounded-lg border text-left transition-all ${
+              className={`w-full flex flex-col items-start gap-1 p-3 rounded-lg border text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 settings.alwaysPreserveClientCache === option.value
                   ? "border-green-500/50 bg-green-500/5 ring-1 ring-green-500/20"
                   : "border-border/50 hover:border-border hover:bg-surface/30"
@@ -1430,7 +1430,7 @@ export default function RoutingTab() {
               key={option.value}
               onClick={() => updateSetting({ antigravitySignatureCacheMode: option.value })}
               disabled={loading}
-              className={`w-full flex flex-col items-start gap-1 p-3 rounded-lg border text-left transition-all ${
+              className={`w-full flex flex-col items-start gap-1 p-3 rounded-lg border text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 settings.antigravitySignatureCacheMode === option.value
                   ? "border-sky-500/50 bg-sky-500/5 ring-1 ring-sky-500/20"
                   : "border-border/50 hover:border-border hover:bg-surface/30"

@@ -123,7 +123,7 @@ export default function QuotaTable({ quotas = [] }) {
                       }`}
                     >
                       <div
-                        className={`h-full transition-all duration-300 ${colors.bg}`}
+                        className={`h-full transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300 ${colors.bg}`}
                         style={{ width: `${Math.min(remaining, 100)}%` }}
                       />
                     </div>

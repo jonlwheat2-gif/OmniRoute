@@ -70,7 +70,7 @@ export default function FlowAnimation() {
               key={tool.id}
               className="flex items-center gap-3 opacity-70 hover:opacity-100 transition-opacity group"
             >
-              <div className="w-16 h-16 rounded-2xl bg-[#111520] border border-[#2D333B] flex items-center justify-center overflow-hidden p-2 hover:border-[#E54D5E]/50 transition-all hover:scale-105">
+              <div className="w-16 h-16 rounded-2xl bg-[#111520] border border-[#2D333B] flex items-center justify-center overflow-hidden p-2 hover:border-[#E54D5E]/50 transition-[color,background-color,border-color,box-shadow,transform,opacity] hover:scale-105">
                 <ProviderIcon providerId={tool.id} size={48} type="color" />
               </div>
             </div>
@@ -152,7 +152,7 @@ export default function FlowAnimation() {
           {providers.map((provider, idx) => (
             <div
               key={provider.id}
-              className={`px-3 py-2 rounded-lg ${provider.color} ${provider.textColor} flex items-center justify-center font-bold text-[11px] leading-tight text-center shadow-lg hover:scale-110 transition-all cursor-help min-w-[110px] max-w-[140px] ${
+              className={`px-3 py-2 rounded-lg ${provider.color} ${provider.textColor} flex items-center justify-center font-bold text-[11px] leading-tight text-center shadow-lg hover:scale-110 transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-help min-w-[110px] max-w-[140px] ${
                 activeFlow === idx ? "ring-4 ring-[#E54D5E]/50 scale-110" : ""
               }`}
               title={provider.name}

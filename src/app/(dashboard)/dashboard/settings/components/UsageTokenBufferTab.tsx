@@ -86,7 +86,7 @@ export default function UsageTokenBufferTab() {
           onKeyDown={(e) => {
             if (e.key === "Enter") void updateUsageTokenBuffer();
           }}
-          className="h-10 w-36 rounded-lg border border-border bg-surface px-3 text-sm text-text-main focus:outline-none focus:border-primary"
+          className="h-10 w-36 rounded-lg border border-border bg-surface px-3 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
           disabled={loading}
         />
         <Button

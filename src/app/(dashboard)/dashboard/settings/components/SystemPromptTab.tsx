@@ -101,7 +101,7 @@ export default function SystemPromptTab() {
                 rows={9}
                 className="w-full px-4 py-3 rounded-lg border border-border/50 bg-surface/30 text-sm
                            placeholder:text-text-muted/50 resize-y min-h-[220px]
-                           focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/50
+                           focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/50
                            transition-colors"
                 disabled={loading}
               />
@@ -126,7 +126,7 @@ export default function SystemPromptTab() {
                 rows={9}
                 className="w-full px-4 py-3 rounded-lg border border-border/50 bg-surface/30 text-sm
                            placeholder:text-text-muted/50 resize-y min-h-[220px]
-                           focus:outline-none focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/50
+                           focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-amber-500/30 focus:border-amber-500/50
                            transition-colors"
                 disabled={loading}
               />

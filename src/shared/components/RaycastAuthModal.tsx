@@ -20,11 +20,7 @@ type RaycastAuthModalProps = {
   onClose: () => void;
 };
 
-export default function RaycastAuthModal({
-  isOpen,
-  onSuccess,
-  onClose,
-}: RaycastAuthModalProps) {
+export default function RaycastAuthModal({ isOpen, onSuccess, onClose }: RaycastAuthModalProps) {
   const [accessToken, setAccessToken] = useState("");
   const [deviceId, setDeviceId] = useState("");
   const [signatureJwt, setSignatureJwt] = useState("");
@@ -124,8 +120,8 @@ export default function RaycastAuthModal({
 
         <div className="bg-amber-50 dark:bg-amber-900/20 p-4 rounded-lg border border-amber-200 dark:border-amber-800">
           <p className="text-sm text-amber-900 dark:text-amber-200">
-            <strong>Local dev only.</strong> Uses your Raycast Pro subscription via reverse-engineered
-            API. Not official — may break on Raycast updates.
+            <strong>Local dev only.</strong> Uses your Raycast Pro subscription via
+            reverse-engineered API. Not official — may break on Raycast updates.
           </p>
           <button
             type="button"
@@ -147,7 +143,7 @@ export default function RaycastAuthModal({
                 onChange={(e) => setAccessToken(e.target.value)}
                 placeholder="rca_..."
                 rows={3}
-                className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg bg-background focus:outline-none focus:border-primary resize-none"
+                className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg bg-background focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary resize-none"
               />
             </div>
 
@@ -172,7 +168,7 @@ export default function RaycastAuthModal({
                 onChange={(e) => setSignatureJwt(e.target.value)}
                 placeholder="X-Raycast-Signature (optional on current builds)"
                 rows={2}
-                className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg bg-background focus:outline-none focus:border-primary resize-none"
+                className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg bg-background focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary resize-none"
               />
             </div>
 

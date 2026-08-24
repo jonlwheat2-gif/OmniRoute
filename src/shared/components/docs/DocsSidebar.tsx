@@ -27,7 +27,7 @@ export default function DocsSidebar({ sections, currentPath, className }: DocsSi
   return (
     <div
       className={cn(
-        "flex flex-col h-full bg-sidebar border-r border-border transition-all duration-300",
+        "flex flex-col h-full bg-sidebar border-r border-border transition-[color,background-color,border-color,box-shadow,transform,opacity] duration-300",
         collapsed ? "w-16" : "w-64",
         className
       )}

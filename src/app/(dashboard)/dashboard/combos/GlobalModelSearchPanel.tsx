@@ -1,5 +1,8 @@
 import Button from "@/shared/components/Button";
-import { hasExactModelStepDuplicate, type ComboBuilderGlobalModelEntry } from "@/lib/combos/builderDraft";
+import {
+  hasExactModelStepDuplicate,
+  type ComboBuilderGlobalModelEntry,
+} from "@/lib/combos/builderDraft";
 
 type TranslationFn = {
   (key: string, values?: Record<string, unknown>): string;
@@ -55,7 +58,7 @@ export default function GlobalModelSearchPanel({
         <button
           type="button"
           onClick={() => onSelectionModeChange("step")}
-          className={`flex-1 py-1.5 px-2 rounded-md text-xs font-medium transition-all text-center flex items-center justify-center gap-1 ${
+          className={`flex-1 py-1.5 px-2 rounded-md text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] text-center flex items-center justify-center gap-1 ${
             builderSelectionMode === "step"
               ? "bg-white dark:bg-white/10 shadow-sm text-primary font-semibold"
               : "text-text-muted hover:text-text-main"
@@ -67,7 +70,7 @@ export default function GlobalModelSearchPanel({
         <button
           type="button"
           onClick={() => onSelectionModeChange("global")}
-          className={`flex-1 py-1.5 px-2 rounded-md text-xs font-medium transition-all text-center flex items-center justify-center gap-1 ${
+          className={`flex-1 py-1.5 px-2 rounded-md text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] text-center flex items-center justify-center gap-1 ${
             builderSelectionMode === "global"
               ? "bg-white dark:bg-white/10 shadow-sm text-primary font-semibold"
               : "text-text-muted hover:text-text-main"
@@ -91,7 +94,7 @@ export default function GlobalModelSearchPanel({
                   "builderGlobalSearchPlaceholder",
                   "Search models across all providers (e.g. opus, sonnet, deepseek, kimi, qwen)..."
                 )}
-                className="w-full text-xs py-2 pl-3 pr-7 rounded border border-black/10 dark:border-white/10 bg-white dark:bg-white/5 text-text-main focus:border-primary focus:outline-none"
+                className="w-full text-xs py-2 pl-3 pr-7 rounded border border-black/10 dark:border-white/10 bg-white dark:bg-white/5 text-text-main focus:border-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
               />
               {globalSearchQuery && (
                 <button
@@ -112,7 +115,8 @@ export default function GlobalModelSearchPanel({
                 className="shrink-0 text-xs"
               >
                 <span className="material-symbols-outlined text-[14px] mr-1">playlist_add</span>
-                {getI18nOrFallback(t, "builderGlobalAddAll", "Add all")} ({filteredGlobalModels.length})
+                {getI18nOrFallback(t, "builderGlobalAddAll", "Add all")} (
+                {filteredGlobalModels.length})
               </Button>
             )}
           </div>
@@ -142,9 +146,14 @@ export default function GlobalModelSearchPanel({
           <div className="max-h-[220px] overflow-y-auto rounded border border-black/10 dark:border-white/10 bg-white dark:bg-white/5 divide-y divide-black/5 dark:divide-white/5">
             {filteredGlobalModels.length === 0 ? (
               <div className="p-4 text-center text-xs text-text-muted">
-                {getI18nOrFallback(t, "builderGlobalNoResults", `No model found for "${globalSearchQuery}".`, {
-                  query: globalSearchQuery,
-                })}
+                {getI18nOrFallback(
+                  t,
+                  "builderGlobalNoResults",
+                  `No model found for "${globalSearchQuery}".`,
+                  {
+                    query: globalSearchQuery,
+                  }
+                )}
               </div>
             ) : (
               filteredGlobalModels.map((item) => {
@@ -155,7 +164,9 @@ export default function GlobalModelSearchPanel({
                     className="flex items-center justify-between px-3 py-2 text-xs hover:bg-black/[0.02] dark:hover:bg-white/[0.03]"
                   >
                     <div className="flex flex-col min-w-0 pr-2">
-                      <span className="font-semibold text-text-main truncate">{item.modelName}</span>
+                      <span className="font-semibold text-text-main truncate">
+                        {item.modelName}
+                      </span>
                       <span className="text-[10px] text-text-muted truncate">
                         {getI18nOrFallback(t, "builderGlobalProviderLabel", "Provider:")}{" "}
                         <strong className="text-text-main">{item.providerName}</strong> (
@@ -172,13 +183,15 @@ export default function GlobalModelSearchPanel({
                       type="button"
                       onClick={() => onAddOne(item.step)}
                       disabled={isAdded}
-                      className={`text-[11px] px-2.5 py-1 rounded transition-all shrink-0 flex items-center gap-1 ${
+                      className={`text-[11px] px-2.5 py-1 rounded transition-[color,background-color,border-color,box-shadow,transform,opacity] shrink-0 flex items-center gap-1 ${
                         isAdded
                           ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 opacity-70 cursor-default"
                           : "bg-primary/10 text-primary hover:bg-primary/20 font-medium"
                       }`}
                     >
-                      <span className="material-symbols-outlined text-[13px]">{isAdded ? "check" : "add"}</span>
+                      <span className="material-symbols-outlined text-[13px]">
+                        {isAdded ? "check" : "add"}
+                      </span>
                       {isAdded
                         ? getI18nOrFallback(t, "builderGlobalAdded", "Added")
                         : getI18nOrFallback(t, "builderGlobalAdd", "Add")}

@@ -67,7 +67,7 @@ export function NinerouterInstallWizard() {
           <input
             id="ninerouter-version"
             type="text"
-            className="w-full rounded border border-border bg-bg-subtle px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full rounded border border-border bg-bg-subtle px-3 py-1.5 text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
             value={version}
             onChange={(e) => setVersion(e.target.value)}
             placeholder="latest"
@@ -84,7 +84,7 @@ export function NinerouterInstallWizard() {
           <input
             id="ninerouter-port"
             type="number"
-            className="w-full rounded border border-border bg-bg-subtle px-3 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full rounded border border-border bg-bg-subtle px-3 py-1.5 text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary"
             value={port}
             onChange={(e) => setPort(e.target.value)}
             min={1024}

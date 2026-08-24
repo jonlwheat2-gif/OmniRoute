@@ -240,7 +240,18 @@ export default function ClineToolCard({
 
   return (
     <Card padding="sm" className="overflow-hidden">
-      <div className="flex items-center justify-between hover:cursor-pointer" onClick={onToggle}>
+      <div
+        className="flex items-center justify-between hover:cursor-pointer"
+        onClick={onToggle}
+        role="button"
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            onToggle();
+          }
+        }}
+      >
         <div className="flex items-center gap-3">
           <div className="size-8 rounded-lg flex items-center justify-center shrink-0">
             <ProviderIcon providerId={tool.id || "cline"} size={32} type="color" />
@@ -340,7 +351,7 @@ export default function ClineToolCard({
                         value={selectedModel}
                         onChange={(e) => setSelectedModel(e.target.value)}
                         placeholder={t("providerModelPlaceholder")}
-                        className="flex-1 px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                        className="flex-1 px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                       />
                       <Button
                         variant="outline"
@@ -367,7 +378,7 @@ export default function ClineToolCard({
                       <select
                         value={selectedApiKeyId}
                         onChange={(e) => setSelectedApiKeyId(e.target.value)}
-                        className="px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus:ring-1 focus:ring-primary/50"
+                        className="px-3 py-2 bg-bg-secondary rounded-lg text-sm border border-border focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-primary/50"
                       >
                         {apiKeys.map((key) => (
                           <option key={key.id} value={key.id}>

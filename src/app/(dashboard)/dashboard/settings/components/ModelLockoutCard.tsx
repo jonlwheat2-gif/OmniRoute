@@ -371,7 +371,7 @@ export default function ModelLockoutCard() {
                 }
               }}
               placeholder={t("addErrorCode")}
-              className="w-32 rounded-lg border border-border bg-bg px-3 py-2 text-sm outline-none focus:border-primary transition-colors placeholder:text-text-muted/50"
+              className="w-32 rounded-lg border border-border bg-bg px-3 py-2 text-sm outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary transition-colors placeholder:text-text-muted/50"
             />
             <button
               type="button"

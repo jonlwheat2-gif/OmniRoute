@@ -245,7 +245,7 @@ export default function MitmProxyTab() {
                   value={port}
                   readOnly
                   disabled={status.running}
-                  className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40 disabled:opacity-60"
+                  className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40 disabled:opacity-60"
                 />
               </label>
               <label className="space-y-1">
@@ -257,7 +257,7 @@ export default function MitmProxyTab() {
                   value={apiKey}
                   onChange={(event) => setApiKey(event.target.value)}
                   placeholder={t("apiKeyPlaceholder")}
-                  className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
                 />
               </label>
               <label className="space-y-1">
@@ -269,7 +269,7 @@ export default function MitmProxyTab() {
                   value={sudoPassword}
                   onChange={(event) => setSudoPassword(event.target.value)}
                   placeholder={status.hasCachedPassword ? t("cachedPassword") : t("sudoPassword")}
-                  className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus:ring-2 focus:ring-primary/40"
+                  className="w-full rounded-lg border border-border bg-surface px-3 py-2 text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-2 focus:ring-primary/40"
                 />
               </label>
             </div>

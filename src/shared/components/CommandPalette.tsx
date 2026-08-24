@@ -270,7 +270,7 @@ function CommandPaletteDialog({ onClose }: { onClose: () => void }) {
           <input
             ref={inputRef}
             type="text"
-            className="flex-1 bg-transparent text-text placeholder:text-text-muted outline-none text-base"
+            className="flex-1 bg-transparent text-text placeholder:text-text-muted outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 text-base"
             placeholder={t("commandPalette.searchPlaceholder")}
             value={query}
             onChange={(e) => {

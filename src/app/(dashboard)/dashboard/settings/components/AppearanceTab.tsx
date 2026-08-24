@@ -170,7 +170,7 @@ export default function AppearanceTab() {
                 aria-selected={theme === option}
                 onClick={() => setTheme(option)}
                 className={cn(
-                  "flex items-center gap-2 px-4 py-2 rounded-md font-medium transition-all",
+                  "flex items-center gap-2 px-4 py-2 rounded-md font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity]",
                   theme === option
                     ? "bg-white dark:bg-white/10 text-text-main shadow-sm"
                     : "text-text-muted hover:text-text-main"
@@ -426,7 +426,7 @@ export default function AppearanceTab() {
                     await updateSetting("autoRefreshProviderQuotaInterval", next);
                   }}
                   disabled={loading || !autoRefreshProviderQuota}
-                  className="h-10 w-28 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus:border-primary disabled:opacity-50"
+                  className="h-10 w-28 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary disabled:opacity-50"
                 />
                 <span className="text-xs text-text-muted">{t("seconds")}</span>
               </div>
@@ -494,7 +494,7 @@ export default function AppearanceTab() {
               onChange={(e) => setCustomThemeColor(e.target.value)}
               placeholder="#3b82f6"
               maxLength={7}
-              className={`flex-1 h-10 px-3 rounded-lg bg-surface border text-sm text-text-main focus:outline-none ${isValidHex ? "border-border focus:border-primary" : "border-red-400 focus:border-red-500"}`}
+              className={`flex-1 h-10 px-3 rounded-lg bg-surface border text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 ${isValidHex ? "border-border focus:border-primary" : "border-red-400 focus:border-red-500"}`}
             />
             <Button onClick={() => setCustomColorTheme(customThemeColor)} disabled={!isValidHex}>
               {t("themeCreate")}
@@ -527,7 +527,7 @@ export default function AppearanceTab() {
                 onChange={(e) => updateSetting("instanceName", e.target.value)}
                 placeholder="OmniRoute"
                 maxLength={100}
-                className="h-10 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus:border-primary w-48"
+                className="h-10 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary w-48"
               />
             </div>
 
@@ -541,7 +541,7 @@ export default function AppearanceTab() {
                   type="text"
                   value={settings.customLogoUrl || ""}
                   onChange={(e) => updateSetting("customLogoUrl", e.target.value)}
-                  className="flex-1 h-10 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus:border-primary"
+                  className="flex-1 h-10 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
                   placeholder="https://example.com/logo.png"
                   maxLength={2000}
                 />
@@ -635,7 +635,7 @@ export default function AppearanceTab() {
                   type="text"
                   value={settings.customFaviconUrl || ""}
                   onChange={(e) => updateSetting("customFaviconUrl", e.target.value)}
-                  className="flex-1 h-10 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus:border-primary"
+                  className="flex-1 h-10 px-3 rounded-lg bg-surface border border-border text-sm text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
                   placeholder="https://example.com/favicon.ico"
                   maxLength={2000}
                 />

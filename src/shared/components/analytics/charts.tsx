@@ -357,7 +357,7 @@ export function ApiKeyTable({ byApiKey }) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder={t("filterSearchKeys")}
-          className="w-full max-w-[220px] px-3 py-1.5 rounded-lg bg-bg-subtle border border-border text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary"
+          className="w-full max-w-[220px] px-3 py-1.5 rounded-lg bg-bg-subtle border border-border text-xs text-text-primary placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
         />
       </div>
       <div className="overflow-x-auto">
@@ -877,7 +877,7 @@ export function ProviderTable({ byProvider }) {
                     <div className="flex items-center gap-2 justify-end">
                       <div className="w-16 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
                         <div
-                          className="h-full rounded-full transition-all"
+                          className="h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                           style={{
                             width: `${pct}%`,
                             backgroundColor: PROVIDER_COLORS[i % PROVIDER_COLORS.length],

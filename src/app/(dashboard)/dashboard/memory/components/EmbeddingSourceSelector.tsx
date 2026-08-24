@@ -62,7 +62,7 @@ export default function EmbeddingSourceSelector({ settings, providers, onSave, s
             data-testid={`embedding-source-${opt.value}`}
             onClick={() => handleSourceChange(opt.value)}
             disabled={saving}
-            className={`flex flex-col items-start p-3 rounded-lg border text-left transition-all ${
+            className={`flex flex-col items-start p-3 rounded-lg border text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               currentSource === opt.value
                 ? "border-violet-500/50 bg-violet-500/5 ring-1 ring-violet-500/20"
                 : "border-border/50 hover:border-border hover:bg-surface/30"
@@ -94,7 +94,7 @@ export default function EmbeddingSourceSelector({ settings, providers, onSave, s
               onChange={(e) => handleProviderModelChange(e.target.value)}
               disabled={saving}
               data-testid="embedding-provider-model-select"
-              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
             >
               <option value="">{t("embedding.selectProviderModel")}</option>
               {remoteProviders.map((p) =>

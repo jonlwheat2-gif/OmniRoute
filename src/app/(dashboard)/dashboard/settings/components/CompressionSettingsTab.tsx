@@ -320,7 +320,7 @@ export default function CompressionSettingsTab() {
                   key={m.value}
                   onClick={() => save({ defaultMode: m.value })}
                   disabled={saving}
-                  className={`flex items-start gap-3 p-3 rounded-lg border text-left transition-all ${
+                  className={`flex items-start gap-3 p-3 rounded-lg border text-left transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                     config.defaultMode === m.value
                       ? "border-blue-500/50 bg-blue-500/5 ring-1 ring-blue-500/20"
                       : "border-border/50 hover:border-border hover:bg-surface/30"
@@ -472,7 +472,7 @@ export default function CompressionSettingsTab() {
                       <button
                         key={opt.value}
                         onClick={() => toggleCavemanRole(opt.value)}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                           config.cavemanConfig!.compressRoles.includes(opt.value)
                             ? "border-blue-500/50 bg-blue-500/10 text-blue-400"
                             : "border-border/50 text-text-muted hover:border-border"
@@ -516,7 +516,7 @@ export default function CompressionSettingsTab() {
                         key={rule.name}
                         onClick={() => toggleCavemanRule(rule.name)}
                         title={`${rule.category} · ${rule.context} · ${(rule.intensities ?? [rule.minIntensity]).join("/")}`}
-                        className={`px-2 py-1 rounded text-xs border transition-all ${
+                        className={`px-2 py-1 rounded text-xs border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                           config.cavemanConfig!.skipRules.includes(rule.name)
                             ? "border-red-500/50 bg-red-500/10 text-red-400 line-through"
                             : "border-border/50 text-text-muted hover:border-border"
@@ -730,7 +730,7 @@ export default function CompressionSettingsTab() {
                         },
                       })
                     }
-                    className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                    className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                       config.aggressive!.toolStrategies[strategy]
                         ? "border-blue-500/50 bg-blue-500/10 text-blue-400"
                         : "border-border/50 text-text-muted hover:border-border"

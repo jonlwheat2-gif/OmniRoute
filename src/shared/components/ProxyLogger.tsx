@@ -220,7 +220,7 @@ export default function ProxyLogger() {
             placeholder={t("searchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus:border-primary"
+            className="w-full pl-10 pr-4 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary"
           />
         </div>
 
@@ -228,7 +228,7 @@ export default function ProxyLogger() {
         <select
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus:border-primary appearance-none cursor-pointer min-w-[120px]"
+          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary appearance-none cursor-pointer min-w-[120px]"
         >
           <option value="">{t("allTypes")}</option>
           {uniqueTypes.map((t) => (
@@ -242,7 +242,7 @@ export default function ProxyLogger() {
         <select
           value={selectedLevel}
           onChange={(e) => setSelectedLevel(e.target.value)}
-          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus:border-primary appearance-none cursor-pointer min-w-[120px]"
+          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary appearance-none cursor-pointer min-w-[120px]"
         >
           <option value="">{t("allLevels")}</option>
           {uniqueLevels.map((l) => (
@@ -256,7 +256,7 @@ export default function ProxyLogger() {
         <select
           value={selectedProvider}
           onChange={(e) => setSelectedProvider(e.target.value)}
-          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus:border-primary appearance-none cursor-pointer min-w-[140px]"
+          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary appearance-none cursor-pointer min-w-[140px]"
         >
           <option value="">{t("allProviders")}</option>
           {uniqueProviders.map((p) => {
@@ -303,7 +303,7 @@ export default function ProxyLogger() {
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
-          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus:border-primary appearance-none cursor-pointer min-w-[140px]"
+          className="px-3 py-2 rounded-lg bg-bg-subtle border border-border text-sm text-text-primary focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary appearance-none cursor-pointer min-w-[140px]"
         >
           <option value="newest">{t("newest")}</option>
           <option value="oldest">{t("oldest")}</option>
@@ -327,7 +327,7 @@ export default function ProxyLogger() {
           <button
             key={f.key}
             onClick={() => setActiveFilter(activeFilter === f.key ? "all" : f.key)}
-            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               activeFilter === f.key
                 ? f.key === "error"
                   ? "bg-red-500/20 text-red-400 border-red-500/40"
@@ -353,7 +353,7 @@ export default function ProxyLogger() {
             <button
               key={p}
               onClick={() => setSelectedProvider(isActive ? "" : p)}
-              className={`px-3 py-1 rounded-full text-xs font-bold uppercase border transition-all ${
+              className={`px-3 py-1 rounded-full text-xs font-bold uppercase border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
                 isActive
                   ? "border-white/40 ring-1 ring-white/20"
                   : "border-transparent opacity-70 hover:opacity-100"
@@ -378,7 +378,7 @@ export default function ProxyLogger() {
           <button
             key={col.key}
             onClick={() => toggleColumn(col.key)}
-            className={`px-2 py-0.5 rounded text-[10px] font-medium border transition-all ${
+            className={`px-2 py-0.5 rounded text-[10px] font-medium border transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               visibleColumns[col.key]
                 ? "bg-primary/15 text-primary border-primary/30"
                 : "bg-bg-subtle text-text-muted border-border opacity-50 hover:opacity-80"

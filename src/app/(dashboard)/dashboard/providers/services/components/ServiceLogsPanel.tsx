@@ -69,7 +69,7 @@ export function ServiceLogsPanel({ name }: ServiceLogsPanelProps) {
           placeholder={t("filterLogs")}
           value={filterInput}
           onChange={(e) => applyFilter(e.target.value)}
-          className="flex-1 bg-transparent text-xs outline-none placeholder:text-text-muted min-w-0"
+          className="flex-1 bg-transparent text-xs outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 placeholder:text-text-muted min-w-0"
         />
         <button
           type="button"

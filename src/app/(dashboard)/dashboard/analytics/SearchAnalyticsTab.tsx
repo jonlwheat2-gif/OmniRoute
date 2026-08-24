@@ -69,7 +69,7 @@ function ProviderBar({
       </div>
       <div className="h-2 rounded-full bg-bg-muted overflow-hidden">
         <div
-          className="h-full rounded-full bg-primary transition-all"
+          className="h-full rounded-full bg-primary transition-[color,background-color,border-color,box-shadow,transform,opacity]"
           style={{ width: `${pct}%` }}
         />
       </div>

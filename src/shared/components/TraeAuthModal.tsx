@@ -267,7 +267,7 @@ export default function TraeAuthModal({
             onChange={(e) => setAccessToken(e.target.value)}
             placeholder="eyJhbGciOiJSUzI1NiIs..."
             rows={3}
-            className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg bg-background focus:outline-none focus:border-primary resize-none"
+            className="w-full px-3 py-2 text-sm font-mono border border-border rounded-lg bg-background focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary resize-none"
           />
         </div>
 

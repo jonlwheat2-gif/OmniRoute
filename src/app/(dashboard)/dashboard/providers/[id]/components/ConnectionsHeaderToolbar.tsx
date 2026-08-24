@@ -176,7 +176,7 @@ export default function ConnectionsHeaderToolbar({
               }
               disabled={savingCodexGlobalServiceMode || !codexSettingsLoaded}
               aria-label={providerText(t, "globalCodexServiceMode", "Global Codex service mode")}
-              className="rounded-md border border-border bg-bg px-2 py-1 text-xs text-text-main outline-none transition-colors focus:border-primary disabled:opacity-60"
+              className="rounded-md border border-border bg-bg px-2 py-1 text-xs text-text-main outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 transition-colors focus:border-primary disabled:opacity-60"
             >
               {codexGlobalServiceModeOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -205,7 +205,7 @@ export default function ConnectionsHeaderToolbar({
               label: providerInfo?.name || providerId,
             })
           }
-          className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-all ${
+          className={`inline-flex items-center gap-1 px-2 py-1 rounded text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
             proxyConfig?.providers?.[providerId]
               ? "bg-amber-500/15 text-amber-500 hover:bg-amber-500/25"
               : "bg-black/[0.03] dark:bg-white/[0.03] text-text-muted/50 hover:text-text-muted hover:bg-black/[0.06] dark:hover:bg-white/[0.06]"

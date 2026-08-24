@@ -205,7 +205,7 @@ export default function QuotaCutoffModal({
                   placeholder={placeholder}
                   disabled={saving}
                   onChange={(e) => setDrafts((prev) => ({ ...prev, [w.key]: e.target.value }))}
-                  className={`w-20 px-2 py-1 text-sm text-center rounded-md border bg-transparent text-text-main focus:outline-none focus:border-primary/60 disabled:opacity-50 ${
+                  className={`w-20 px-2 py-1 text-sm text-center rounded-md border bg-transparent text-text-main focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary/60 disabled:opacity-50 ${
                     isOverride ? "border-primary/40" : "border-border"
                   }`}
                 />

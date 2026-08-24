@@ -243,7 +243,7 @@ export default function PayloadRulesTab() {
             }}
             spellCheck={false}
             rows={22}
-            className="w-full px-4 py-4 bg-transparent text-sm font-mono leading-6 text-text-main resize-y min-h-[420px] focus:outline-none"
+            className="w-full px-4 py-4 bg-transparent text-sm font-mono leading-6 text-text-main resize-y min-h-[420px] focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50"
             disabled={loading || saving}
           />
         </div>

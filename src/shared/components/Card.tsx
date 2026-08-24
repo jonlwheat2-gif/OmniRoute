@@ -38,7 +38,8 @@ export default function Card({
         "bg-surface",
         "border border-border",
         "rounded-card shadow-sm",
-        hover && "hover:shadow-md hover:border-primary/30 transition-all cursor-pointer",
+        hover &&
+          "hover:shadow-md hover:border-primary/30 transition-[color,background-color,border-color,box-shadow,transform,opacity] cursor-pointer",
         paddings[padding],
         className
       )}

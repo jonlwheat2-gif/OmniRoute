@@ -274,7 +274,7 @@ export default function Header({
         {!isE2EMode && <TokenHealthBadge />}
         <button
           onClick={handleLogout}
-          className="flex items-center justify-center p-2 rounded-lg text-text-muted hover:text-red-500 hover:bg-red-500/10 transition-all"
+          className="flex items-center justify-center p-2 rounded-lg text-text-muted hover:text-red-500 hover:bg-red-500/10 transition-[color,background-color,border-color,box-shadow,transform,opacity]"
           title={t("logout")}
           aria-label={t("logout")}
         >

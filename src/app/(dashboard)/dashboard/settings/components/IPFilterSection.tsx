@@ -94,7 +94,7 @@ export default function IPFilterSection() {
             key={m.value}
             onClick={() => setMode(m.value)}
             disabled={loading}
-            className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border text-center transition-all ${
+            className={`flex flex-col items-center gap-1.5 p-3 rounded-lg border text-center transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
               activeMode === m.value
                 ? "border-red-500/50 bg-red-500/5 ring-1 ring-red-500/20"
                 : "border-border/50 hover:border-border hover:bg-surface/30"

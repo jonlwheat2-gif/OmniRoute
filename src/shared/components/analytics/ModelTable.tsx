@@ -144,7 +144,7 @@ export function ModelTable({ byModel, summary }: ModelTableProps) {
                   <div className="flex items-center gap-2 justify-end">
                     <div className="w-16 h-1.5 rounded-full bg-white/[0.06] overflow-hidden">
                       <div
-                        className="h-full rounded-full transition-all"
+                        className="h-full rounded-full transition-[color,background-color,border-color,box-shadow,transform,opacity]"
                         style={{
                           width: `${m.pct ?? 0}%`,
                           backgroundColor: getModelColor(i),

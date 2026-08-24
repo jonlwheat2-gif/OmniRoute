@@ -290,7 +290,7 @@ export default function TokensPage() {
               onChange={(e) => setToApiKeyId(e.target.value)}
               placeholder={t("tokensRecipientApiKeyIdPlaceholder")}
               required
-              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+              className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
             />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -303,7 +303,7 @@ export default function TokensPage() {
                 placeholder="0"
                 min="1"
                 required
-                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
             </div>
             <div>
@@ -315,7 +315,7 @@ export default function TokensPage() {
                 value={reason}
                 onChange={(e) => setReason(e.target.value)}
                 placeholder={t("tokensReasonPlaceholder")}
-                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
             </div>
           </div>
@@ -409,7 +409,7 @@ export default function TokensPage() {
                 value={inviteMaxUses}
                 onChange={(e) => setInviteMaxUses(e.target.value)}
                 min="1"
-                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
             </div>
             <button
@@ -445,7 +445,7 @@ export default function TokensPage() {
                 onChange={(e) => setRedeemCode(e.target.value)}
                 placeholder={t("tokensRedeemCodePlaceholder")}
                 required
-                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="w-full px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
             </div>
             <button
@@ -515,7 +515,7 @@ export default function TokensPage() {
                 onChange={(e) => setServerName(e.target.value)}
                 placeholder={t("tokensServerNamePlaceholder")}
                 required
-                className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
               <input
                 type="url"
@@ -523,7 +523,7 @@ export default function TokensPage() {
                 onChange={(e) => setServerUrl(e.target.value)}
                 placeholder="https://server.example.com"
                 required
-                className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
               <input
                 type="password"
@@ -531,7 +531,7 @@ export default function TokensPage() {
                 onChange={(e) => setServerApiKey(e.target.value)}
                 placeholder={t("tokensApiKeyPlaceholder")}
                 required
-                className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus:ring-1 focus:ring-violet-500"
+                className="px-3 py-2 rounded-lg bg-background border border-border text-sm focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:ring-1 focus:ring-violet-500"
               />
             </div>
             <button

@@ -93,7 +93,7 @@ export default function ApiKeyFilterDropdown({
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-all ${
+        className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-medium transition-[color,background-color,border-color,box-shadow,transform,opacity] ${
           isAllSelected
             ? "border-border/50 bg-black/[0.03] text-text-muted hover:text-text-main dark:bg-white/[0.03]"
             : "border-primary/40 bg-primary/10 text-primary"
@@ -123,7 +123,7 @@ export default function ApiKeyFilterDropdown({
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder={t("filterSearchKeys")}
-                className="w-full rounded-md border border-border/30 bg-black/[0.03] px-2.5 py-1.5 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus:border-primary dark:bg-white/[0.03]"
+                className="w-full rounded-md border border-border/30 bg-black/[0.03] px-2.5 py-1.5 text-xs text-text-main placeholder:text-text-muted focus:outline-none focus-visible:border-primary/60 focus-visible:ring-1 focus-visible:ring-primary/50 focus:border-primary dark:bg-white/[0.03]"
                 autoFocus
               />
             </div>
