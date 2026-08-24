@@ -28,10 +28,12 @@ export async function GET(req: NextRequest) {
     const trendHours = Math.min(720, Math.max(1, Number.isNaN(rawHours) ? 24 : rawHours));
 
     const cacheStats = getCacheStats();
-    const idempotencyStats = await getIdempotencyStats();
-    const promptCacheMetrics = await getCacheMetrics();
-    const trend = await getCacheTrend(trendHours);
-    const settings = await getCachedSettings().catch(() => ({}));
+    const [idempotencyStats, promptCacheMetrics, trend, settings] = await Promise.all([
+      getIdempotencyStats(),
+      getCacheMetrics(),
+      getCacheTrend(trendHours),
+      getCachedSettings().catch(() => ({})),
+    ]);
 
     return NextResponse.json({
       semanticCache: cacheStats,
