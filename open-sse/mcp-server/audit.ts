@@ -244,7 +244,10 @@ async function openNodeSqliteAuditDb(dbPath: string): Promise<AuditDatabase> {
   return createNodeSqliteAuditAdapter(new DatabaseSync(dbPath));
 }
 
-async function openFallbackAuditDb(dbPath: string, nativeMessage: string): Promise<AuditDatabase | null> {
+async function openFallbackAuditDb(
+  dbPath: string,
+  nativeMessage: string
+): Promise<AuditDatabase | null> {
   if (!nodeSqliteFallbackAvailable()) {
     console.error(
       `[MCP Audit] better-sqlite3 native binding unavailable and Node ${process.version} ` +
@@ -287,9 +290,11 @@ async function getDb(): Promise<AuditDatabase | null> {
 
   try {
     // Try importing the db module from the main app
-    const { homedir } = await import("node:os");
-    const { join } = await import("node:path");
-    const { existsSync } = await import("node:fs");
+    const [{ homedir }, { join }, { existsSync }] = await Promise.all([
+      import("node:os"),
+      import("node:path"),
+      import("node:fs"),
+    ]);
 
     const dbPath = process.env.DATA_DIR
       ? join(process.env.DATA_DIR, "storage.sqlite")

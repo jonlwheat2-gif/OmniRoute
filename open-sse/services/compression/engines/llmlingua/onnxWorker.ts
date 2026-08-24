@@ -70,9 +70,12 @@ async function getCompressor(entry: LlmlinguaModelEntry, modelPath?: string): Pr
   const { env } = await dynamicImport("@huggingface/transformers");
   configureTransformersEnv(env as TransformersEnvLike, { modelPath });
 
-  const { LLMLingua2 } = await dynamicImport("@atjsh/llmlingua-2");
-  const { Tiktoken } = await dynamicImport("js-tiktoken/lite");
-  const o200k_base = (await dynamicImport("js-tiktoken/ranks/o200k_base")).default;
+  const [{ LLMLingua2 }, { Tiktoken }, ranksModule] = await Promise.all([
+    dynamicImport("@atjsh/llmlingua-2"),
+    dynamicImport("js-tiktoken/lite"),
+    dynamicImport("js-tiktoken/ranks/o200k_base"),
+  ]);
+  const o200k_base = ranksModule.default;
   const oai = new Tiktoken(o200k_base);
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

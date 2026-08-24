@@ -11,8 +11,11 @@ import FirstRunReadinessCard from "../dashboard/FirstRunReadinessCard";
 export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
-  const settings = await getSettings();
-  const machineId = await getMachineId();
+  // #9985/#36: independent async calls — start both, guard on settings, consume late.
+  const settingsPromise = getSettings();
+  const machineIdPromise = getMachineId();
+  const settings = await settingsPromise;
+  const machineId = await machineIdPromise;
   const isBootstrapped = process.env.OMNIROUTE_BOOTSTRAPPED === "true";
   return (
     <>

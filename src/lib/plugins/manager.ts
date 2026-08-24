@@ -125,8 +125,10 @@ class PluginManager {
    */
   async install(sourceDir: string): Promise<PluginRow> {
     // Check if sourceDir itself contains plugin.json (direct plugin dir)
-    const { safeValidateManifest } = await import("./manifest");
-    const { readFile: readFileFs } = await import("fs/promises");
+    const [{ safeValidateManifest }, { readFile: readFileFs }] = await Promise.all([
+      import("./manifest"),
+      import("fs/promises"),
+    ]);
     let directPlugin: {
       name: string;
       manifest: any;
@@ -253,8 +255,10 @@ class PluginManager {
    */
   async upgrade(sourceDir: string): Promise<PluginRow> {
     // Scan source to get new manifest
-    const { safeValidateManifest } = await import("./manifest");
-    const { readFile: readFileFs } = await import("fs/promises");
+    const [{ safeValidateManifest }, { readFile: readFileFs }] = await Promise.all([
+      import("./manifest"),
+      import("fs/promises"),
+    ]);
 
     let discovered: { name: string; manifest: any; pluginDir: string } | null = null;
 

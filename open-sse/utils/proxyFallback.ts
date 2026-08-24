@@ -89,6 +89,34 @@ function cacheKeyForTarget(targetHostname: string, targetUrl: string): string {
  * for the given target URL. Returns null if no env proxy is configured or
  * the target matches NO_PROXY.
  */
+// #36/F16: NO_PROXY never changes at runtime — compile each entry once and cache
+// by raw header value instead of re-escaping + re-compiling a RegExp for every
+/* wildcard entry on every proxied fetch. */
+type NoProxyEntry = string | RegExp;
+let noProxyCache: { raw: string; entries: NoProxyEntry[] } | null = null;
+
+function getNoProxyPatterns(raw: string): NoProxyEntry[] {
+  if (noProxyCache?.raw === raw) return noProxyCache.entries;
+  const entries: NoProxyEntry[] = raw
+    .split(",")
+    .map((p) => p.trim().toLowerCase())
+    .filter(Boolean)
+    .map((pattern) =>
+      pattern.includes("*")
+        ? new RegExp("^" + pattern.split("*").map(escapeRe).join(".*") + "$")
+        : pattern
+    );
+  noProxyCache = { raw, entries };
+  return entries;
+}
+
+function escapeRe(s: string): string {
+  return s.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    "\\function resolveEnvProxyUrl(targetUrl: string): string | null {"
+  );
+}
+
 function resolveEnvProxyUrl(targetUrl: string): string | null {
   // Honour NO_PROXY
   const noProxy = process.env.NO_PROXY || process.env.no_proxy;
@@ -99,24 +127,13 @@ function resolveEnvProxyUrl(targetUrl: string): string | null {
     } catch {
       return null;
     }
-    const patterns = noProxy
-      .split(",")
-      .map((p) => p.trim().toLowerCase())
-      .filter(Boolean);
+    const patterns = getNoProxyPatterns(noProxy);
     const match = patterns.some((pattern) => {
       if (pattern === "*") return true;
-      if (pattern.includes("*")) {
-        const re = new RegExp(
-          "^" +
-            pattern
-              .split("*")
-              .map((s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"))
-              .join(".*") +
-            "$"
-        );
-        return re.test(hostname!);
+      if (typeof pattern === "string") {
+        return hostname === pattern || hostname!.endsWith(`.${pattern}`);
       }
-      return hostname === pattern || hostname!.endsWith(`.${pattern}`);
+      return pattern.test(hostname!);
     });
     if (match) return null;
   }

@@ -410,9 +410,11 @@ export class KiroService {
     clientIdHint?: string
   ): Promise<{ clientId: string; clientSecret: string } | null> {
     try {
-      const { readdir, readFile } = await import("fs/promises");
-      const { homedir } = await import("os");
-      const { join } = await import("path");
+      const [{ readdir, readFile }, { homedir }, { join }] = await Promise.all([
+        import("fs/promises"),
+        import("os"),
+        import("path"),
+      ]);
       const cachePath = join(homedir(), ".aws", "sso", "cache");
       const files = await readdir(cachePath);
 

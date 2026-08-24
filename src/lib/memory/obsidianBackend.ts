@@ -49,8 +49,7 @@ export class ObsidianBackend implements MemoryBackend {
   async create(input: CreateMemoryInput): Promise<Memory> {
     if (!this.initialized) await this.initialize();
 
-    const fs = await import("fs/promises");
-    const path = await import("path");
+    const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
 
     const id = crypto.randomUUID();
     const fileName = `${input.key}.md`;
@@ -92,8 +91,7 @@ export class ObsidianBackend implements MemoryBackend {
   async get(id: string): Promise<Memory | null> {
     if (!this.initialized) await this.initialize();
 
-    const fs = await import("fs/promises");
-    const path = await import("path");
+    const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
 
     // Find file by id in frontmatter
     const files = await fs.readdir(this.vaultPath);
@@ -121,8 +119,7 @@ export class ObsidianBackend implements MemoryBackend {
   async update(id: string, updates: Partial<Omit<Memory, "id" | "createdAt">>): Promise<boolean> {
     if (!this.initialized) await this.initialize();
 
-    const fs = await import("fs/promises");
-    const path = await import("path");
+    const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
 
     const files = await fs.readdir(this.vaultPath);
 
@@ -175,8 +172,7 @@ export class ObsidianBackend implements MemoryBackend {
   async delete(id: string): Promise<boolean> {
     if (!this.initialized) await this.initialize();
 
-    const fs = await import("fs/promises");
-    const path = await import("path");
+    const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
 
     const files = await fs.readdir(this.vaultPath);
 
@@ -205,8 +201,7 @@ export class ObsidianBackend implements MemoryBackend {
   ): Promise<{ data: Memory[]; total: number; byType: Record<string, number> }> {
     if (!this.initialized) await this.initialize();
 
-    const fs = await import("fs/promises");
-    const path = await import("path");
+    const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
 
     const files = await fs.readdir(this.vaultPath);
     const memories: Memory[] = [];
@@ -251,8 +246,7 @@ export class ObsidianBackend implements MemoryBackend {
   async search(config: SearchConfig): Promise<Memory[]> {
     if (!this.initialized) await this.initialize();
 
-    const fs = await import("fs/promises");
-    const path = await import("path");
+    const [fs, path] = await Promise.all([import("fs/promises"), import("path")]);
 
     const files = await fs.readdir(this.vaultPath);
     const memories: Memory[] = [];
