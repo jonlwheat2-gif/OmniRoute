@@ -1,0 +1,147 @@
+# Instincts generated from https://github.com/jonlwheat2-gif/OmniRoute
+# Generated: 2026-08-24T01:07:52.363Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: OmniRoute-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: fix, test
+
+## Evidence
+
+- 2 commits analyzed
+- Detected conventional commit pattern
+- Examples: fix(api): honor model-hidden overrides across provider key variants (#11300), test(api): drop unused getHiddenModelsByProvider import (#11300)
+
+---
+id: OmniRoute-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Commit Length
+
+## Action
+
+Write moderate-length commit messages (~70 characters)
+
+## Evidence
+
+- Average commit message length: 70 chars
+- Based on 2 commits
+
+---
+id: OmniRoute-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: OmniRoute-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: OmniRoute-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Export Style
+
+## Action
+
+Prefer named exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: named
+
+---
+id: OmniRoute-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: app, lib
+
+---
+id: OmniRoute-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/jonlwheat2-gif/OmniRoute
+---
+
+# OmniRoute Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
