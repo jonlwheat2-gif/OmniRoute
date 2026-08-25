@@ -2,11 +2,11 @@ name: opencode-provider CI
 
 on:
   push:
-    branches: [main, release/v3.8.0]
+    branches: [main, "release/**"]
     paths:
       - "@omniroute/opencode-provider/**"
   pull_request:
-    branches: [main, release/v3.8.0]
+    branches: [main, "release/**"]
     paths:
       - "@omniroute/opencode-provider/**"
     types: [opened, synchronize, reopened, ready_for_review]
