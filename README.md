@@ -424,7 +424,7 @@ All **19** strategies — mix & match per combo step:
   <tr>
     <td align="center">16</td>
     <td nowrap><code>lkgp</code></td>
-    <td>Last-Known-Good Path — sticky to the last successful target</td>
+    <td>Last-Known-Good Path — pins to the last successful provider, then falls back to rules</td>
   </tr>
   <tr>
     <td align="center">17</td>

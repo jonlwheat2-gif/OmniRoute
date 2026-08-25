@@ -206,8 +206,23 @@ function dedupedSum(
   return loose;
 }
 
-export function computeFreeModelTotals(opts: { excludeTosAvoid?: boolean } = {}): FreeModelTotals {
-  const models = FREE_MODEL_BUDGETS.filter((m) => !(opts.excludeTosAvoid && m.tos === "avoid"));
+export function computeFreeModelTotals(
+  opts: {
+    excludeTosAvoid?: boolean;
+    /**
+     * The catalog to aggregate. Defaults to the static release baseline, so
+     * every existing caller is unchanged. Callers that resolve a fresher
+     * catalog (e.g. the Radar overlay) pass their entries here; an entry with
+     * `enabled: false` contributes nothing, exactly as if it were absent.
+     */
+    entries?: Array<FreeModelBudget & { enabled?: boolean }>;
+  } = {}
+): FreeModelTotals {
+  const catalog: ReadonlyArray<FreeModelBudget & { enabled?: boolean }> =
+    opts.entries ?? FREE_MODEL_BUDGETS;
+  const models = catalog.filter(
+    (m) => !(opts.excludeTosAvoid && m.tos === "avoid") && m.enabled !== false
+  );
 
   const steadyRecurringTokens = dedupedSum(
     models,

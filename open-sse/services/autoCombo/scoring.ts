@@ -122,7 +122,7 @@ export interface ProviderCandidate {
   /**
    * Feedback-driven quality score [0..1] for this provider/model from the
    * routing-event quality tracker (open-sse/services/routing). Omitted/undefined
-   * candidates default to a neutral 1.0 in calculateFactors.
+   * candidates default to a neutral 0.5 in calculateFactors.
    */
   quality?: number;
   connectionPoolSize?: number;
