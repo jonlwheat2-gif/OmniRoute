@@ -1,16 +1,16 @@
 ---
 title: "Provider Reference"
 version: 3.8.51
-lastUpdated: 2026-08-25
+lastUpdated: 2026-08-26
 ---
 
 # Provider Reference
 
 > **Auto-generated** from `src/shared/constants/providers.ts` — do not edit by hand.
 > Regenerate with: `npm run gen:provider-reference`
-> **Last generated:** 2026-08-25
+> **Last generated:** 2026-08-26
 
-Total providers: **353**. See category breakdown below.
+Total providers: **354**. See category breakdown below.
 
 ## Categories
 
@@ -98,7 +98,7 @@ Use the dashboard at `/dashboard/providers` to enable, configure, and test each 
 | `deepseek-web` | `ds-web` | DeepSeek Web | Web cookie | [link](https://chat.deepseek.com) | Paste your userToken from chat.deepseek.com — DevTools → Application → Local Storage → userToken | emulated |
 | `doubao-web` | `db` | Dola Web (ByteDance) | Web cookie | [link](https://www.dola.com) | Paste the full Cookie header from www.dola.com. It should include sessionid, ttwid, and s_v_web_id. If s_v_web_id is unavailable, fp=verify_... from a chat/completion request URL can be used as a fallback. | — |
 | `gemini-business` | `gembiz` | Gemini Business (Enterprise) | Web cookie | [link](https://business.gemini.google) | From your enterprise account: open business.gemini.google/home/cid/{your-cid}, then copy __Secure-1PSID and __Secure-1PSIDTS cookies from DevTools → Application → Cookies. Paste as a cookie header below. | — |
-| `gemini-web` | `gweb` | Gemini Web (Free) | Web cookie | [link](https://gemini.google.com) | Paste your __Secure-1PSID cookie value from gemini.google.com. Optionally add __Secure-1PSIDTS separated by semicolon. | emulated |
+| `gemini-web` | `gweb` | Gemini Web (Free) | Web cookie | [link](https://gemini.google.com) | Paste the full cookie header, the __Secure-1PSID value, or the JSON export containing cookies from gemini.google.com. Include __Secure-1PSIDTS and __Secure-1PSIDCC when available. | emulated |
 | `grok-web` | `gw` | Grok Web (Subscription) | Web cookie | [link](https://grok.com) | Paste the full grok.com cookie line from DevTools → Application → Cookies. Include both `sso` and `sso-rw` (e.g. `sso=...; sso-rw=...`) — Grok's anti-bot rejects `sso` on its own. | — |
 | `hailuo-web` | `hailuo-web` | Hailuo Web (MiniMax) | Web cookie | [link](https://chat.minimax.io) | Open hailuo.ai, log in, then open DevTools → Application → Local Storage → copy the "_token" value. device_id/uuid fingerprint fields are derived automatically; if requests fail, re-capture _token (sessions can expire). | — |
 | `huggingchat` | `huggingchat` | HuggingChat (Free) | Web cookie | [link](https://huggingface.co/chat) | Paste the full Cookie header from huggingface.co/chat (DevTools → Network → /chat/conversation → Request Headers → Cookie). It should include hf-chat and may also include token / aws-waf-token. | — |
@@ -122,7 +122,7 @@ Use the dashboard at `/dashboard/providers` to enable, configure, and test each 
 | `zai-web` | `zw` | Z.ai Web | Web cookie | [link](https://chat.z.ai) | Copy the "token" value from chat.z.ai → DevTools → Application → Local Storage. Do not copy cookies; OmniRoute handles the per-request CAPTCHA through its browser transport. | — |
 | `zenmux-free` | `zmf` | ZenMux Free (Web) | Web cookie | [link](https://zenmux.ai) | Login at zenmux.ai, then export all cookies using EditThisCookie or Cookie-Editor and paste the full Cookie header string here. Refresh every ~30 days. | — |
 
-## API Key Providers (paid / paid-with-free-credits) (233)
+## API Key Providers (paid / paid-with-free-credits) (234)
 
 | ID | Alias | Name | Tags | Website | Notes |
 |----|-------|------|------|---------|-------|
@@ -284,6 +284,7 @@ Use the dashboard at `/dashboard/providers` to enable, configure, and test each 
 | `openference-api` | `ofa` | Openference API | API key | [link](https://openference.com) | Free plan: 3-day trial with open-source models — no credit card required |
 | `openrouter` | `openrouter` | OpenRouter | API key, aggregator | [link](https://openrouter.ai) | Free models at $0/token with :free suffix - 20 RPM / 200 RPD |
 | `openvecta` | `openvecta` | OpenVecta | API key | [link](https://openvecta.com) | Free credits on signup for OpenAI-compatible inference across LLMs, embeddings, and reasoning models |
+| `opper` | `opper` | Opper | API key, aggregator | [link](https://opper.ai) | — |
 | `orcarouter` | `orcarouter` | OrcaRouter | API key | [link](https://www.orcarouter.ai) | — |
 | `ovhcloud` | `ovh` | OVHcloud AI | API key | [link](https://www.ovhcloud.com) | — |
 | `perplexity` | `pplx` | Perplexity | API key | [link](https://www.perplexity.ai) | — |

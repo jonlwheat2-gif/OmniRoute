@@ -1,6 +1,6 @@
 import {
   extractRequestToolIdentityMap,
-  toToolNameAliasMap,
+  resolveResponseToolNameMap,
 } from "./chatCore/requestToolIdentity.ts";
 import { injectMemoryAndSkills } from "./chatCore/memorySkillsInjection.ts";
 import { resolveChatCoreRequestSetup } from "./chatCore/requestSetup.ts";
@@ -2596,19 +2596,14 @@ export async function handleChatCore({
   const nativeClaudeToolNameMap = isClaudePassthrough
     ? buildClaudePassthroughToolNameMap(body)
     : null;
-  let toolNameMap: Map<string, string> | null =
-    translatedToolNameMap instanceof Map && translatedToolNameMap.size > 0
-      ? translatedToolNameMap
-      : nativeClaudeToolNameMap;
-
-  // For providers whose _toolNameMap was extracted as requestToolIdentityMap
-  // before the Kiro merge block (Gemini/Antigravity), merge it into the
-  // response toolNameMap so the response translator can restore tool names
-  // from their lowercased form (#9568). Only merge string-valued entries
-  // (tool name aliases), not object-valued namespace identities (#7936).
-  if (!toolNameMap) {
-    toolNameMap = toToolNameAliasMap(requestToolIdentityMap);
-  }
+  // Resolution order matters: `_toolNameMap` was already deleted by
+  // `extractRequestToolIdentityMap`, so Gemini/Antigravity depend on the
+  // `requestToolIdentityMap` fallback inside this helper (#9568 / #7936).
+  const toolNameMap = resolveResponseToolNameMap(
+    translatedToolNameMap,
+    nativeClaudeToolNameMap,
+    requestToolIdentityMap
+  );
   delete translatedBody._toolNameMap;
   delete translatedBody._disableToolPrefix;
 
