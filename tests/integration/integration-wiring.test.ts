@@ -522,7 +522,11 @@ describe("Page Integration — combos page empty state", () => {
 });
 
 describe("Page Integration — provider test results privacy", () => {
-  const providersSrc = readProjectFile("src/app/(dashboard)/dashboard/providers/page.tsx");
+  // Phase 1 RSC migration: the interactive shell moved from page.tsx into
+  // ProvidersClient.tsx (page.tsx is now a thin server component).
+  const providersSrc = readProjectFile(
+    "src/app/(dashboard)/dashboard/providers/ProvidersClient.tsx"
+  );
   const providerDetailSrc = readProjectFile(
     "src/app/(dashboard)/dashboard/providers/[id]/ProviderDetailPageClient.tsx"
   );
@@ -536,7 +540,10 @@ describe("Page Integration — provider test results privacy", () => {
   );
 
   it("should mask provider test batch names with the global email privacy toggle", () => {
-    assert.ok(providersSrc, "src/app/(dashboard)/dashboard/providers/page.tsx should exist");
+    assert.ok(
+      providersSrc,
+      "src/app/(dashboard)/dashboard/providers/ProvidersClient.tsx should exist"
+    );
     assert.match(providersSrc, /useEmailPrivacyStore/);
     assert.match(
       providersSrc,
