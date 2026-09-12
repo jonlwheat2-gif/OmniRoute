@@ -420,6 +420,15 @@ export function deleteBatch(id: string): boolean {
  * inference key could wipe every tenant's completed batches and null out their
  * file contents (GHSA-wvxc-jp3v-5mg5). Same ownership shape as `listBatches`
  * and `countBatches` above.
+ *
+ * The key-mode outer transaction holds the write lock for the whole key sweep
+ * (intended trade-off).
+ *
+ * Chunked deletion with forward-progress guards: each iteration selects a
+ * bounded set of completed batch IDs, deletes their checkpoint rows and batch
+ * rows, and verifies that the next chunk does not start with the same first ID
+ * as the previous one — if it does, a concurrent deleter is making no forward
+ * progress and we abort to avoid an infinite loop.
  */
 export function deleteCompletedBatches(apiKeyId?: string | null): {
   deletedBatches: number;
@@ -428,20 +437,17 @@ export function deleteCompletedBatches(apiKeyId?: string | null): {
   const db = getDbInstance();
   const scoped = typeof apiKeyId === "string" && apiKeyId.length > 0;
 
-  // Collect unique file IDs from the completed batches in scope
-  const rows = (
-    scoped
-      ? db
-          .prepare(
-            "SELECT input_file_id, output_file_id, error_file_id FROM batches WHERE status = 'completed' AND api_key_id = ?"
-          )
-          .all(apiKeyId)
-      : db
-          .prepare(
-            "SELECT input_file_id, output_file_id, error_file_id FROM batches WHERE status = 'completed'"
-          )
-          .all()
-  ) as Array<{
+  const baseWhere = scoped
+    ? "WHERE status = 'completed' AND api_key_id = ?"
+    : "WHERE status = 'completed'";
+  const baseParams = scoped ? [apiKeyId] : [];
+
+  // Collect unique file IDs from the completed batches in scope (single SELECT)
+  const rows = db
+    .prepare(
+      `SELECT input_file_id, output_file_id, error_file_id FROM batches ${baseWhere}`
+    )
+    .all(...baseParams) as Array<{
     input_file_id: string | null;
     output_file_id: string | null;
     error_file_id: string | null;
@@ -463,20 +469,41 @@ export function deleteCompletedBatches(apiKeyId?: string | null): {
     }
   }
 
-  if (scoped) {
+  let deletedBatches = 0;
+  let lastFirstBatchId: string | null = null;
+
+  // Chunked deletion of batches with forward-progress guard
+  const CHUNK_SIZE = 500;
+  for (;;) {
+    const batchRows = db
+      .prepare(
+        `SELECT id FROM batches ${baseWhere} ORDER BY id LIMIT ?`
+      )
+      .all(...baseParams, CHUNK_SIZE) as Array<{ id: string }>;
+
+    if (batchRows.length === 0) break;
+
+    const firstBatchId = batchRows[0].id;
+    if (lastFirstBatchId !== null && firstBatchId === lastFirstBatchId) {
+      throw new Error(
+        "deleteCompletedBatches: no forward progress (concurrent deleter detected)"
+      );
+    }
+    lastFirstBatchId = firstBatchId;
+
+    const batchIds = batchRows.map((r) => r.id);
+    const placeholders = batchIds.map(() => "?").join(",");
+
+    // Drive both DELETEs from the same selected batch IDs (never on DELETE alone)
     db.prepare(
-      "DELETE FROM batch_item_checkpoints WHERE batch_id IN (SELECT id FROM batches WHERE status = 'completed' AND api_key_id = ?)"
-    ).run(apiKeyId);
+      `DELETE FROM batch_item_checkpoints WHERE batch_id IN (${placeholders})`
+    ).run(...batchIds);
+
     const result = db
-      .prepare("DELETE FROM batches WHERE status = 'completed' AND api_key_id = ?")
-      .run(apiKeyId);
-    return { deletedBatches: result.changes, deletedFiles };
+      .prepare(`DELETE FROM batches WHERE id IN (${placeholders})`)
+      .run(...batchIds);
+    deletedBatches += result.changes;
   }
 
-  db.prepare(
-    "DELETE FROM batch_item_checkpoints WHERE batch_id IN (SELECT id FROM batches WHERE status = 'completed')"
-  ).run();
-
-  const result = db.prepare("DELETE FROM batches WHERE status = 'completed'").run();
-  return { deletedBatches: result.changes, deletedFiles };
+  return { deletedBatches, deletedFiles };
 }
