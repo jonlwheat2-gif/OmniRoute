@@ -28,6 +28,13 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 // tests/_setup/vitestUiPolyfills.ts renders the REAL en.json copy, so asserting on
 // the pill labels doubles as a guard that the four new `featureFlags` keys resolve
 // instead of silently falling back to their key names.
+//
+// Credit: the card-render harness and the long-description fixture below were
+// carried over from @retroamx's #13189 (tests/unit/ui/FeatureFlagCard.test.tsx),
+// which attacked the same #12739 truncation with a native `title` tooltip. What is
+// asserted here is different — the aria-describedby tooltip wiring, the
+// localStorage round-trip, and the SSR/hydration contract — none of which #13189
+// covered.
 
 import FeatureFlagCard from "@/app/(dashboard)/dashboard/settings/components/FeatureFlagCard";
 import FeatureFlagsGrid from "@/app/(dashboard)/dashboard/settings/components/FeatureFlagsGrid";
