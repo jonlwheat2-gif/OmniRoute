@@ -12843,6 +12843,10 @@
     "inactiveCount": "{count} không hoạt động",
     "dbOverrideCount": "{count} ghi đè DB",
     "searchPlaceholder": "Tìm kiếm cờ...",
+    "descriptionModeLabel": "Chế độ hiển thị mô tả",
+    "descriptionModeHint": "Khi di chuột: thẻ thu gọn và di chuột qua mô tả sẽ hiển thị toàn bộ văn bản. Toàn bộ văn bản: luôn hiển thị mô tả đầy đủ.",
+    "descriptionModeHover": "Khi di chuột",
+    "descriptionModeFull": "Toàn bộ văn bản",
     "categories": {
       "all": "Tất cả",
       "security": "Bảo mật",

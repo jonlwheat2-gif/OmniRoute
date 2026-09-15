@@ -12843,6 +12843,10 @@
     "inactiveCount": "{count} inativo",
     "dbOverrideCount": "{count} Substituições de banco de dados",
     "searchPlaceholder": "Pesquisar sinalizadores...",
+    "descriptionModeLabel": "Visualização da descrição",
+    "descriptionModeHint": "Ao passar o mouse: os cartões ficam compactos e passar o mouse sobre uma descrição mostra o texto completo. Texto completo: sempre mostrar a descrição completa.",
+    "descriptionModeHover": "Ao passar o mouse",
+    "descriptionModeFull": "Texto completo",
     "categories": {
       "all": "Todos",
       "security": "Security",
