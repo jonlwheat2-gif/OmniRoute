@@ -111,7 +111,8 @@ export default function FeatureFlagsGrid() {
   useEffect(() => {
     try {
       if (window.localStorage.getItem(DESCRIPTION_MODE_STORAGE_KEY) === "full") {
-        // eslint-disable-next-line react-hooks/set-state-in-effect -- localStorage hydration, runs once
+        // Guarded write, not an unconditional effect-body setState, so
+        // react-hooks/set-state-in-effect stays quiet without a directive.
         setDescriptionMode("full");
       }
     } catch {
