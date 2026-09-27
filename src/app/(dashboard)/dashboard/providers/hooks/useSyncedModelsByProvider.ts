@@ -1,36 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { queryKeys } from "@/shared/query/keys";
 import type { LiveModelsByProviderId } from "../providerPageUtils";
 
-/**
- * useSyncedModelsByProvider — fetch the live/synced model catalog for every
- * provider connection via GET /api/synced-available-models, so the Providers
- * page model-name filter can match against real upstream models (not just
- * the static curated registry). See #7250: aggregator providers (openrouter,
- * kilocode, ...) declare a single-entry static placeholder, so a
- * search for a real model name never matched and silently hid the provider.
- *
- * Fails soft — a fetch error leaves the map empty, and callers fall back to
- * the static registry only.
- */
-export function useSyncedModelsByProvider(): LiveModelsByProviderId {
-  const [models, setModels] = useState<LiveModelsByProviderId>({});
+async function fetchSyncedModelsByProvider(): Promise<LiveModelsByProviderId> {
+  const res = await fetch("/api/synced-available-models");
+  if (!res.ok) return {};
+  const data: unknown = await res.json();
+  if (!data || typeof data !== "object") return {};
+  return data as LiveModelsByProviderId;
+}
 
-  useEffect(() => {
-    let cancelled = false;
-    fetch("/api/synced-available-models")
-      .then((res) => (res.ok ? res.json() : null))
-      .then((data) => {
-        if (!cancelled && data && typeof data === "object") {
-          setModels(data as LiveModelsByProviderId);
-        }
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+export function useSyncedModelsByProvider(options?: {
+  queryFn?: () => Promise<LiveModelsByProviderId>;
+}): LiveModelsByProviderId {
+  const query = useQuery({
+    queryKey: queryKeys.providers.syncedModels(),
+    queryFn: options?.queryFn ?? fetchSyncedModelsByProvider,
+    retry: false,
+  });
 
-  return models;
+  return query.data ?? {};
 }

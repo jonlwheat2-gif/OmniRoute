@@ -1,5 +1,6 @@
 import "./globals.css";
 import { ThemeProvider } from "@/shared/components/ThemeProvider";
+import { QueryProvider } from "@/shared/components/QueryProvider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale, getTranslations } from "next-intl/server";
 import { RTL_LOCALES } from "@/i18n/config";
@@ -140,7 +141,9 @@ export default async function RootLayout({ children }) {
           <BasePathNetworkProvider>
             <PwaRegister />
             <LocaleAutoDetect />
-            <ThemeProvider>{children}</ThemeProvider>
+            <ThemeProvider>
+              <QueryProvider>{children}</QueryProvider>
+            </ThemeProvider>
           </BasePathNetworkProvider>
         </NextIntlClientProvider>
       </body>
