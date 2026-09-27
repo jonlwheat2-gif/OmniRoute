@@ -29,6 +29,7 @@ import { ComboTargetOptions } from "./ComboQuotaOnlyFallbackToggle";
 import { applyQuotaOnlyFallbackConfig, setQuotaOnlyFallback } from "./comboQuotaOnlyFallback";
 import { buildAgentFeaturePatch } from "./comboAgentFeatures";
 import { useComboProxyAssignments } from "./useComboProxyAssignments";
+import { useComboPageData } from "./hooks/useComboPageData";
 import { ResponseValidationEditor, type ResponseValidationValue } from "./ResponseValidationEditor";
 import ReasoningTokenBufferToggle from "./ReasoningTokenBufferToggle";
 import ComboTimeoutFields from "./ComboTimeoutFields";
@@ -56,7 +57,6 @@ import {
   getNextComboBuilderStage,
   getPreviousComboBuilderStage,
   hasExactModelStepDuplicate,
-  isEligibleActiveConnection,
   isIntelligentBuilderStrategy,
   parseQualifiedModel,
   resolveComboBuilderProviderId,
@@ -705,7 +705,6 @@ function computeAllowedRestrictionSync(
   return result;
 }
 
-
 function getModelString(entry) {
   if (typeof entry === "string") return entry;
   if (entry?.kind === "combo-ref") return entry.comboName;
@@ -837,20 +836,27 @@ function CombosPageContent() {
   const emailsVisible = useEmailPrivacyStore((s) => s.emailsVisible);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [combos, setCombos] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    loading,
+    combos,
+    activeProviders,
+    metrics,
+    providerNodes,
+    comboConfigMode,
+    routingSettings,
+    promptCompressionEnabled,
+    proxyConfig,
+    refetch,
+    setCombos,
+  } = useComboPageData();
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [editingCombo, setEditingCombo] = useState(null);
-  const [activeProviders, setActiveProviders] = useState([]);
-  const [metrics, setMetrics] = useState({});
   const [testResults, setTestResults] = useState(null);
   const [testingCombo, setTestingCombo] = useState(null);
   const { copied, copy } = useCopyToClipboard();
   const notify = useNotificationStore();
   const [proxyTargetCombo, setProxyTargetCombo] = useState(null);
-  const [proxyConfig, setProxyConfig] = useState(null);
   const { comboProxyAssignedIds, fetchComboProxyAssignments } = useComboProxyAssignments();
-  const [providerNodes, setProviderNodes] = useState([]);
   // SSR has no localStorage, so a lazy initializer reading it here returns a
   // different value server-side (always "not dismissed") than the client's
   // real stored value -- exactly the kind of source React's hydration
@@ -873,9 +879,6 @@ function CombosPageContent() {
   const [comboDragIndex, setComboDragIndex] = useState(null);
   const [comboDragOverIndex, setComboDragOverIndex] = useState(null);
   const [savingComboOrder, setSavingComboOrder] = useState(false);
-  const [comboConfigMode, setComboConfigMode] = useState("guided");
-  const [routingSettings, setRoutingSettings] = useState(null);
-  const [promptCompressionEnabled, setPromptCompressionEnabled] = useState(false);
   const [selectedIntelligentComboId, setSelectedIntelligentComboId] = useState<string | null>(null);
   const comboDragIndexRef = useRef<number | null>(null);
   const activeFilter = normalizeIntelligentRoutingFilter(searchParams.get("filter"));
@@ -906,58 +909,6 @@ function CombosPageContent() {
     setSelectedIntelligentComboId(null);
   }
 
-  const fetchData = async () => {
-    try {
-      const [combosRes, providersRes, metricsRes, nodesRes] = await Promise.all([
-        fetch("/api/combos"),
-        fetch("/api/providers"),
-        fetch("/api/combos/metrics"),
-        fetch("/api/provider-nodes"),
-      ]);
-      const combosData = await combosRes.json();
-      const providersData = await providersRes.json();
-      const metricsData = await metricsRes.json();
-      const nodesData = nodesRes.ok ? await nodesRes.json() : { nodes: [] };
-
-      if (combosRes.ok) setCombos((combosData.combos || []).filter((c) => !c.isHidden));
-      if (providersRes.ok) {
-        const active = (providersData.connections || []).filter(isEligibleActiveConnection);
-        setActiveProviders(active);
-      }
-      if (metricsRes.ok) setMetrics(metricsData.metrics || {});
-      setProviderNodes(nodesData.nodes || []);
-    } catch (error) {
-      console.log("Error fetching data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Mount load — placed after fetchData so the effect does not read the binding in its
-  // TDZ (react-hooks/immutability); the call sits behind an async boundary
-  // (react-hooks/set-state-in-effect).
-  useEffect(() => {
-    void (async () => {
-      await fetchData();
-    })();
-    fetch("/api/settings")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((settings) => {
-        if (!settings) return;
-        setComboConfigMode(normalizeComboConfigMode(settings.comboConfigMode));
-        setRoutingSettings(settings);
-      })
-      .catch(() => setComboConfigMode("guided"));
-    fetch("/api/settings/compression")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((settings) => setPromptCompressionEnabled(settings?.enabled === true))
-      .catch(() => setPromptCompressionEnabled(false));
-    fetch("/api/settings/proxy")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((c) => setProxyConfig(c))
-      .catch(() => {});
-  }, []);
-
   const handleCreate = async (data) => {
     try {
       const res = await fetch("/api/combos", {
@@ -966,7 +917,7 @@ function CombosPageContent() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        await fetchData();
+        await refetch();
         setShowCreateModal(false);
         setRecentlyCreatedCombo(data.name?.trim() || "");
         notify.success(t("comboCreated"));
@@ -987,7 +938,7 @@ function CombosPageContent() {
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        await fetchData();
+        await refetch();
         setEditingCombo(null);
         notify.success(t("comboUpdated"));
       } else {
@@ -1000,7 +951,7 @@ function CombosPageContent() {
   };
 
   const handleComboCreated = async (comboId: string) => {
-    await fetchData();
+    await refetch();
     // Wait for React to re-render the new card, then scroll it into view.
     setTimeout(() => {
       const el = document.querySelector(`[data-testid="combo-card-${comboId}"]`);
@@ -2097,7 +2048,15 @@ function TestResultsView({ results }) {
   );
 }
 
-function ComboFormModal({ isOpen, combo, onClose, onSave, activeProviders, comboConfigMode, routingSettings }) {
+function ComboFormModal({
+  isOpen,
+  combo,
+  onClose,
+  onSave,
+  activeProviders,
+  comboConfigMode,
+  routingSettings,
+}) {
   type CreateDraftSnapshot = {
     name: string;
     models: unknown[];
