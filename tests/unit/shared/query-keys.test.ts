@@ -19,6 +19,10 @@ describe("queryKeys", () => {
     assert.deepEqual(queryKeys.providers.syncedModels(), ["providers", "synced-models"]);
   });
 
+  it("names the combos page cache entry", () => {
+    assert.deepEqual(queryKeys.combos.page(), ["combos", "page"]);
+  });
+
   it("keeps sibling surfaces on distinct keys", () => {
     assert.deepEqual(queryKeys.combos.list(), ["combos"]);
     assert.deepEqual(queryKeys.batch.files(), ["batch", "files"]);
