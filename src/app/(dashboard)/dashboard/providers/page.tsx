@@ -23,6 +23,7 @@ import { useNotificationStore } from "@/store/notificationStore";
 import { useTranslations } from "next-intl";
 import { useSyncedModelsByProvider } from "./hooks/useSyncedModelsByProvider";
 import { useProviderUrlFilters } from "./hooks/useProviderUrlFilters";
+import { useProviderPageData } from "./hooks/useProviderPageData";
 import {
   buildStaticProviderEntries,
   buildCompatibleProviderGroups,
@@ -34,9 +35,8 @@ import {
   isPrimaryLlmProviderEntry,
   resolveVisibleWebFetchEntries,
   upsertProviderNodeById,
-  loadProviderPageData,
 } from "./providerPageUtils";
-import type { ProviderEntry, OpenRouterProviderStatsEntry } from "./providerPageUtils";
+import type { ProviderEntry } from "./providerPageUtils";
 import { OpenRouterProviderStatsProvider } from "./context/openRouterProviderStatsContext";
 import {
   shouldSyncProviderDisplayMode,
@@ -46,7 +46,6 @@ import {
 import {
   getCodexEffectiveServiceTier,
   getCodexGlobalServiceMode,
-  type CodexGlobalServiceMode,
 } from "@/lib/providers/codexFastTier";
 import dynamic from "next/dynamic";
 const AddCompatibleProviderModal = dynamic(
@@ -216,14 +215,21 @@ async function loadOauthEnvRepairStatus(): Promise<{
 
 function ProvidersPageContent() {
   const router = useRouter();
-  const [connections, setConnections] = useState<any[]>([]);
-  const [providerNodes, setProviderNodes] = useState<any[]>([]);
-  const [ccCompatibleProviderEnabled, setCcCompatibleProviderEnabled] = useState(false);
-  const [blockedProviders, setBlockedProviders] = useState<string[]>([]);
-  const [expirations, setExpirations] = useState<any>(null);
-  const [codexGlobalServiceMode, setCodexGlobalServiceMode] =
-    useState<CodexGlobalServiceMode>("none");
-  const [loading, setLoading] = useState(true);
+  const {
+    loading,
+    connections,
+    providerNodes,
+    ccCompatibleProviderEnabled,
+    expirations,
+    blockedProviders,
+    settings,
+    openRouterProviderStats,
+    refetch,
+    setConnections,
+    setProviderNodes,
+    setBlockedProviders,
+  } = useProviderPageData();
+  const codexGlobalServiceMode = getCodexGlobalServiceMode(settings);
   const [showAllProviders, setShowAllProviders] = useState(false);
   const [showAddCompatibleModal, setShowAddCompatibleModal] = useState(false);
   const [showAddAnthropicCompatibleModal, setShowAddAnthropicCompatibleModal] = useState(false);
@@ -241,9 +247,6 @@ function ProvidersPageContent() {
   const [modelSearchQuery, setModelSearchQuery] = useState("");
   const liveModelsByProviderId = useSyncedModelsByProvider();
   const [showFreeOnly, setShowFreeOnly] = useState(false);
-  const [openRouterProviderStats, setOpenRouterProviderStats] = useState<
-    OpenRouterProviderStatsEntry[]
-  >([]);
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   // #4240: media-category (serviceKind) filter — composes with activeCategory,
   // search and configured-only. null = no serviceKind filter.
@@ -285,29 +288,6 @@ function ProvidersPageContent() {
     activeServiceKind,
     setActiveServiceKind,
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        // Each request is time-bounded (see loadProviderPageData); a single
-        // stalled connection can no longer wedge `loading` on `true` and freeze
-        // the page on its skeleton forever.
-        const data = await loadProviderPageData();
-        setConnections(data.connections);
-        setProviderNodes(data.providerNodes);
-        setCcCompatibleProviderEnabled(data.ccCompatibleProviderEnabled);
-        if (data.expirations) setExpirations(data.expirations);
-        if (data.blockedProviders) setBlockedProviders(data.blockedProviders);
-        setCodexGlobalServiceMode(getCodexGlobalServiceMode(data.settings));
-        setOpenRouterProviderStats(data.openRouterProviderStats);
-      } catch (error) {
-        console.log("Error fetching data:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (!shouldSyncProviderDisplayMode(displayModePreferenceReady, loading)) return;
@@ -1874,7 +1854,9 @@ function ProvidersPageContent() {
         <ImportProvidersFromFileModal
           isOpen={showImportFromFileModal}
           onClose={() => setShowImportFromFileModal(false)}
-          onImported={async () => setConnections((await loadProviderPageData()).connections)}
+          onImported={async () => {
+            await refetch();
+          }}
         />
         {/* Test Results Modal */}
         {testResults && (
