@@ -356,6 +356,32 @@ test("runAuthzPipeline rejects unauthenticated internal api v1beta routes as cli
   assert.equal(body.error.code, "AUTH_002");
 });
 
+test("CLIENT_API still admits anonymous /v1beta/models — the catalog gate is the route's job (#16208)", async () => {
+  // Characterization guard, deliberately asserting the ALLOW.
+  //
+  // #16208 was fixed by teaching `src/app/api/v1beta/models/route.ts` to call
+  // `getModelCatalogAuthRejection()` — the same gate /v1/models uses — because
+  // the central pipeline CANNOT express the `requireAuthForModels` setting:
+  // clientApiPolicy keys off REQUIRE_API_KEY alone and treats "no bearer" as
+  // legitimate anonymous traffic whenever REQUIRE_API_KEY is off (the default).
+  //
+  // Pinning the allow here is what stops a future reader from "fixing" #16208
+  // by tightening clientApiPolicy instead — that would 401 every anonymous
+  // local caller on every default install (Gemini SDK, curl, the keyless
+  // local-first posture #13354 exists to protect) without ever consulting the
+  // setting the operator actually configured.
+  await forceAuthRequired();
+  delete process.env.REQUIRE_API_KEY;
+
+  const response = await pipeline.runAuthzPipeline(
+    request("http://localhost/v1beta/models", { method: "GET" }),
+    { enforce: true }
+  );
+
+  assert.equal(response.status, 200, "the pipeline must not gate the model catalog itself");
+  assert.equal(response.headers.get("x-omniroute-route-class"), "CLIENT_API");
+});
+
 test("runAuthzPipeline rejects new API requests during shutdown drain", async () => {
   globalThis.__omnirouteShutdown = { init: true, shuttingDown: true, activeRequests: 0 };
 
