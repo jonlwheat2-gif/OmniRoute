@@ -340,4 +340,42 @@ test.describe("provider journey — Gemini client format (openai-compatible upst
       }
     }
   );
+
+  test("STEP 8: /v1beta/models applies the same catalog auth gate as /v1/models (#16208)", async () => {
+    // The two catalogs describe the same provider inventory, so they must agree
+    // on who may read it. Before the fix the Gemini route took no `request` at
+    // all, so it never consulted requireAuthForModels and served the full
+    // inventory to anonymous callers while /v1/models answered 401 in the very
+    // same DB state (requireLogin + requireAuthForModels on, set in `before`).
+    const anonymous = await v1betaModelsRoute.GET(
+      new Request("http://localhost/api/v1beta/models")
+    );
+    const anonymousBody = await readJsonObject(anonymous);
+    assert.equal(
+      anonymous.status,
+      401,
+      `anonymous /v1beta/models must be rejected: ${JSON.stringify(anonymousBody)}`
+    );
+    assert.equal(anonymousBody.models, undefined, "no catalog may leak to an anonymous caller");
+
+    // ...and the sibling route must still agree, so the fix is not a bypass of
+    // the existing gate but a port of it.
+    const sibling = await fetchCatalog();
+    assert.equal(sibling.status, 401, "the two catalogs must agree for anonymous callers");
+
+    // The Gemini-native credential the journey already uses in STEP 5 keeps
+    // working (x-goog-api-key, honored by extractApiKey — #7034).
+    const authenticated = await v1betaModelsRoute.GET(
+      new Request("http://localhost/api/v1beta/models", {
+        headers: { "x-goog-api-key": apiKeyValue },
+      })
+    );
+    const authenticatedBody = await readJsonObject(authenticated);
+    assert.equal(authenticated.status, 200, JSON.stringify(authenticatedBody));
+    const names = asArray<{ name?: string }>(authenticatedBody.models).map((m) => m.name ?? "");
+    assert.ok(
+      names.some((n) => n.endsWith(`/${UPSTREAM_MODEL_ID}`)),
+      `/v1beta/models must list "${UPSTREAM_MODEL_ID}" for an authenticated Gemini client`
+    );
+  });
 });

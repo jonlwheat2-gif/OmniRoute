@@ -6,6 +6,8 @@ import {
   getSyncedAvailableModels,
 } from "@/lib/db/models";
 import { getProviderConnections } from "@/lib/db/providers";
+import { getSettings } from "@/lib/db/settings";
+import { getModelCatalogAuthRejection } from "@/app/api/v1/models/catalogRequest";
 import { getResolvedModelCapabilities } from "@/lib/modelCapabilities";
 import { getSyncedCapabilities } from "@/lib/modelsDevSync";
 import { mergeCustomModelMetadata } from "@/lib/providers/modelMetadataPrecedence";
@@ -49,8 +51,34 @@ export async function OPTIONS() {
 /**
  * GET /v1beta/models - Gemini compatible models list
  * Returns models in Gemini API format with real token limits when available.
+ *
+ * #16208: `request` is accepted so the handler can apply the SAME
+ * model-catalog auth gate as its sibling /v1/models. Previously the handler
+ * took no `request` at all, so it could not inspect credentials and made no
+ * `requireAuthForModels` check — an anonymous caller received the full
+ * provider/model inventory even when the operator had enabled "require auth
+ * for models". The central authz pipeline does not cover this: /v1beta/*
+ * classifies as CLIENT_API, and clientApiPolicy allows anonymous traffic
+ * whenever REQUIRE_API_KEY is off (the default).
+ *
+ * `request` is optional so a direct in-process invocation (tests calling
+ * `GET()` directly) stays a trusted local caller — the same convention
+ * `requireManagementAuth` uses. Next.js always supplies a real Request on the
+ * HTTP path, so that branch is unreachable there.
  */
-export async function GET() {
+export async function GET(request?: Request) {
+  if (request) {
+    let settings: Record<string, any> = {};
+    try {
+      settings = await getSettings();
+    } catch {
+      // Settings unavailable — fall through with an empty object so the gate
+      // still runs against its own auth signals rather than being skipped.
+    }
+    const authRejection = await getModelCatalogAuthRejection(request, settings, {});
+    if (authRejection) return authRejection;
+  }
+
   try {
     getSyncedCapabilities();
     const models = [];
